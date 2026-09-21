@@ -5,3 +5,5 @@ python-dotenv
 chromadb 
 sentence-transformers
 pytest
+tree-sitter
+tree-sitter-python

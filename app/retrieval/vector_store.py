@@ -1,5 +1,3 @@
-from functools import lru_cache
-
 import chromadb
 
 from app.config import settings
@@ -8,15 +6,14 @@ from app.config import settings
 COLLECTION_NAME = "code_chunks"
 
 
-@lru_cache(maxsize=1)
-def get_chroma_client():
+def get_client():
     return chromadb.PersistentClient(
         path=settings.chroma_path
     )
 
 
 def get_collection():
-    client = get_chroma_client()
+    client = get_client()
 
     return client.get_or_create_collection(
         name=COLLECTION_NAME,
@@ -28,7 +25,7 @@ def get_collection():
 
 def add_documents(
     documents: list[str],
-    embeddings: list[list[float]],
+    embeddings,
     metadatas: list[dict],
     ids: list[str],
 ):
@@ -43,17 +40,25 @@ def add_documents(
 
 
 def search(
-    query_embedding: list[float],
+    query_embedding,
     n_results: int = 5,
+    where: dict | None = None,
 ):
     collection = get_collection()
 
-    return collection.query(
-        query_embeddings=[query_embedding],
-        n_results=n_results,
-        include=[
+    query_kwargs = {
+        "query_embeddings": [query_embedding],
+        "n_results": n_results,
+        "include": [
             "documents",
             "metadatas",
             "distances",
         ],
+    }
+
+    if where is not None:
+        query_kwargs["where"] = where
+
+    return collection.query(
+        **query_kwargs
     )

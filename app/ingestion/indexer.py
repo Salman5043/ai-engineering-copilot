@@ -2,23 +2,66 @@ import hashlib
 from pathlib import Path
 
 from app.config import settings
+from app.ingestion.chunking import chunk_file
+from app.ingestion.scanner import scan_repository
 from app.retrieval.embeddings import embed_documents
 from app.retrieval.vector_store import add_documents
-
-from .chunker import chunk_code
-from .scanner import scan_repository
 
 
 def generate_chunk_id(
     relative_path: str,
     start_line: int,
+    symbol: str | None = None,
 ) -> str:
 
-    value = f"{relative_path}:{start_line}"
+    raw = (
+        f"{relative_path}:"
+        f"{start_line}:"
+        f"{symbol or ''}"
+    )
 
     return hashlib.sha256(
-        value.encode("utf-8")
+        raw.encode("utf-8")
     ).hexdigest()
+
+
+def detect_language(extension: str) -> str:
+
+    languages = {
+        ".py": "python",
+        ".js": "javascript",
+        ".jsx": "javascript",
+        ".ts": "typescript",
+        ".tsx": "typescript",
+        ".java": "java",
+        ".go": "go",
+        ".rs": "rust",
+        ".cpp": "cpp",
+        ".c": "c",
+        ".h": "c",
+        ".hpp": "cpp",
+        ".cs": "csharp",
+        ".php": "php",
+        ".rb": "ruby",
+        ".swift": "swift",
+        ".kt": "kotlin",
+        ".kts": "kotlin",
+        ".sql": "sql",
+        ".html": "html",
+        ".css": "css",
+        ".scss": "scss",
+        ".json": "json",
+        ".yaml": "yaml",
+        ".yml": "yaml",
+        ".toml": "toml",
+        ".md": "markdown",
+        ".txt": "text",
+    }
+
+    return languages.get(
+        extension.lower(),
+        "unknown",
+    )
 
 
 def index_repository(
@@ -30,35 +73,48 @@ def index_repository(
         max_file_size_mb=settings.max_file_size_mb,
     )
 
-    documents: list[str] = []
-    metadatas: list[dict] = []
-    ids: list[str] = []
+    documents = []
+    metadatas = []
+    ids = []
 
-    total_chunks = 0
+    for file in files:
 
-    for repository_file in files:
+        path = Path(file.path)
 
         try:
-            content = repository_file.path.read_text(
-                encoding="utf-8"
+            source = path.read_text(
+                encoding="utf-8",
+                errors="replace",
             )
-        except (UnicodeDecodeError, OSError):
+        except Exception:
             continue
 
-        chunks = chunk_code(
-            content,
+        chunks = chunk_file(
+            source=source,
+            file_path=file.path,
             chunk_size=settings.chunk_size,
             overlap=settings.chunk_overlap,
         )
 
+        language = detect_language(
+            file.extension
+        )
+
         for chunk in chunks:
 
-            documents.append(chunk.content)
+            documents.append(
+                chunk.content
+            )
 
             metadatas.append(
                 {
-                    "file": repository_file.relative_path,
-                    "extension": repository_file.extension,
+                    "file": file.relative_path,
+                    "extension": file.extension,
+                    "language": language,
+                    "symbol": chunk.symbol or "",
+                    "symbol_type": (
+                        chunk.symbol_type or ""
+                    ),
                     "start_line": chunk.start_line,
                     "end_line": chunk.end_line,
                 }
@@ -66,12 +122,11 @@ def index_repository(
 
             ids.append(
                 generate_chunk_id(
-                    repository_file.relative_path,
+                    file.relative_path,
                     chunk.start_line,
+                    chunk.symbol,
                 )
             )
-
-            total_chunks += 1
 
     if not documents:
         return {
@@ -79,7 +134,9 @@ def index_repository(
             "chunks": 0,
         }
 
-    embeddings = embed_documents(documents)
+    embeddings = embed_documents(
+        documents
+    )
 
     add_documents(
         documents=documents,
@@ -90,5 +147,5 @@ def index_repository(
 
     return {
         "files": len(files),
-        "chunks": total_chunks,
+        "chunks": len(documents),
     }
