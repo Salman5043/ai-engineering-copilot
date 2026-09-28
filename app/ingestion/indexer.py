@@ -8,13 +8,26 @@ from app.retrieval.embeddings import embed_documents
 from app.retrieval.vector_store import add_documents
 
 
-def generate_chunk_id(
-    relative_path: str,
-    start_line: int,
-    symbol: str | None = None,
-) -> str:
+def generate_repository_id(repository_path: str) -> str:
+    resolved = str(
+        Path(repository_path).resolve()
+    ).lower()
 
+    digest = hashlib.sha256(
+        resolved.encode("utf-8")
+    ).hexdigest()[:16]
+
+    return f"repo_{digest}"
+
+
+def generate_chunk_id(
+    repository_id,
+    relative_path,
+    start_line,
+    symbol=None,
+):
     raw = (
+        f"{repository_id}:"
         f"{relative_path}:"
         f"{start_line}:"
         f"{symbol or ''}"
@@ -25,8 +38,7 @@ def generate_chunk_id(
     ).hexdigest()
 
 
-def detect_language(extension: str) -> str:
-
+def detect_language(extension):
     languages = {
         ".py": "python",
         ".js": "javascript",
@@ -64,9 +76,14 @@ def detect_language(extension: str) -> str:
     )
 
 
-def index_repository(
-    repository_path: str,
-) -> dict:
+def index_repository(repository_path):
+    repository_path = str(
+        Path(repository_path).resolve()
+    )
+
+    repository_id = generate_repository_id(
+        repository_path
+    )
 
     files = scan_repository(
         repository_path,
@@ -78,7 +95,6 @@ def index_repository(
     ids = []
 
     for file in files:
-
         path = Path(file.path)
 
         try:
@@ -101,20 +117,16 @@ def index_repository(
         )
 
         for chunk in chunks:
-
-            documents.append(
-                chunk.content
-            )
+            documents.append(chunk.content)
 
             metadatas.append(
                 {
+                    "repository_id": repository_id,
                     "file": file.relative_path,
                     "extension": file.extension,
                     "language": language,
                     "symbol": chunk.symbol or "",
-                    "symbol_type": (
-                        chunk.symbol_type or ""
-                    ),
+                    "symbol_type": chunk.symbol_type or "",
                     "start_line": chunk.start_line,
                     "end_line": chunk.end_line,
                 }
@@ -122,6 +134,7 @@ def index_repository(
 
             ids.append(
                 generate_chunk_id(
+                    repository_id,
                     file.relative_path,
                     chunk.start_line,
                     chunk.symbol,
@@ -130,13 +143,13 @@ def index_repository(
 
     if not documents:
         return {
+            "repository_id": repository_id,
+            "repository_path": repository_path,
             "files": len(files),
             "chunks": 0,
         }
 
-    embeddings = embed_documents(
-        documents
-    )
+    embeddings = embed_documents(documents)
 
     add_documents(
         documents=documents,
@@ -146,6 +159,8 @@ def index_repository(
     )
 
     return {
+        "repository_id": repository_id,
+        "repository_path": repository_path,
         "files": len(files),
         "chunks": len(documents),
     }

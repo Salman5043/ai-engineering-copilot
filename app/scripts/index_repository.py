@@ -4,11 +4,10 @@ from app.ingestion.indexer import index_repository
 
 
 def main():
-
     if len(sys.argv) != 2:
         print(
             "Usage: "
-            "uv run python scripts/index_repository.py "
+            "uv run python -m scripts.index_repository "
             "<repository_path>"
         )
         raise SystemExit(1)
@@ -22,8 +21,9 @@ def main():
     )
 
     print("\nIndexing complete.")
-    print(f"Files:  {result['files']}")
-    print(f"Chunks: {result['chunks']}")
+    print(f"Repository ID: {result['repository_id']}")
+    print(f"Files:         {result['files']}")
+    print(f"Chunks:        {result['chunks']}")
 
 
 if __name__ == "__main__":

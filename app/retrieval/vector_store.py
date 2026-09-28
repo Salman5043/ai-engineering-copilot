@@ -3,7 +3,7 @@ import chromadb
 from app.config import settings
 
 
-COLLECTION_NAME = "code_chunks"
+COLLECTION_NAME = "code_chunks_v2"
 
 
 def get_client():
@@ -24,10 +24,10 @@ def get_collection():
 
 
 def add_documents(
-    documents: list[str],
+    documents,
     embeddings,
-    metadatas: list[dict],
-    ids: list[str],
+    metadatas,
+    ids,
 ):
     collection = get_collection()
 
@@ -41,24 +41,18 @@ def add_documents(
 
 def search(
     query_embedding,
-    n_results: int = 5,
-    where: dict | None = None,
+    n_results=5,
+    where=None,
 ):
     collection = get_collection()
 
-    query_kwargs = {
-        "query_embeddings": [query_embedding],
-        "n_results": n_results,
-        "include": [
+    return collection.query(
+        query_embeddings=[query_embedding],
+        n_results=n_results,
+        where=where,
+        include=[
             "documents",
             "metadatas",
             "distances",
         ],
-    }
-
-    if where is not None:
-        query_kwargs["where"] = where
-
-    return collection.query(
-        **query_kwargs
     )

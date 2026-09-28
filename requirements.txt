@@ -7,3 +7,4 @@ sentence-transformers
 pytest
 tree-sitter
 tree-sitter-python
+langgraph

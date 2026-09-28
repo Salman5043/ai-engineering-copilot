@@ -11,20 +11,24 @@ router = APIRouter(
 
 
 @router.post("/index")
-def index(request: RepositoryIndexRequest):
-
+def index_repository_route(
+    request: RepositoryIndexRequest,
+):
     try:
         result = index_repository(
             request.repository_path
         )
 
-    except (FileNotFoundError, ValueError) as exc:
+        return result
+
+    except ValueError as exc:
         raise HTTPException(
             status_code=400,
             detail=str(exc),
         ) from exc
 
-    return {
-        "status": "indexed",
-        **result,
-    }
+    except Exception as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Repository indexing failed: {exc}",
+        ) from exc
