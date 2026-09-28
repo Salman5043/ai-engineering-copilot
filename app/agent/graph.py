@@ -7,6 +7,7 @@ from app.agent.nodes import (
     create_plan,
     evaluate_current_investigation,
     execute_current_tool,
+    generate_answer,
     initialize_investigation,
 )
 from app.agent.state import InvestigationState
@@ -15,24 +16,16 @@ from app.agent.state import InvestigationState
 def should_continue(
     state: InvestigationState,
 ) -> str:
-    """
-    Decide whether the investigation should continue.
-    """
-
     if state.get(
         "needs_more_investigation",
         False,
     ):
         return "execute_tool"
 
-    return END
+    return "generate_answer"
 
 
 def build_investigation_graph():
-    """
-    Build the Phase 2 investigation graph.
-    """
-
     graph = StateGraph(
         InvestigationState
     )
@@ -62,9 +55,11 @@ def build_investigation_graph():
         evaluate_current_investigation,
     )
 
-    # ---------------------------------------------------------
-    # Initial flow
-    # ---------------------------------------------------------
+    graph.add_node(
+        "generate_answer",
+        generate_answer,
+    )
+
     graph.add_edge(
         START,
         "initialize",
@@ -85,24 +80,23 @@ def build_investigation_graph():
         "execute_tool",
     )
 
-    # ---------------------------------------------------------
-    # Tool execution → evidence evaluation
-    # ---------------------------------------------------------
     graph.add_edge(
         "execute_tool",
         "evaluate_investigation",
     )
 
-    # ---------------------------------------------------------
-    # Continue or finish
-    # ---------------------------------------------------------
     graph.add_conditional_edges(
         "evaluate_investigation",
         should_continue,
         {
             "execute_tool": "execute_tool",
-            END: END,
+            "generate_answer": "generate_answer",
         },
+    )
+
+    graph.add_edge(
+        "generate_answer",
+        END,
     )
 
     return graph.compile()

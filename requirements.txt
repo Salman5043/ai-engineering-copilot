@@ -8,3 +8,4 @@ pytest
 tree-sitter
 tree-sitter-python
 langgraph
+langchain-groq

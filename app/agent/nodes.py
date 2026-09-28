@@ -7,7 +7,45 @@ from app.agent.state import InvestigationState
 from app.agent.tools import TOOL_REGISTRY
 from app.retrieval.query_intent import detect_intent
 from app.retrieval.query_parser import parse_query
+from app.agent.reasoner import generate_reasoned_answer
 
+def generate_answer(
+    state: InvestigationState,
+) -> InvestigationState:
+    try:
+        answer = generate_reasoned_answer(
+            query=state["query"],
+            intent=state.get(
+                "intent",
+                "general_search",
+            ),
+            evidence=state.get(
+                "evidence",
+                [],
+            ),
+        )
+
+        state["reasoning"] = answer
+        state["answer"] = answer
+        state["reasoning_error"] = ""
+
+    except Exception as exc:
+        error = (
+            f"LLM reasoning failed: {exc}"
+        )
+
+        state["reasoning_error"] = error
+        state["errors"] = (
+            state.get("errors", []) + [error]
+        )
+
+        state["answer"] = (
+            "The repository investigation completed, "
+            "but the reasoning model could not generate "
+            "the final answer."
+        )
+
+    return state
 
 def initialize_investigation(
     state: InvestigationState,
