@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from app.agent.evidence import add_evidence
 from app.agent.planner import build_investigation_plan
 from app.agent.state import InvestigationState
 from app.agent.tools import TOOL_REGISTRY
@@ -12,9 +13,6 @@ def initialize_investigation(
 ) -> InvestigationState:
     """
     Initialize the investigation state.
-
-    This node prepares containers used by later investigation
-    steps and resets investigation control flags.
     """
 
     state.setdefault("search_results", [])
@@ -24,6 +22,10 @@ def initialize_investigation(
     state.setdefault("errors", [])
     state.setdefault("executed_tools", [])
     state.setdefault("tool_errors", [])
+
+    state["evidence_count"] = len(
+        state.get("evidence", [])
+    )
 
     state["investigation_complete"] = False
     state["needs_more_investigation"] = True
@@ -36,12 +38,6 @@ def analyze_query(
 ) -> InvestigationState:
     """
     Analyze the developer query.
-
-    Detects:
-    - query intent
-    - intent confidence
-    - identifiers
-    - keywords
     """
 
     query = state["query"]
@@ -61,11 +57,7 @@ def create_plan(
     state: InvestigationState,
 ) -> InvestigationState:
     """
-    Create a deterministic investigation plan.
-
-    Phase 2.3 moves planning responsibility into planner.py.
-    This node only converts the planner output into the
-    LangGraph state representation.
+    Create the investigation plan.
     """
 
     plan = build_investigation_plan(
@@ -105,11 +97,9 @@ def execute_current_tool(
     """
     Execute the current investigation tool.
 
-    The planner guarantees that planned tools are registered,
-    but this node still performs defensive validation.
+    Raw results are stored in search_results.
 
-    Results are accumulated into search_results and the
-    executed tool is recorded for later inspection.
+    Structured, deduplicated evidence is stored in evidence.
     """
 
     plan = state.get(
@@ -194,7 +184,7 @@ def execute_current_tool(
                 results = []
 
         # -----------------------------------------------------
-        # Test discovery
+        # Test search
         # -----------------------------------------------------
         elif tool_name == "test_search":
 
@@ -223,7 +213,7 @@ def execute_current_tool(
             )
 
         # -----------------------------------------------------
-        # Generic repository search
+        # Repository search
         # -----------------------------------------------------
         elif tool_name == "repository_search":
 
@@ -243,16 +233,44 @@ def execute_current_tool(
             )
 
         # -----------------------------------------------------
-        # Store results
+        # Ensure results are a list
         # -----------------------------------------------------
-        if results:
-            state.setdefault(
-                "search_results",
-                [],
-            ).extend(results)
+        if results is None:
+            results = []
+
+        if not isinstance(results, list):
+            results = list(results)
 
         # -----------------------------------------------------
-        # Record successful execution
+        # Store raw search results
+        # -----------------------------------------------------
+        state.setdefault(
+            "search_results",
+            [],
+        ).extend(results)
+
+        # -----------------------------------------------------
+        # Convert results into structured evidence
+        # -----------------------------------------------------
+        state["evidence"] = add_evidence(
+            state.setdefault(
+                "evidence",
+                [],
+            ),
+            results,
+            repository_id=repository_id,
+            source_tool=tool_name,
+        )
+
+        # -----------------------------------------------------
+        # Update evidence count
+        # -----------------------------------------------------
+        state["evidence_count"] = len(
+            state["evidence"]
+        )
+
+        # -----------------------------------------------------
+        # Record successful tool execution
         # -----------------------------------------------------
         state.setdefault(
             "executed_tools",
@@ -274,7 +292,7 @@ def execute_current_tool(
     state["current_step"] = current_step + 1
 
     # ---------------------------------------------------------
-    # Determine whether investigation is finished
+    # Determine completion
     # ---------------------------------------------------------
     if state["current_step"] >= len(plan):
 
