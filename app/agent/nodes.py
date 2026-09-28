@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from app.agent.evidence import add_evidence
+from app.agent.evaluator import evaluate_investigation
 from app.agent.planner import build_investigation_plan
 from app.agent.state import InvestigationState
 from app.agent.tools import TOOL_REGISTRY
@@ -25,6 +26,11 @@ def initialize_investigation(
 
     state["evidence_count"] = len(
         state.get("evidence", [])
+    )
+
+    state["investigation_decision"] = "continue"
+    state["investigation_reason"] = (
+        "Investigation has not started yet."
     )
 
     state["investigation_complete"] = False
@@ -138,10 +144,6 @@ def execute_current_tool(
 
         state["current_step"] = current_step + 1
 
-        if state["current_step"] >= len(plan):
-            state["needs_more_investigation"] = False
-            state["investigation_complete"] = True
-
         return state
 
     repository_id = state["repository_id"]
@@ -157,9 +159,6 @@ def execute_current_tool(
     # ---------------------------------------------------------
     try:
 
-        # -----------------------------------------------------
-        # Symbol search
-        # -----------------------------------------------------
         if tool_name == "symbol_search":
 
             if identifiers:
@@ -170,9 +169,6 @@ def execute_current_tool(
             else:
                 results = []
 
-        # -----------------------------------------------------
-        # Reference search
-        # -----------------------------------------------------
         elif tool_name == "reference_search":
 
             if identifiers:
@@ -183,9 +179,6 @@ def execute_current_tool(
             else:
                 results = []
 
-        # -----------------------------------------------------
-        # Test search
-        # -----------------------------------------------------
         elif tool_name == "test_search":
 
             results = tool(
@@ -193,9 +186,6 @@ def execute_current_tool(
                 query=query,
             )
 
-        # -----------------------------------------------------
-        # Configuration search
-        # -----------------------------------------------------
         elif tool_name == "configuration_search":
 
             results = tool(
@@ -203,18 +193,12 @@ def execute_current_tool(
                 query=query,
             )
 
-        # -----------------------------------------------------
-        # Entrypoint search
-        # -----------------------------------------------------
         elif tool_name == "entrypoint_search":
 
             results = tool(
                 repository_id=repository_id,
             )
 
-        # -----------------------------------------------------
-        # Repository search
-        # -----------------------------------------------------
         elif tool_name == "repository_search":
 
             results = tool(
@@ -222,9 +206,6 @@ def execute_current_tool(
                 query=query,
             )
 
-        # -----------------------------------------------------
-        # Defensive fallback
-        # -----------------------------------------------------
         else:
 
             results = tool(
@@ -233,7 +214,7 @@ def execute_current_tool(
             )
 
         # -----------------------------------------------------
-        # Ensure results are a list
+        # Normalize result container
         # -----------------------------------------------------
         if results is None:
             results = []
@@ -250,7 +231,7 @@ def execute_current_tool(
         ).extend(results)
 
         # -----------------------------------------------------
-        # Convert results into structured evidence
+        # Collect structured evidence
         # -----------------------------------------------------
         state["evidence"] = add_evidence(
             state.setdefault(
@@ -262,9 +243,6 @@ def execute_current_tool(
             source_tool=tool_name,
         )
 
-        # -----------------------------------------------------
-        # Update evidence count
-        # -----------------------------------------------------
         state["evidence_count"] = len(
             state["evidence"]
         )
@@ -287,20 +265,62 @@ def execute_current_tool(
         )
 
     # ---------------------------------------------------------
-    # Move to next investigation step
+    # Advance investigation step
     # ---------------------------------------------------------
     state["current_step"] = current_step + 1
 
-    # ---------------------------------------------------------
-    # Determine completion
-    # ---------------------------------------------------------
-    if state["current_step"] >= len(plan):
+    # Don't decide completion here.
+    #
+    # Phase 2.5 introduces a separate evaluation node.
+    state["needs_more_investigation"] = True
+    state["investigation_complete"] = False
 
+    return state
+
+
+def evaluate_current_investigation(
+    state: InvestigationState,
+) -> InvestigationState:
+    """
+    Evaluate the evidence collected so far and determine
+    whether the investigation should continue.
+    """
+
+    evaluation = evaluate_investigation(
+        intent=state.get(
+            "intent",
+            "general_search",
+        ),
+        evidence=state.get(
+            "evidence",
+            [],
+        ),
+        executed_tools=state.get(
+            "executed_tools",
+            [],
+        ),
+        current_step=state.get(
+            "current_step",
+            0,
+        ),
+        max_steps=state.get(
+            "max_steps",
+            0,
+        ),
+    )
+
+    state["investigation_decision"] = (
+        evaluation.decision
+    )
+
+    state["investigation_reason"] = (
+        evaluation.reason
+    )
+
+    if evaluation.decision == "complete":
         state["needs_more_investigation"] = False
         state["investigation_complete"] = True
-
     else:
-
         state["needs_more_investigation"] = True
         state["investigation_complete"] = False
 

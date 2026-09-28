@@ -1,27 +1,41 @@
+from __future__ import annotations
+
 from langgraph.graph import END, START, StateGraph
 
 from app.agent.nodes import (
     analyze_query,
     create_plan,
+    evaluate_current_investigation,
     execute_current_tool,
     initialize_investigation,
 )
 from app.agent.state import InvestigationState
 
 
-def should_continue(state: InvestigationState) -> str:
+def should_continue(
+    state: InvestigationState,
+) -> str:
     """
-    Decide whether the investigation has more planned tools to execute.
+    Decide whether the investigation should continue.
     """
 
-    if state.get("needs_more_investigation", False):
+    if state.get(
+        "needs_more_investigation",
+        False,
+    ):
         return "execute_tool"
 
     return END
 
 
 def build_investigation_graph():
-    graph = StateGraph(InvestigationState)
+    """
+    Build the Phase 2 investigation graph.
+    """
+
+    graph = StateGraph(
+        InvestigationState
+    )
 
     graph.add_node(
         "initialize",
@@ -43,6 +57,14 @@ def build_investigation_graph():
         execute_current_tool,
     )
 
+    graph.add_node(
+        "evaluate_investigation",
+        evaluate_current_investigation,
+    )
+
+    # ---------------------------------------------------------
+    # Initial flow
+    # ---------------------------------------------------------
     graph.add_edge(
         START,
         "initialize",
@@ -63,8 +85,19 @@ def build_investigation_graph():
         "execute_tool",
     )
 
-    graph.add_conditional_edges(
+    # ---------------------------------------------------------
+    # Tool execution → evidence evaluation
+    # ---------------------------------------------------------
+    graph.add_edge(
         "execute_tool",
+        "evaluate_investigation",
+    )
+
+    # ---------------------------------------------------------
+    # Continue or finish
+    # ---------------------------------------------------------
+    graph.add_conditional_edges(
+        "evaluate_investigation",
         should_continue,
         {
             "execute_tool": "execute_tool",

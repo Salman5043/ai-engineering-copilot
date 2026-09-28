@@ -42,6 +42,12 @@ class InvestigationState(TypedDict, total=False):
     hypotheses: list[str]
 
     # ---------------------------------------------------------
+    # Investigation evaluation
+    # ---------------------------------------------------------
+    investigation_decision: str
+    investigation_reason: str
+
+    # ---------------------------------------------------------
     # Final response
     # ---------------------------------------------------------
     answer: str
