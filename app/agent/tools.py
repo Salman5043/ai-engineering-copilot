@@ -3,6 +3,9 @@ from __future__ import annotations
 from typing import Any
 
 from app.retrieval.retriever import retrieve
+from app.developer_tools.registry import (
+    DEVELOPER_TOOL_REGISTRY,
+)
 
 
 def _normalize_result(result: Any) -> dict[str, Any]:
@@ -149,3 +152,6 @@ TOOL_REGISTRY = {
     "configuration_search": find_configuration,
     "entrypoint_search": find_entrypoint,
 }
+TOOL_REGISTRY.update(
+    DEVELOPER_TOOL_REGISTRY
+)

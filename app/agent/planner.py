@@ -182,18 +182,28 @@ def build_investigation_plan(
     elif intent == "architecture":
         _add_step(
             steps,
+            "repository_structure",
+            "Inspect the repository structure and identify major components.",
+        )
+        _add_step(
+            steps,
             "repository_search",
-            "Inspect repository structure and major components.",
+            "Search the repository for architectural components and entrypoints.",
         )
 
     # ---------------------------------------------------------
     # General search
     # ---------------------------------------------------------
-    else:
+    elif intent == "general_search":
+        _add_step(
+            steps,
+            "search_text",
+            "Search the repository directly for relevant code and text.",
+        )
         _add_step(
             steps,
             "repository_search",
-            "Perform broad repository search.",
+            "Collect semantic repository context around the search results.",
         )
 
     # Safety fallback.

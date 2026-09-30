@@ -9,6 +9,9 @@ from app.agent.reasoner import generate_reasoned_answer
 from app.agent.planner import build_investigation_plan
 from app.retrieval.query_parser import extract_identifiers
 from app.retrieval.query_intent import detect_intent
+from app.agent.tool_arguments import (
+    build_tool_arguments,
+)
 
 
 # ============================================================
