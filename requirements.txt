@@ -10,3 +10,4 @@ tree-sitter-python
 langgraph
 langchain-groq
 mcp<2
+mcp[cli]

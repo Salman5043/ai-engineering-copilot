@@ -86,7 +86,7 @@ def test_architecture_plan():
 
     tools = [step.tool_name for step in plan.steps]
 
-    assert tools == ["repository_search"]
+    assert tools == ["repository_structure", "repository_search"]
 
 
 def test_general_search_plan():
@@ -98,7 +98,7 @@ def test_general_search_plan():
 
     tools = [step.tool_name for step in plan.steps]
 
-    assert tools == ["repository_search"]
+    assert tools == ["search_text", "repository_search"]
 
 
 def test_plan_contains_only_registered_tools():
