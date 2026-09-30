@@ -58,3 +58,120 @@ class SearchResponse(BaseModel):
     intent: str
     intent_confidence: float
     results: list[SearchResult]
+
+
+
+
+class InvestigationRequest(BaseModel):
+    repository_id: str = Field(
+        min_length=1,
+        description=(
+            "Repository identifier returned during indexing"
+        ),
+    )
+
+    query: str = Field(
+        min_length=1,
+        description=(
+            "Natural-language developer investigation question"
+        ),
+    )
+
+
+class InvestigationEvidence(BaseModel):
+    evidence_id: str
+
+    content: str
+
+    file: str
+
+    start_line: int | None = None
+    end_line: int | None = None
+
+    language: str | None = None
+
+    symbol: str | None = None
+    symbol_type: str | None = None
+
+    score: float | None = None
+    semantic_score: float | None = None
+
+    source_tool: str
+
+    repository_id: str
+
+
+class InvestigationResponse(BaseModel):
+    # ---------------------------------------------------------
+    # Request
+    # ---------------------------------------------------------
+
+    query: str
+    repository_id: str
+
+    # ---------------------------------------------------------
+    # Query analysis
+    # ---------------------------------------------------------
+
+    intent: str
+    intent_confidence: float
+
+    # ---------------------------------------------------------
+    # Investigation
+    # ---------------------------------------------------------
+
+    investigation_plan: list[str] = Field(
+        default_factory=list
+    )
+
+    executed_tools: list[str] = Field(
+        default_factory=list
+    )
+
+    # ---------------------------------------------------------
+    # Evidence
+    # ---------------------------------------------------------
+
+    evidence_count: int = 0
+
+    evidence: list[InvestigationEvidence] = Field(
+        default_factory=list
+    )
+
+    # ---------------------------------------------------------
+    # Investigation status
+    # ---------------------------------------------------------
+
+    investigation_complete: bool = False
+
+    investigation_decision: str = ""
+
+    investigation_reason: str = ""
+
+    # ---------------------------------------------------------
+    # Final answer
+    # ---------------------------------------------------------
+
+    answer: str = ""
+
+    # ---------------------------------------------------------
+    # Errors
+    # ---------------------------------------------------------
+
+    reasoning_error: str | None = None
+
+    errors: list[str] = Field(
+        default_factory=list
+    )
+
+    # ---------------------------------------------------------
+    # Phase 2.8 — HITL
+    # ---------------------------------------------------------
+
+    approval_required: bool = False
+
+    approval_status: str = "pending"
+
+    approval_message: str = ""
+
+    thread_id: str | None = None
