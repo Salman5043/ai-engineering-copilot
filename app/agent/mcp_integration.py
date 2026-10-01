@@ -3,7 +3,6 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
-from app.agent.evidence import add_evidence
 from app.mcp_client.models import (
     MCPToolDefinition,
     local_copilot_server_config,
@@ -16,9 +15,8 @@ class DynamicMCPTools:
     """
     Bridge between LangGraph and dynamically discovered MCP tools.
 
-    The LangGraph agent does not need to know how MCP connections
-    are created. It only asks this adapter to discover or execute
-    tools.
+    The registry owns tool discovery and caching.
+    The adapter provides the interface used by the agent.
     """
 
     def __init__(
@@ -33,12 +31,21 @@ class DynamicMCPTools:
             )
         )
 
-    async def discover(self) -> list[MCPToolDefinition]:
+    async def discover(
+        self,
+        *,
+        force_refresh: bool = False,
+    ) -> list[MCPToolDefinition]:
         """
-        Discover tools exposed by the MCP server.
+        Discover MCP tools.
+
+        Results are cached by the registry unless
+        force_refresh=True.
         """
 
-        return await self.registry.discover()
+        return await self.registry.discover(
+            force_refresh=force_refresh,
+        )
 
     async def execute(
     self,
@@ -69,16 +76,47 @@ class DynamicMCPTools:
 
         return normalized
 
+    def has_tool(
+        self,
+        tool_name: str,
+    ) -> bool:
+        """
+        Check whether a tool is currently available
+        in the cached catalog.
+        """
+
+        return self.registry.has_tool(
+            tool_name
+        )
+
+    def get_tool(
+        self,
+        tool_name: str,
+    ) -> MCPToolDefinition | None:
+        """
+        Return a cached tool definition.
+        """
+
+        return self.registry.get(
+            tool_name
+        )
+
+    def list_tools(
+        self,
+    ) -> list[MCPToolDefinition]:
+        """
+        Return all currently cached MCP tools.
+        """
+
+        return self.registry.list_tools()
+
 
 def _run_async(
     coroutine: Any,
 ) -> Any:
     """
-    Run an async MCP operation from the synchronous LangGraph
-    execution path.
-
-    The current investigation graph uses synchronous invocation,
-    so this keeps MCP integration compatible with it.
+    Run an async MCP operation from the synchronous
+    LangGraph execution path.
     """
 
     try:
@@ -94,6 +132,8 @@ def _run_async(
 
 def discover_mcp_tools_sync(
     adapter: DynamicMCPTools | None = None,
+    *,
+    force_refresh: bool = False,
 ) -> list[MCPToolDefinition]:
     """
     Synchronous entrypoint used by the current LangGraph graph.
@@ -102,7 +142,9 @@ def discover_mcp_tools_sync(
     adapter = adapter or DynamicMCPTools()
 
     return _run_async(
-        adapter.discover()
+        adapter.discover(
+            force_refresh=force_refresh,
+        )
     )
 
 
@@ -186,21 +228,19 @@ def execute_mcp_tool_sync(
     """
     Discover and execute one MCP tool from the synchronous
     LangGraph execution path.
+
+    Discovery is cached inside the adapter's registry.
     """
 
     adapter = adapter or DynamicMCPTools()
 
-    tools = _run_async(
-        adapter.discover()
-    )
+    if not adapter.has_tool(tool_name):
+        _run_async(
+            adapter.discover()
+        )
 
-    tool = next(
-        (
-            item
-            for item in tools
-            if item.name == tool_name
-        ),
-        None,
+    tool = adapter.get_tool(
+        tool_name
     )
 
     if tool is None:
@@ -233,9 +273,6 @@ def mcp_result_to_evidence(
     """
     Convert normalized MCP output into evidence-compatible
     dictionaries.
-
-    MCP evidence does not replace the existing retrieval evidence
-    model. It feeds into the same evidence collection pipeline.
     """
 
     if result.get("is_error"):
@@ -285,7 +322,10 @@ def mcp_result_to_evidence(
                 }
             )
 
-    for item in result.get("content", []):
+    for item in result.get(
+        "content",
+        [],
+    ):
         if not isinstance(item, dict):
             continue
 
