@@ -12,6 +12,9 @@ from app.retrieval.query_intent import detect_intent
 from app.agent.tool_arguments import (
     build_tool_arguments,
 )
+from app.agent.mcp_integration import (
+    execute_mcp_tool_sync,
+)
 
 
 # ============================================================
