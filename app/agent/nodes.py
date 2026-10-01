@@ -14,6 +14,10 @@ from app.agent.tool_arguments import (
 )
 from app.agent.mcp_integration import (
     execute_mcp_tool_sync,
+    mcp_result_to_evidence,
+)
+from app.agent.tool_categories import (
+    DEVELOPER_TOOLS,
 )
 
 
@@ -32,6 +36,7 @@ from app.agent.mcp_integration import (
 #   app.agent.tools.TOOL_REGISTRY
 #
 # without breaking tool execution.
+
 _ORIGINAL_TOOL_REGISTRY = TOOL_REGISTRY
 
 
@@ -407,6 +412,15 @@ def execute_current_tool(
 ) -> dict[str, Any]:
     """
     Execute the current investigation tool.
+
+    Phase 3.6 behavior:
+
+    - Investigation tools execute through the internal
+      Python TOOL_REGISTRY.
+    - Developer tools execute through dynamically discovered
+      MCP tools.
+    - MCP results are converted into the same evidence format
+      used by the existing investigation pipeline.
     """
 
     plan = state.get(
@@ -432,8 +446,179 @@ def execute_current_tool(
 
     tool_name = plan[current_step]
 
+    repository_id = state["repository_id"]
+    query = state["query"]
+
+    identifiers = state.get(
+        "identifiers",
+        [],
+    )
+
+    keywords = state.get(
+        "keywords",
+        [],
+    )
+
     # --------------------------------------------------------
-    # Tool lookup
+    # Phase 3.6 — Dynamic MCP developer tools
+    #
+    # IMPORTANT:
+    #
+    # Developer tools are handled BEFORE looking them up
+    # in TOOL_REGISTRY.
+    #
+    # This is what makes MCP the execution layer for
+    # dynamically discovered developer tools.
+    # --------------------------------------------------------
+
+    if tool_name in DEVELOPER_TOOLS:
+
+        try:
+
+            normalized_result = execute_mcp_tool_sync(
+                tool_name,
+                repository_id=repository_id,
+                query=query,
+                identifiers=identifiers,
+                keywords=keywords,
+            )
+
+            # ------------------------------------------------
+            # Store MCP result
+            # ------------------------------------------------
+
+            state["search_results"] = (
+                state.get(
+                    "search_results",
+                    [],
+                )
+                + normalized_result.get(
+                    "content",
+                    [],
+                )
+            )
+
+            # ------------------------------------------------
+            # Convert MCP result into evidence
+            # ------------------------------------------------
+
+            mcp_evidence = mcp_result_to_evidence(
+                result=normalized_result,
+                tool_name=tool_name,
+                repository_id=repository_id,
+            )
+
+            # ------------------------------------------------
+            # Feed MCP evidence into the existing evidence
+            # pipeline.
+            # ------------------------------------------------
+
+            if mcp_evidence:
+
+                state["evidence"] = add_evidence(
+                    state.get(
+                        "evidence",
+                        [],
+                    ),
+                    mcp_evidence,
+                    repository_id=repository_id,
+                    source_tool=tool_name,
+                )
+
+            # ------------------------------------------------
+            # MCP errors
+            # ------------------------------------------------
+
+            if normalized_result.get(
+                "is_error",
+                False,
+            ):
+
+                error = (
+                    f"MCP tool '{tool_name}' "
+                    "returned an error."
+                )
+
+                state["tool_errors"] = (
+                    state.get(
+                        "tool_errors",
+                        [],
+                    )
+                    + [error]
+                )
+
+                state["errors"] = (
+                    state.get(
+                        "errors",
+                        [],
+                    )
+                    + [error]
+                )
+
+            # ------------------------------------------------
+            # Track execution
+            # ------------------------------------------------
+
+            state["executed_tools"] = (
+                state.get(
+                    "executed_tools",
+                    [],
+                )
+                + [tool_name]
+            )
+
+            state["current_step"] = (
+                current_step + 1
+            )
+
+            state["evidence_count"] = len(
+                state.get(
+                    "evidence",
+                    [],
+                )
+            )
+
+            return state
+
+        except Exception as exc:
+
+            error = (
+                f"MCP tool '{tool_name}' failed: "
+                f"{exc}"
+            )
+
+            state["tool_errors"] = (
+                state.get(
+                    "tool_errors",
+                    [],
+                )
+                + [error]
+            )
+
+            state["errors"] = (
+                state.get(
+                    "errors",
+                    [],
+                )
+                + [error]
+            )
+
+            state["executed_tools"] = (
+                state.get(
+                    "executed_tools",
+                    [],
+                )
+                + [tool_name]
+            )
+
+            state["current_step"] = (
+                current_step + 1
+            )
+
+            return state
+
+    # --------------------------------------------------------
+    # Existing internal investigation tools
     # --------------------------------------------------------
 
     registry = _get_tool_registry()
@@ -471,99 +656,29 @@ def execute_current_tool(
         return state
 
     # --------------------------------------------------------
-    # Execute tool
+    # Execute internal tool
     # --------------------------------------------------------
 
     try:
 
-        repository_id = state[
-            "repository_id"
-        ]
+        # ----------------------------------------------------
+        # Build arguments through the shared argument builder.
+        #
+        # This preserves the Phase 3.3 abstraction rather than
+        # duplicating argument construction here.
+        # ----------------------------------------------------
 
-        query = state["query"]
-
-        identifiers = state.get(
-            "identifiers",
-            [],
+        arguments = build_tool_arguments(
+            tool_name,
+            query=query,
+            identifiers=identifiers,
+            keywords=keywords,
         )
 
-        # ----------------------------------------------------
-        # Symbol search
-        # ----------------------------------------------------
-
-        if tool_name == "symbol_search":
-
-            symbol = (
-                identifiers[0]
-                if identifiers
-                else query
-            )
-
-            results = tool(
-                repository_id=repository_id,
-                symbol=symbol,
-            )
-
-        # ----------------------------------------------------
-        # Reference search
-        # ----------------------------------------------------
-
-        elif tool_name == "reference_search":
-
-            symbol = (
-                identifiers[0]
-                if identifiers
-                else query
-            )
-
-            results = tool(
-                repository_id=repository_id,
-                symbol=symbol,
-            )
-
-        # ----------------------------------------------------
-        # Test search
-        # ----------------------------------------------------
-
-        elif tool_name == "test_search":
-
-            results = tool(
-                repository_id=repository_id,
-                query=query,
-            )
-
-        # ----------------------------------------------------
-        # Configuration search
-        # ----------------------------------------------------
-
-        elif tool_name == "configuration_search":
-
-            results = tool(
-                repository_id=repository_id,
-                query=query,
-            )
-
-        # ----------------------------------------------------
-        # Entrypoint search
-        # ----------------------------------------------------
-
-        elif tool_name == "entrypoint_search":
-
-            results = tool(
-                repository_id=repository_id,
-                query=query,
-            )
-
-        # ----------------------------------------------------
-        # General repository search
-        # ----------------------------------------------------
-
-        else:
-
-            results = tool(
-                repository_id=repository_id,
-                query=query,
-            )
+        results = tool(
+            repository_id=repository_id,
+            **arguments,
+        )
 
         # ----------------------------------------------------
         # Normalize None results
@@ -587,16 +702,8 @@ def execute_current_tool(
         # ----------------------------------------------------
         # Convert raw results into structured evidence
         #
-        # IMPORTANT:
-        #
-        # add_evidence() expects:
-        #
-        #   evidence_store
-        #   results
-        #   repository_id
-        #   source_tool
-        #
-        # It performs normalize_evidence() internally.
+        # add_evidence() performs normalization and
+        # deduplication internally.
         # ----------------------------------------------------
 
         state["evidence"] = add_evidence(
@@ -668,6 +775,27 @@ def execute_current_tool(
         )
 
     return state
+
+
+# ============================================================
+# Backward-compatible alias
+# ============================================================
+
+
+def execute_tool(
+    state: dict[str, Any],
+) -> dict[str, Any]:
+    """
+    Backward-compatible alias for the LangGraph node.
+
+    Existing graph/test code can continue importing
+    execute_tool while the implementation remains in
+    execute_current_tool().
+    """
+
+    return execute_current_tool(
+        state
+    )
 
 
 # ============================================================
@@ -820,3 +948,4 @@ def generate_answer(
         )
 
     return state
+
