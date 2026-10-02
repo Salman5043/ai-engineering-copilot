@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any
 
 
@@ -14,15 +15,13 @@ class MCPServerConfig:
     command: str
     args: list[str] = field(default_factory=list)
     env: dict[str, str] | None = None
+    cwd: str | None = None
 
 
 @dataclass(frozen=True)
 class MCPToolDefinition:
     """
     Normalized representation of an MCP tool.
-
-    This keeps raw MCP SDK objects isolated from the
-    rest of the application.
     """
 
     name: str
@@ -54,6 +53,8 @@ def local_copilot_server_config() -> MCPServerConfig:
     AI Engineering Copilot MCP server.
     """
 
+    project_root = Path(__file__).resolve().parents[2]
+
     return MCPServerConfig(
         name="ai-engineering-copilot",
         command="uv",
@@ -63,4 +64,5 @@ def local_copilot_server_config() -> MCPServerConfig:
             "-m",
             "app.mcp_server.server",
         ],
+        cwd=str(project_root),
     )

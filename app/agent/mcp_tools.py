@@ -8,13 +8,12 @@ from app.mcp_client.models import (
 )
 from app.mcp_client.registry import MCPToolRegistry
 from app.mcp_client.results import normalize_mcp_result
+from app.mcp_client.tracing import MCPTrace
 
 
 class MCPAgentTools:
     """
     Adapter between the LangGraph agent and MCP tools.
-
-    The agent does not need to know how MCP works internally.
     """
 
     def __init__(
@@ -61,4 +60,31 @@ class MCPAgentTools:
             arguments,
         )
 
-        return normalize_mcp_result(result)
+        return normalize_mcp_result(
+            result
+        )
+
+    def list_traces(
+        self,
+    ) -> list[MCPTrace]:
+        """
+        Return MCP execution traces.
+        """
+
+        return self.registry.client.tracer.list_traces()
+
+    def trace_snapshot(
+        self,
+    ) -> list[dict[str, Any]]:
+        """
+        Return serializable MCP traces.
+        """
+
+        return self.registry.client.tracer.snapshot()
+
+    def clear_traces(self) -> None:
+        """
+        Clear retained MCP traces.
+        """
+
+        self.registry.client.tracer.clear()

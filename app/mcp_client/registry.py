@@ -125,3 +125,26 @@ class MCPToolRegistry:
             tool_name,
             arguments or {},
         )
+    
+    def list_traces(self):
+        """
+        Return traces recorded by the MCP client.
+        """
+
+        return self.client.tracer.list_traces()
+
+
+    def trace_snapshot(self):
+        """
+        Return serializable MCP trace records.
+        """
+
+        return self.client.tracer.snapshot()
+
+
+    def clear_traces(self) -> None:
+        """
+        Clear MCP execution traces.
+        """
+
+        self.client.tracer.clear()

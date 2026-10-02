@@ -16,6 +16,9 @@ from app.mcp_client.retry import (
     calculate_retry_delay,
     should_retry,
 )
+from app.mcp_client.tracing import (
+    MCPTracer,
+)
 
 
 class MCPClient:
@@ -29,23 +32,17 @@ class MCPClient:
     - Discover MCP tools
     - Execute MCP tools
     - Retry transient transport failures
+    - Record execution traces
     """
 
     def __init__(
         self,
         config: MCPServerConfig,
         retry_config: RetryConfig | None = None,
+        tracer: MCPTracer | None = None,
     ) -> None:
         """
         Initialize the MCP client.
-
-        Args:
-            config:
-                MCP server configuration.
-
-            retry_config:
-                Optional retry configuration.
-                Defaults to RetryConfig().
         """
 
         self.config = config
@@ -56,21 +53,24 @@ class MCPClient:
             else RetryConfig()
         )
 
+        self.tracer = (
+            tracer
+            if tracer is not None
+            else MCPTracer()
+        )
+
     def _server_parameters(
         self,
     ) -> StdioServerParameters:
         """
         Build MCP stdio server parameters.
-
-        MCPServerConfig does not require a cwd field, so
-        getattr() is used for backwards compatibility.
         """
 
         return StdioServerParameters(
             command=self.config.command,
             args=self.config.args,
             env=self.config.env,
-            cwd=getattr(self.config, "cwd", None),
+            cwd=self.config.cwd,
         )
 
     async def _discover_tools_once(
@@ -79,11 +79,12 @@ class MCPClient:
         """
         Perform exactly one MCP tool discovery attempt.
 
-        This method intentionally contains no retry logic.
-        Retry behavior is handled by discover_tools().
+        No retry logic is performed here.
         """
 
-        server_parameters = self._server_parameters()
+        server_parameters = (
+            self._server_parameters()
+        )
 
         async with stdio_client(
             server_parameters
@@ -112,11 +113,15 @@ class MCPClient:
         """
         Discover all tools exposed by the MCP server.
 
-        Transient connection/transport failures are retried
-        according to RetryConfig.
+        Transient connection/transport failures are retried.
 
-        Non-retryable failures are raised immediately.
+        Every discovery operation is traced.
         """
+
+        trace = self.tracer.start(
+            operation="tool_discovery",
+            server_name=self.config.name,
+        )
 
         last_error: Exception | None = None
 
@@ -124,8 +129,21 @@ class MCPClient:
             1,
             self.retry_config.max_attempts + 1,
         ):
+            self.tracer.record_attempt(
+                trace
+            )
+
             try:
-                return await self._discover_tools_once()
+                tools = (
+                    await self._discover_tools_once()
+                )
+
+                self.tracer.complete(
+                    trace,
+                    success=True,
+                )
+
+                return tools
 
             except Exception as exc:
                 last_error = exc
@@ -137,6 +155,12 @@ class MCPClient:
                 )
 
                 if not decision.retry:
+                    self.tracer.complete(
+                        trace,
+                        success=False,
+                        error=exc,
+                    )
+
                     raise
 
                 delay = calculate_retry_delay(
@@ -144,12 +168,29 @@ class MCPClient:
                     self.retry_config,
                 )
 
-                await asyncio.sleep(delay)
+                await asyncio.sleep(
+                    delay
+                )
 
         if last_error is not None:
+            self.tracer.complete(
+                trace,
+                success=False,
+                error=last_error,
+            )
+
             raise last_error
 
+        self.tracer.complete(
+            trace,
+            success=False,
+            error=RuntimeError(
+                "MCP tool discovery failed."
+            ),
+        )
+
         return []
+
 
     async def _call_tool_once(
         self,
@@ -159,7 +200,7 @@ class MCPClient:
         """
         Perform exactly one MCP tool execution attempt.
 
-        This method intentionally contains no retry logic.
+        No retry logic is performed here.
         """
 
         server_parameters = self._server_parameters()
@@ -186,10 +227,7 @@ class MCPClient:
         arguments: dict[str, Any] | None = None,
     ) -> Any:
         """
-        Compatibility wrapper for the retry execution API.
-
-        The Phase 3.8 retry contract uses _execute_tool_once()
-        as the single-attempt operation.
+        Compatibility/test seam for a single MCP execution attempt.
         """
 
         return await self._call_tool_once(
@@ -198,17 +236,21 @@ class MCPClient:
         )
 
     async def _execute_tool_with_retry(
-    self,
-    tool_name: str,
-    arguments: dict[str, Any] | None = None,
-) -> Any:
+        self,
+        tool_name: str,
+        arguments: dict[str, Any] | None = None,
+    ) -> Any:
         """
-        Execute an MCP tool with retry handling.
+        Execute an MCP tool with retry handling and tracing.
 
-        The single-attempt operation may either accept the
-        normal tool_name/arguments parameters or, for injected
-        test operations, accept no parameters.
+        This is the single canonical retry implementation.
         """
+
+        trace = self.tracer.start(
+            operation="tool_execution",
+            server_name=self.config.name,
+            tool_name=tool_name,
+        )
 
         last_error: Exception | None = None
 
@@ -216,6 +258,8 @@ class MCPClient:
             1,
             self.retry_config.max_attempts + 1,
         ):
+            self.tracer.record_attempt(trace)
+
             try:
                 execute_once = self._execute_tool_once
 
@@ -224,12 +268,28 @@ class MCPClient:
                 ).parameters
 
                 if len(parameters) == 0:
-                    return await execute_once()
+                    result = await execute_once()
+                else:
+                    result = await execute_once(
+                        tool_name,
+                        arguments,
+                    )
 
-                return await execute_once(
-                    tool_name,
-                    arguments,
+                is_tool_error = bool(
+                    getattr(
+                        result,
+                        "is_error",
+                        False,
+                    )
                 )
+
+                self.tracer.complete(
+                    trace,
+                    success=not is_tool_error,
+                    is_tool_error=is_tool_error,
+                )
+
+                return result
 
             except Exception as exc:
                 last_error = exc
@@ -241,6 +301,12 @@ class MCPClient:
                 )
 
                 if not decision.retry:
+                    self.tracer.complete(
+                        trace,
+                        success=False,
+                        error=exc,
+                    )
+
                     raise
 
                 delay = calculate_retry_delay(
@@ -251,11 +317,25 @@ class MCPClient:
                 await asyncio.sleep(delay)
 
         if last_error is not None:
+            self.tracer.complete(
+                trace,
+                success=False,
+                error=last_error,
+            )
+
             raise last_error
 
-        raise RuntimeError(
-            "MCP tool execution failed without an exception."
+        final_error = RuntimeError(
+            "MCP tool execution failed."
         )
+
+        self.tracer.complete(
+            trace,
+            success=False,
+            error=final_error,
+        )
+
+        raise final_error
 
     async def call_tool(
         self,
@@ -263,16 +343,8 @@ class MCPClient:
         arguments: dict[str, Any] | None = None,
     ) -> Any:
         """
-        Execute an MCP tool.
-
-        Transport/protocol exceptions are classified and
-        transient failures are retried using exponential
-        backoff.
-
-        Important:
-        A normal MCP tool execution result with
-        is_error=True is returned directly to the caller.
-        It is NOT automatically retried.
+        Execute an MCP tool using the canonical
+        traced/retry execution path.
         """
 
         return await self._execute_tool_with_retry(
