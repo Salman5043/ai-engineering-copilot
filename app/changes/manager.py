@@ -19,6 +19,10 @@ from app.changes.validator import (
 from app.changes.applier import (
     SafePatchApplier,
 )
+
+from app.changes.apply_and_verify import (
+    ApplyAndVerify,
+)
 class ChangeManager:
     """
     Controls the lifecycle of repository changes.
@@ -199,3 +203,25 @@ class ChangeManager:
             )
 
         return result
+
+    def apply_and_verify(
+    self,
+    proposal: ChangeProposal,
+    *,
+    test_timeout_seconds: float = 300.0,
+):
+        """
+        Apply an approved proposal, run automated tests,
+        and roll back automatically when verification fails.
+        """
+
+        workflow = ApplyAndVerify(
+            repository_root=self.repository_root,
+            test_timeout_seconds=(
+                test_timeout_seconds
+            ),
+        )
+
+        return workflow.execute(
+            proposal
+        )

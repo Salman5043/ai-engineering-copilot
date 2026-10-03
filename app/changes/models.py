@@ -166,3 +166,78 @@ class ChangeManifest:
     applied_at: str | None = None
 
     rollback_available: bool = False
+
+class VerificationStatus(str, Enum):
+    NOT_RUN = "not_run"
+    PASSED = "passed"
+    FAILED = "failed"
+    TIMED_OUT = "timed_out"
+    ERROR = "error"
+
+
+@dataclass(frozen=True)
+class TestResult:
+    """
+    Result of one test execution.
+    """
+    __test__ = False
+    command: list[str]
+
+    status: VerificationStatus
+
+    return_code: int | None
+
+    stdout: str
+
+    stderr: str
+
+    duration_seconds: float
+
+    timed_out: bool = False
+
+
+@dataclass
+class VerificationResult:
+    """
+    Complete post-change verification result.
+    """
+
+    status: VerificationStatus
+
+    tests: list[TestResult] = field(
+        default_factory=list
+    )
+
+    selected_tests: list[str] = field(
+        default_factory=list
+    )
+
+    errors: list[str] = field(
+        default_factory=list
+    )
+
+    rollback_performed: bool = False
+
+    rollback_error: str | None = None
+
+    metadata: dict[str, Any] = field(
+        default_factory=dict
+    )
+
+    @property
+    def passed(self) -> bool:
+        return (
+            self.status
+            == VerificationStatus.PASSED
+        )
+
+    @property
+    def failed(self) -> bool:
+        return (
+            self.status
+            in {
+                VerificationStatus.FAILED,
+                VerificationStatus.TIMED_OUT,
+                VerificationStatus.ERROR,
+            }
+        )
