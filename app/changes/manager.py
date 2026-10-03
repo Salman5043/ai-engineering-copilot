@@ -13,7 +13,9 @@ from app.changes.safety import (
     ChangeSafetyError,
     validate_change_path,
 )
-
+from app.changes.validator import (
+    PatchValidator,
+)
 
 class ChangeManager:
     """
@@ -131,3 +133,50 @@ class ChangeManager:
             "File modification is introduced "
             "in Phase 4.5."
         )
+
+    def validate_patch(
+    self,
+    proposal: ChangeProposal,
+):
+        """
+        Run the complete Phase 4.3 validation pipeline.
+        """
+
+        validator = PatchValidator(
+            self.repository_root
+        )
+
+        result = validator.validate(
+            proposal
+        )
+
+        proposal.validation_errors.clear()
+        proposal.validation_warnings.clear()
+
+        for issue in result.issues:
+            if (
+                issue.severity.value
+                == "error"
+            ):
+                proposal.validation_errors.append(
+                    issue.message
+                )
+
+            elif (
+                issue.severity.value
+                == "warning"
+            ):
+                proposal.validation_warnings.append(
+                    issue.message
+                )
+
+        if result.valid:
+            proposal.status = (
+                ChangeStatus.VALIDATED
+            )
+        else:
+            proposal.status = (
+                ChangeStatus.FAILED
+            )
+
+        return result
