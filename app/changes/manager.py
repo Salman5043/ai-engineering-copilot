@@ -16,7 +16,9 @@ from app.changes.safety import (
 from app.changes.validator import (
     PatchValidator,
 )
-
+from app.changes.applier import (
+    SafePatchApplier,
+)
 class ChangeManager:
     """
     Controls the lifecycle of repository changes.
@@ -119,19 +121,36 @@ class ChangeManager:
         return proposal
 
     def apply(
+    self,
+    proposal: ChangeProposal,
+) -> ChangeProposal:
+        """
+        Apply an approved proposal safely.
+        """
+
+        applier = SafePatchApplier(
+            self.repository_root
+        )
+
+        return applier.apply(
+            proposal
+        )
+
+
+    def rollback(
         self,
         proposal: ChangeProposal,
     ) -> ChangeProposal:
         """
-        Apply an approved proposal.
-
-        This method is intentionally disabled
-        in Phase 4.1.
+        Roll back an applied proposal.
         """
 
-        raise NotImplementedError(
-            "File modification is introduced "
-            "in Phase 4.5."
+        applier = SafePatchApplier(
+            self.repository_root
+        )
+
+        return applier.rollback(
+            proposal
         )
 
     def validate_patch(

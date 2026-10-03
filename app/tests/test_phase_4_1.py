@@ -246,7 +246,7 @@ def test_approved_proposal(
     )
 
 
-def test_apply_is_not_available_yet(
+def test_apply_is_available_after_phase_4_5(
     tmp_path: Path,
 ):
     file_path = (
@@ -279,14 +279,12 @@ def test_apply_is_not_available_yet(
     manager.validate(proposal)
     manager.approve(proposal)
 
-    with pytest.raises(
-        NotImplementedError
-    ):
-        manager.apply(proposal)
-
-    assert (
-        file_path.read_text(
-            encoding="utf-8"
-        )
-        == "print('hello')\n"
+    result = manager.apply(
+        proposal
     )
+
+    assert result.status.value == "applied"
+
+    assert file_path.read_text(
+        encoding="utf-8"
+    ) == "print('hello world')\n"

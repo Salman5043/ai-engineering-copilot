@@ -12,6 +12,53 @@ PROTECTED_PATHS = {
     ".gitignore",
 }
 
+SENSITIVE_FILENAMES = {
+    ".env",
+    ".env.local",
+    ".env.production",
+    ".env.development",
+    ".env.test",
+    "credentials.json",
+    "secrets.json",
+}
+
+
+def is_sensitive_path(
+    relative_path: str,
+) -> bool:
+    """
+    Determine whether a file may contain secrets
+    or credentials.
+    """
+
+    normalized = (
+        Path(relative_path)
+        .as_posix()
+        .strip("/")
+    )
+
+    path = Path(normalized)
+
+    if not path.parts:
+        return False
+
+    filename = path.name.lower()
+
+    if filename in SENSITIVE_FILENAMES:
+        return True
+
+    if filename.endswith(
+        ".pem"
+    ):
+        return True
+
+    if filename.endswith(
+        ".key"
+    ):
+        return True
+
+    return False
+
 
 def normalize_repository_path(
     repository_root: Path,
@@ -92,7 +139,8 @@ def validate_change_path(
     relative_path: str,
 ) -> Path:
     """
-    Validate both path safety and protected paths.
+    Validate path safety before any repository
+    modification is allowed.
     """
 
     if is_protected_path(
@@ -101,6 +149,14 @@ def validate_change_path(
         raise ChangeSafetyError(
             f"Protected path cannot be modified: "
             f"{relative_path}"
+        )
+
+    if is_sensitive_path(
+        relative_path
+    ):
+        raise ChangeSafetyError(
+            f"Sensitive file cannot be modified "
+            f"automatically: {relative_path}"
         )
 
     return normalize_repository_path(

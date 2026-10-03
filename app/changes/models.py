@@ -87,6 +87,16 @@ class ChangeProposal:
         return (
             not self.validation_errors
         )
+    
+    applied_files: list[str] = field(
+    default_factory=list
+    )
+
+    backup_directory: str | None = None
+
+    applied_at: str | None = None
+
+    manifest: ChangeManifest | None = None
 
 
 
@@ -139,3 +149,20 @@ class ValidationResult:
             if issue.severity
             == ValidationSeverity.WARNING
         ]
+
+@dataclass(frozen=True)
+class ChangeManifest:
+    """
+    Records exactly what was modified by an applied proposal.
+    """
+
+    proposal_id: str
+    repository_id: str
+
+    changed_files: list[str]
+
+    backup_directory: str | None = None
+
+    applied_at: str | None = None
+
+    rollback_available: bool = False
