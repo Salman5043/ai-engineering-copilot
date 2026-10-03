@@ -87,3 +87,55 @@ class ChangeProposal:
         return (
             not self.validation_errors
         )
+
+
+
+
+class ValidationSeverity(str, Enum):
+    INFO = "info"
+    WARNING = "warning"
+    ERROR = "error"
+
+
+@dataclass(frozen=True)
+class ValidationIssue:
+    severity: ValidationSeverity
+    code: str
+    message: str
+    path: str | None = None
+    line: int | None = None
+
+
+@dataclass
+class ValidationResult:
+    valid: bool
+
+    issues: list[ValidationIssue] = field(
+        default_factory=list
+    )
+
+    checked_files: list[str] = field(
+        default_factory=list
+    )
+
+    discovered_tests: list[str] = field(
+        default_factory=list
+    )
+
+    @property
+    def errors(self) -> list[ValidationIssue]:
+        return [
+            issue
+            for issue in self.issues
+            if issue.severity
+            == ValidationSeverity.ERROR
+        ]
+
+    @property
+    def warnings(self) -> list[ValidationIssue]:
+        return [
+            issue
+            for issue in self.issues
+            if issue.severity
+            == ValidationSeverity.WARNING
+        ]
