@@ -92,3 +92,14 @@ class InvestigationState(TypedDict, total=False):
     # ---------------------------------------------------------
 
     thread_id: str
+    change_proposal_id: str
+    change_status: str
+
+    approval_required: bool
+    approval_granted: bool
+
+    approval_comment: str
+
+    approval_diff: str
+
+    approval_error: str
