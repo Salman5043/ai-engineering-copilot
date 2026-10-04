@@ -1,123 +1,100 @@
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any
 
 from app.changes.approval import (
-    ApprovalError,
-)
-from app.changes.models import (
-    ChangeProposal,
+    ApprovalRequest,
 )
 from app.changes.approval_manager import (
     ApprovalManager,
 )
+from app.changes.corrective_fix import (
+    generate_corrective_fix,
+)
+from app.changes.failure_analysis import (
+    FailureAnalysis,
+)
+from app.changes.models import (
+    ChangeProposal,
+)
 
 
 def prepare_change_approval(
-    state: dict[str, Any],
-    *,
-    proposal: ChangeProposal,
     approval_manager: ApprovalManager,
-) -> dict[str, Any]:
+    proposal: ChangeProposal,
+) -> ApprovalRequest:
     """
-    Prepare a validated change for human approval.
-
-    This node does not modify repository files.
+    Validate a proposal and prepare it for human approval.
     """
 
-    try:
-        request = (
-            approval_manager.prepare(
-                proposal
-            )
-        )
-
-    except ApprovalError as exc:
-        return {
-            "approval_required": False,
-            "approval_granted": False,
-            "approval_error": str(exc),
-            "change_status": proposal.status.value,
-        }
-
-    return {
-        "change_proposal_id": (
-            proposal.proposal_id
-        ),
-        "change_status": (
-            proposal.status.value
-        ),
-        "approval_required": True,
-        "approval_granted": False,
-        "approval_comment": "",
-        "approval_diff": request.diff,
-        "approval_error": "",
-    }
+    return approval_manager.prepare(proposal)
 
 
 def approve_change(
-    state: dict[str, Any],
-    *,
-    proposal: ChangeProposal,
     approval_manager: ApprovalManager,
+    proposal: ChangeProposal,
+    *,
     comment: str = "",
-) -> dict[str, Any]:
+) -> ChangeProposal:
     """
-    Apply a human approval decision.
+    Apply an explicit human approval decision.
 
-    Still does not modify repository files.
+    This does not write repository files.
     """
 
-    try:
-        approval_manager.approve(
-            proposal,
-            comment=comment,
-        )
-
-    except ApprovalError as exc:
-        return {
-            "approval_granted": False,
-            "approval_error": str(exc),
-            "change_status": proposal.status.value,
-        }
-
-    return {
-        "approval_required": False,
-        "approval_granted": True,
-        "approval_comment": comment,
-        "change_status": proposal.status.value,
-        "approval_error": "",
-    }
+    return approval_manager.approve(
+        proposal,
+        comment=comment,
+    )
 
 
 def reject_change(
-    state: dict[str, Any],
-    *,
-    proposal: ChangeProposal,
     approval_manager: ApprovalManager,
+    proposal: ChangeProposal,
+    *,
     comment: str = "",
-) -> dict[str, Any]:
+) -> ChangeProposal:
     """
-    Reject a change proposal.
+    Apply an explicit human rejection decision.
     """
 
-    try:
-        approval_manager.reject(
-            proposal,
-            comment=comment,
-        )
+    return approval_manager.reject(
+        proposal,
+        comment=comment,
+    )
 
-    except ApprovalError as exc:
-        return {
-            "approval_granted": False,
-            "approval_error": str(exc),
-            "change_status": proposal.status.value,
-        }
 
-    return {
-        "approval_required": False,
-        "approval_granted": False,
-        "approval_comment": comment,
-        "change_status": proposal.status.value,
-        "approval_error": "",
-    }
+def prepare_corrective_fix_approval(
+    *,
+    approval_manager: ApprovalManager,
+    repository_id: str,
+    repository_root: Path,
+    original_query: str,
+    failure: FailureAnalysis,
+    files: list[dict[str, str]],
+    evidence: list[dict[str, Any]],
+    llm: Any | None = None,
+) -> tuple[ChangeProposal, ApprovalRequest]:
+    """
+    Generate, validate, and prepare a corrective proposal
+    for human approval.
+
+    This function NEVER modifies repository files.
+    """
+
+    proposal = generate_corrective_fix(
+        repository_id=repository_id,
+        repository_root=repository_root,
+        original_query=original_query,
+        failure=failure,
+        files=files,
+        evidence=evidence,
+        llm=llm,
+    )
+
+    approval_request = approval_manager.prepare(
+        proposal
+    )
+
+    return proposal, approval_request
