@@ -26,6 +26,9 @@ from app.changes.models import (
 from app.changes.validator import (
     PatchValidator,
 )
+from app.changes.failure_investigator import (
+    FailureInvestigator,
+)
 
 
 class AutonomousFixError(RuntimeError):
@@ -234,3 +237,39 @@ class AutonomousFixVerifier:
         return self.execute_approved_attempt(
             proposal
         )
+
+    def investigate_failure(
+    self,
+    *,
+    repository_id: str,
+    original_query: str,
+    verification: VerificationResult,
+) -> tuple[
+    FailureAnalysis,
+    Any,
+]:
+        """
+        Analyze a failed verification and investigate the
+        repository before generating a corrective proposal.
+        """
+
+        failure = analyze_verification_failure(
+            verification
+        )
+
+        if not failure.has_failure:
+            raise AutonomousFixError(
+                "Cannot investigate a successful verification."
+            )
+
+        investigator = FailureInvestigator(
+            repository_id=repository_id,
+            repository_root=self.repository_root,
+        )
+
+        context = investigator.investigate(
+            original_query=original_query,
+            failure=failure,
+        )
+
+        return failure, context
