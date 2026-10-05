@@ -4,6 +4,9 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable
 
+from app.changes.approval import (
+    ApprovalRequest,
+)
 from app.changes.approval_manager import (
     ApprovalManager,
 )
@@ -29,7 +32,12 @@ from app.changes.validator import (
 from app.changes.failure_investigator import (
     FailureInvestigator,
 )
-
+from app.changes.investigation_context import (
+    InvestigationContext,
+)
+from app.changes.manager import (
+    ChangeManager,
+)
 
 class AutonomousFixError(RuntimeError):
     """Raised when the autonomous fix workflow cannot continue."""
@@ -108,6 +116,9 @@ class AutonomousFixVerifier:
         self.test_timeout_seconds = (
             test_timeout_seconds
         )
+        self.change_manager = ChangeManager(
+            repository_root=self.repository_root
+        )
 
     def _verify(
         self,
@@ -157,24 +168,26 @@ class AutonomousFixVerifier:
         return proposal
 
     def prepare_next_fix(
-        self,
-        *,
-        repository_id: str,
-        original_query: str,
-        verification: VerificationResult,
-        files: list[dict[str, str]],
-        evidence: list[dict[str, Any]],
-        llm: Any | None = None,
-    ) -> tuple[
-        ChangeProposal,
-        Any,
-        FailureAnalysis,
-    ]:
+    self,
+    *,
+    repository_id: str,
+    original_query: str,
+    verification: VerificationResult,
+    files: list[dict[str, str]],
+    evidence: list[dict[str, Any]],
+    llm: Any | None = None,
+) -> tuple[
+    ChangeProposal,
+    ApprovalRequest,
+    FailureAnalysis,
+    InvestigationContext,
+]:
         """
-        Analyze a failed verification and prepare the next
-        corrective proposal for human approval.
+        Investigate a failed verification and prepare
+        the next corrective proposal.
 
-        No files are modified.
+        No repository files are modified.
+        No proposal is automatically approved.
         """
 
         failure = analyze_verification_failure(
@@ -184,17 +197,56 @@ class AutonomousFixVerifier:
         if not failure.has_failure:
             raise AutonomousFixError(
                 "Cannot prepare a corrective fix "
-                "from a successful verification."
+                "without a verification failure."
             )
 
-        proposal = self._build_corrective_proposal(
+        # --------------------------------------------------
+        # Phase 4.8: autonomous repository investigation
+        # --------------------------------------------------
+
+        investigator = FailureInvestigator(
             repository_id=repository_id,
+            repository_root=self.repository_root,
+        )
+
+        investigation = investigator.investigate(
+            original_query=original_query,
+            failure=failure,
+        )
+
+        # --------------------------------------------------
+        # Generate corrective proposal using investigation
+        # --------------------------------------------------
+
+        proposal = generate_corrective_fix(
+            repository_id=repository_id,
+            repository_root=self.repository_root,
             original_query=original_query,
             failure=failure,
             files=files,
             evidence=evidence,
             llm=llm,
+            investigation_context=investigation,
         )
+
+        # --------------------------------------------------
+        # Validate corrective proposal
+        # --------------------------------------------------
+
+        validation = (
+            self.change_manager.validate_patch(
+                proposal
+            )
+        )
+
+        if not validation.valid:
+            raise AutonomousFixError(
+                "Corrective proposal failed validation."
+            )
+
+        # --------------------------------------------------
+        # Human approval preparation
+        # --------------------------------------------------
 
         approval_request = (
             self.approval_manager.prepare(
@@ -206,6 +258,7 @@ class AutonomousFixVerifier:
             proposal,
             approval_request,
             failure,
+            investigation,
         )
 
     def execute_approved_attempt(

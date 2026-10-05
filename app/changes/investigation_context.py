@@ -3,16 +3,17 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from app.changes.failure_analysis import (
-    FailureAnalysis,
-)
+from app.changes.failure_analysis import FailureAnalysis
 
 
 @dataclass
 class InvestigationContext:
     """
-    Evidence collected while investigating a failed
-    post-change verification.
+    Structured context collected while investigating
+    a failed code change.
+
+    This object deliberately contains no mutation state.
+    It is evidence used to generate a corrective patch.
     """
 
     query: str
@@ -53,6 +54,11 @@ def build_investigation_context(
     original_query: str,
     failure: FailureAnalysis,
 ) -> InvestigationContext:
+    """
+    Create an investigation context from the
+    structured verification failure.
+    """
+
     failed_tests = [
         " ".join(test.command)
         for test in failure.failed_tests
@@ -74,6 +80,10 @@ def add_evidence(
     *,
     source_tool: str,
 ) -> None:
+    """
+    Add repository evidence while recording its source.
+    """
+
     for item in evidence:
         normalized = dict(item)
 
@@ -96,7 +106,14 @@ def add_observation(
     context: InvestigationContext,
     observation: str,
 ) -> None:
-    if observation and observation not in context.observations:
+    """
+    Add a unique investigation observation.
+    """
+
+    if (
+        observation
+        and observation not in context.observations
+    ):
         context.observations.append(
             observation
         )
@@ -106,7 +123,14 @@ def add_hypothesis(
     context: InvestigationContext,
     hypothesis: str,
 ) -> None:
-    if hypothesis and hypothesis not in context.hypotheses:
+    """
+    Add a unique investigation hypothesis.
+    """
+
+    if (
+        hypothesis
+        and hypothesis not in context.hypotheses
+    ):
         context.hypotheses.append(
             hypothesis
         )
@@ -116,5 +140,10 @@ def add_error(
     context: InvestigationContext,
     error: str,
 ) -> None:
+    """
+    Record an investigation error without
+    stopping the entire investigation.
+    """
+
     if error:
         context.errors.append(error)

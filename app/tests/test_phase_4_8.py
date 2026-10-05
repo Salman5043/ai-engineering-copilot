@@ -16,33 +16,44 @@ from app.changes.models import (
     VerificationResult,
     VerificationStatus,
 )
+from app.changes.failure_analysis import (
+    FailedTest,
+    FailureAnalysis,
+)
+
+from app.changes.models import (
+    VerificationStatus,
+)
 
 
-def build_failure():
+def build_failure() -> VerificationResult:
     test_result = TestResult(
         command=[
             "python",
             "-m",
             "pytest",
-            "-q",
             "tests/test_example.py",
         ],
         status=VerificationStatus.FAILED,
         return_code=1,
         stdout=(
-            "FAILED tests/test_example.py::test_example\n"
-            "app/example.py:42: AssertionError\n"
+            "E AssertionError: expected 2 but got 1"
         ),
-        stderr="",
+        stderr=(
+            "app/example.py:10: AssertionError"
+        ),
         duration_seconds=0.5,
+        timed_out=False,
     )
 
     return VerificationResult(
         status=VerificationStatus.FAILED,
         tests=[test_result],
         selected_tests=[
-            "tests/test_example.py",
+            "tests/test_example.py"
         ],
+        errors=[],
+        rollback_performed=True,
     )
 
 
@@ -120,3 +131,53 @@ def test_failure_investigator_collects_evidence(
         "failure_context_search"
         in context.tools_used
     )
+
+def test_failure_investigation_is_read_only(
+    monkeypatch,
+    tmp_path: Path,
+):
+    source = tmp_path / "example.py"
+
+    original = (
+        "def example():\n"
+        "    return 1\n"
+    )
+
+    source.write_text(
+        original,
+        encoding="utf-8",
+    )
+
+    verification = build_failure()
+
+    failure = analyze_verification_failure(
+        verification
+    )
+
+    investigator = FailureInvestigator(
+        repository_id="test_repo",
+        repository_root=tmp_path,
+    )
+
+    monkeypatch.setattr(
+        investigator,
+        "_search",
+        lambda query, top_k=5: [
+            {
+                "file": "example.py",
+                "start_line": 1,
+                "end_line": 2,
+                "symbol": "example",
+                "content": original,
+            }
+        ],
+    )
+
+    investigator.investigate(
+        original_query="Fix example",
+        failure=failure,
+    )
+
+    assert source.read_text(
+        encoding="utf-8"
+    ) == original

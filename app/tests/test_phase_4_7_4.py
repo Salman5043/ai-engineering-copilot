@@ -174,7 +174,7 @@ def test_failed_verification_prepares_next_fix(
         )
     )
 
-    proposal, approval_request, failure = (
+    proposal, approval_request, failure, investigation = (
         orchestrator.prepare_next_fix(
             repository_id="demo",
             original_query=(
@@ -203,6 +203,15 @@ def test_failed_verification_prepares_next_fix(
             llm=fake_llm,
         )
     )
+    assert proposal is not None
+    assert approval_request is not None
+    assert failure.has_failure
+
+    assert investigation is not None
+    assert investigation.query == (
+        "Fix the example function."
+    )
+    assert investigation.failure_summary
 
     assert failure.has_failure is True
 
