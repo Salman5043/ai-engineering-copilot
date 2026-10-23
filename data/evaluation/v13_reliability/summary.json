@@ -1,0 +1,16 @@
+{
+  "runs": 3,
+  "dataset": "app\\data\\evaluation\\retrieval_benchmark.json",
+  "top_k": 10,
+  "cases_per_run": [
+    11,
+    11,
+    11
+  ],
+  "latency_samples": 33,
+  "latency_ms_p50": 1737.5376001000404,
+  "latency_ms_p95": 11195.028840005398,
+  "latency_ms_mean": 2565.4016848667666,
+  "failures": [],
+  "passed": true
+}

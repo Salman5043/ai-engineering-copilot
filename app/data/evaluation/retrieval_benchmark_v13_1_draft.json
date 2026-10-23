@@ -1,0 +1,933 @@
+{
+  "name": "AI Engineering Copilot Retrieval Generalization Draft",
+  "version": "13.1-draft",
+  "cases": [
+    {
+      "case_id": "retrieval_001",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is the LangGraph workflow created?",
+      "expected_intent": "architecture",
+      "expected_evidence": [
+        {
+          "file": "app/agent/graph.py",
+          "keywords": [
+            "StateGraph",
+            "compile"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_002",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is the investigation state defined?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/agent/state.py",
+          "keywords": [
+            "InvestigationState"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_003",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where are MCP tools registered?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/registry.py",
+          "keywords": [
+            "MCPToolRegistry",
+            "discover"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_004",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is MCP retry behavior implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/retry.py",
+          "keywords": [
+            "RetryConfig",
+            "should_retry"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_005",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is patch validation implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/validator.py",
+          "keywords": [
+            "PatchValidator",
+            "validate"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_006",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is safe patch application implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/applier.py",
+          "keywords": [
+            "SafePatchApplier",
+            "apply"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_007",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is autonomous failure investigation implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/failure_investigator.py",
+          "keywords": [
+            "FailureInvestigator",
+            "investigate"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_008",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is corrective fix generation implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/corrective_fix.py",
+          "keywords": [
+            "generate_corrective_fix"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_009",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is MCP execution tracing implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/tracing.py",
+          "keywords": [
+            "MCPTracer",
+            "MCPTrace"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_010",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is hybrid semantic and lexical retrieval with reranking implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/retrieval/retriever.py",
+          "keywords": [
+            "retrieve"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_011",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is the repository-aware code search implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/developer_tools/search.py",
+          "keywords": [
+            "RepositorySearch"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "generalization_001_01",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "How is the LangGraph state machine assembled?",
+      "expected_intent": "architecture",
+      "expected_evidence": [
+        {
+          "file": "app/agent/graph.py",
+          "keywords": [
+            "StateGraph",
+            "compile"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_001",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_001_02",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Find the code that compiles the LangGraph workflow.",
+      "expected_intent": "architecture",
+      "expected_evidence": [
+        {
+          "file": "app/agent/graph.py",
+          "keywords": [
+            "StateGraph",
+            "compile"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_001",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_001_03",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Which module constructs the StateGraph?",
+      "expected_intent": "architecture",
+      "expected_evidence": [
+        {
+          "file": "app/agent/graph.py",
+          "keywords": [
+            "StateGraph",
+            "compile"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_001",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_001_04",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Find where the graph is compiled.",
+      "expected_intent": "architecture",
+      "expected_evidence": [
+        {
+          "file": "app/agent/graph.py",
+          "keywords": [
+            "StateGraph",
+            "compile"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_001",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_002_01",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Locate the InvestigationState declaration.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/agent/state.py",
+          "keywords": [
+            "InvestigationState"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_002",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_002_02",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Which module defines the investigation state schema?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/agent/state.py",
+          "keywords": [
+            "InvestigationState"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_002",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_002_03",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Find the InvestigationState data structure.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/agent/state.py",
+          "keywords": [
+            "InvestigationState"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_002",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_002_04",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is the state object for investigations declared?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/agent/state.py",
+          "keywords": [
+            "InvestigationState"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_002",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_003_01",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Which class owns MCP tool discovery and caching?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/registry.py",
+          "keywords": [
+            "MCPToolRegistry",
+            "discover"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_003",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_003_02",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Locate the MCPToolRegistry implementation.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/registry.py",
+          "keywords": [
+            "MCPToolRegistry",
+            "discover"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_003",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_003_03",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where does the MCP client store discovered tools?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/registry.py",
+          "keywords": [
+            "MCPToolRegistry",
+            "discover"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_003",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_003_04",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Find the discover method for registered MCP tools.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/registry.py",
+          "keywords": [
+            "MCPToolRegistry",
+            "discover"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_003",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_004_01",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Locate the MCP retry policy configuration.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/retry.py",
+          "keywords": [
+            "RetryConfig",
+            "should_retry"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_004",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_004_02",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Find the retry configuration and decision logic.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/retry.py",
+          "keywords": [
+            "RetryConfig",
+            "should_retry"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_004",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_004_03",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is should_retry defined for MCP calls?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/retry.py",
+          "keywords": [
+            "RetryConfig",
+            "should_retry"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_004",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_004_04",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Which module decides whether an MCP request should be retried?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/retry.py",
+          "keywords": [
+            "RetryConfig",
+            "should_retry"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_004",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_005_01",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Find the PatchValidator class.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/validator.py",
+          "keywords": [
+            "PatchValidator",
+            "validate"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_005",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_005_02",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is patch validation performed?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/validator.py",
+          "keywords": [
+            "PatchValidator",
+            "validate"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_005",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_005_03",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where are proposed patches checked before application?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/validator.py",
+          "keywords": [
+            "PatchValidator",
+            "validate"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_005",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_005_04",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Locate the validate operation for patches.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/validator.py",
+          "keywords": [
+            "PatchValidator",
+            "validate"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_005",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_006_01",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Locate the SafePatchApplier implementation.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/applier.py",
+          "keywords": [
+            "SafePatchApplier",
+            "apply"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_006",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_006_02",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Which module applies code patches safely?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/applier.py",
+          "keywords": [
+            "SafePatchApplier",
+            "apply"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_006",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_006_03",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Find the apply method for safe patches.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/applier.py",
+          "keywords": [
+            "SafePatchApplier",
+            "apply"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_006",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_007_01",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Find the FailureInvestigator class.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/failure_investigator.py",
+          "keywords": [
+            "FailureInvestigator",
+            "investigate"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_007",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_007_02",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Which component investigates failures automatically?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/failure_investigator.py",
+          "keywords": [
+            "FailureInvestigator",
+            "investigate"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_007",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_007_03",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Locate the investigate method for failure diagnosis.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/failure_investigator.py",
+          "keywords": [
+            "FailureInvestigator",
+            "investigate"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_007",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_008_01",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is generate_corrective_fix defined?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/corrective_fix.py",
+          "keywords": [
+            "generate_corrective_fix"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_008",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_008_02",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Find the code responsible for producing corrective fixes.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/corrective_fix.py",
+          "keywords": [
+            "generate_corrective_fix"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_008",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_008_03",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Locate the corrective fix generator.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/corrective_fix.py",
+          "keywords": [
+            "generate_corrective_fix"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_008",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_009_01",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Find the MCPTracer implementation.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/tracing.py",
+          "keywords": [
+            "MCPTracer",
+            "MCPTrace"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_009",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_009_02",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where are MCP execution traces recorded?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/tracing.py",
+          "keywords": [
+            "MCPTracer",
+            "MCPTrace"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_009",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_009_03",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Locate the MCPTrace model and tracing utilities.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/tracing.py",
+          "keywords": [
+            "MCPTracer",
+            "MCPTrace"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_009",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_010_01",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Which function orchestrates vector search and lexical search before reranking?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/retrieval/retriever.py",
+          "keywords": [
+            "retrieve"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_010",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_010_02",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Locate the retrieve entry point for hybrid code search.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/retrieval/retriever.py",
+          "keywords": [
+            "retrieve"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_010",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_010_03",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where are semantic and lexical candidates merged and reranked?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/retrieval/retriever.py",
+          "keywords": [
+            "retrieve"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_010",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_010_04",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Find the retrieval pipeline coordinating search strategies.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/retrieval/retriever.py",
+          "keywords": [
+            "retrieve"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_010",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_011_01",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Find the RepositorySearch class.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/developer_tools/search.py",
+          "keywords": [
+            "RepositorySearch"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_011",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_011_02",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Which component implements repository-aware searching?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/developer_tools/search.py",
+          "keywords": [
+            "RepositorySearch"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_011",
+        "label_status": "provisional_review_required"
+      }
+    },
+    {
+      "case_id": "generalization_011_03",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Locate the repository code search interface.",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/developer_tools/search.py",
+          "keywords": [
+            "RepositorySearch"
+          ]
+        }
+      ],
+      "metadata": {
+        "group": "paraphrase",
+        "source_case": "retrieval_011",
+        "label_status": "provisional_review_required"
+      }
+    }
+  ]
+}

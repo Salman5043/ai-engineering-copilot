@@ -1,0 +1,163 @@
+{
+  "name": "AI Engineering Copilot Retrieval Benchmark",
+  "version": "1.0",
+  "cases": [
+    {
+      "case_id": "retrieval_001",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is the LangGraph workflow created?",
+      "expected_intent": "architecture",
+      "expected_evidence": [
+        {
+          "file": "app/agent/graph.py",
+          "keywords": [
+            "StateGraph",
+            "compile"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_002",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is the investigation state defined?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/agent/state.py",
+          "keywords": [
+            "InvestigationState"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_003",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where are MCP tools registered?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/registry.py",
+          "keywords": [
+            "MCPToolRegistry",
+            "discover"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_004",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is MCP retry behavior implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/retry.py",
+          "keywords": [
+            "RetryConfig",
+            "should_retry"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_005",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is patch validation implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/validator.py",
+          "keywords": [
+            "PatchValidator",
+            "validate"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_006",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is safe patch application implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/applier.py",
+          "keywords": [
+            "SafePatchApplier",
+            "apply"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_007",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is autonomous failure investigation implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/failure_investigator.py",
+          "keywords": [
+            "FailureInvestigator",
+            "investigate"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_008",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is corrective fix generation implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/changes/corrective_fix.py",
+          "keywords": [
+            "generate_corrective_fix"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_009",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is MCP execution tracing implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/mcp_client/tracing.py",
+          "keywords": [
+            "MCPTracer",
+            "MCPTrace"
+          ]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_010",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is hybrid semantic and lexical retrieval with reranking implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/retrieval/retriever.py",
+          "keywords": ["retrieve"]
+        }
+      ]
+    },
+    {
+      "case_id": "retrieval_011",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "query": "Where is the repository-aware code search implemented?",
+      "expected_intent": "symbol_lookup",
+      "expected_evidence": [
+        {
+          "file": "app/developer_tools/search.py",
+          "keywords": ["RepositorySearch"]
+        }
+      ]
+    }
+  ]
+}

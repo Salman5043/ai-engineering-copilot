@@ -14,6 +14,11 @@ class RetrievalStrategy:
     prefer_entrypoints: bool = False
     prefer_documentation: bool = False
 
+    prefer_definitions: bool = False
+    prefer_references: bool = False
+    prefer_path_relevance: bool = True
+    prefer_keyword_overlap: bool = True
+
 
 STRATEGIES: dict[str, RetrievalStrategy] = {
     "symbol_lookup": RetrievalStrategy(
@@ -25,6 +30,7 @@ STRATEGIES: dict[str, RetrievalStrategy] = {
             "async_function",
             "method",
         ),
+        prefer_definitions=True,
     ),
 
     "function_explanation": RetrievalStrategy(
@@ -37,17 +43,20 @@ STRATEGIES: dict[str, RetrievalStrategy] = {
             "class",
         ),
         prefer_documentation=True,
+        prefer_definitions=True,
     ),
 
     "reference_search": RetrievalStrategy(
         candidate_multiplier=6,
         prefer_symbols=True,
+        prefer_references=True,
     ),
 
     "configuration": RetrievalStrategy(
         candidate_multiplier=5,
         prefer_configuration=True,
         prefer_symbols=True,
+        prefer_definitions=True,
     ),
 
     "test_discovery": RetrievalStrategy(
@@ -60,6 +69,7 @@ STRATEGIES: dict[str, RetrievalStrategy] = {
         candidate_multiplier=5,
         prefer_symbols=True,
         prefer_documentation=True,
+        prefer_definitions=True,
     ),
 
     "dependency_search": RetrievalStrategy(
@@ -71,6 +81,7 @@ STRATEGIES: dict[str, RetrievalStrategy] = {
         candidate_multiplier=5,
         prefer_entrypoints=True,
         prefer_symbols=True,
+        prefer_definitions=True,
     ),
 
     "general_search": RetrievalStrategy(

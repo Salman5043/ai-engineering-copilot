@@ -127,6 +127,14 @@ def index_repository(repository_path):
                     "language": language,
                     "symbol": chunk.symbol or "",
                     "symbol_type": chunk.symbol_type or "",
+                    "parent_symbol": (
+                        getattr(chunk, "parent_symbol", None) or ""
+                    ),
+                    "qualified_symbol": (
+                        getattr(chunk, "qualified_symbol", None)
+                        or chunk.symbol
+                        or ""
+                    ),
                     "start_line": chunk.start_line,
                     "end_line": chunk.end_line,
                 }

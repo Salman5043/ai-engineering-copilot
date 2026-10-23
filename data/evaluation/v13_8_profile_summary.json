@@ -1,0 +1,45 @@
+{
+  "queries": 83,
+  "total_p50_ms": 952.6,
+  "total_p95_ms": 3149.98,
+  "stages": [
+    {
+      "stage": "lexical_ms",
+      "mean_ms": 694.24,
+      "p50_ms": 528.07,
+      "p95_ms": 1192.32
+    },
+    {
+      "stage": "primary_semantic_ms",
+      "mean_ms": 525.26,
+      "p50_ms": 41.93,
+      "p95_ms": 717.0
+    },
+    {
+      "stage": "rerank_ms",
+      "mean_ms": 243.3,
+      "p50_ms": 214.23,
+      "p95_ms": 499.42
+    },
+    {
+      "stage": "supplemental_semantic_ms",
+      "mean_ms": 192.77,
+      "p50_ms": 211.01,
+      "p95_ms": 396.42
+    },
+    {
+      "stage": "merge_ms",
+      "mean_ms": 1.81,
+      "p50_ms": 1.61,
+      "p95_ms": 3.45
+    },
+    {
+      "stage": "query_analysis_ms",
+      "mean_ms": 1.77,
+      "p50_ms": 0.33,
+      "p95_ms": 13.27
+    }
+  ],
+  "mean_supplemental_searches": 3.88,
+  "mean_merged_candidates": 223.69
+}
