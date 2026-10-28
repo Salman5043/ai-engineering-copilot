@@ -1,0 +1,325 @@
+{
+  "schema_version": "14.3",
+  "question": "How does the research function initialize the workflow state?",
+  "answer_status": "evidence_only_no_generated_answer",
+  "retrieval_hint_files": [],
+  "matched_symbols": [
+    {
+      "id": "graph/state.py::ResearchState",
+      "score": 9,
+      "file": "graph/state.py",
+      "line": 14,
+      "kind": "class"
+    },
+    {
+      "id": "api/routes.py::ResearchRequest",
+      "score": 4,
+      "file": "api/routes.py",
+      "line": 15,
+      "kind": "class"
+    },
+    {
+      "id": "api/routes.py::ResearchResponse",
+      "score": 4,
+      "file": "api/routes.py",
+      "line": 29,
+      "kind": "class"
+    },
+    {
+      "id": "api/routes.py::_result_from_state",
+      "score": 4,
+      "file": "api/routes.py",
+      "line": 66,
+      "kind": "function"
+    },
+    {
+      "id": "api/routes.py::initial_state",
+      "score": 4,
+      "file": "api/routes.py",
+      "line": 43,
+      "kind": "function"
+    },
+    {
+      "id": "api/routes.py::research",
+      "score": 4,
+      "file": "api/routes.py",
+      "line": 162,
+      "kind": "function"
+    },
+    {
+      "id": "api/routes.py::research_stream",
+      "score": 4,
+      "file": "api/routes.py",
+      "line": 78,
+      "kind": "function"
+    },
+    {
+      "id": "api/routes.py::research_stream_endpoint",
+      "score": 4,
+      "file": "api/routes.py",
+      "line": 145,
+      "kind": "function"
+    },
+    {
+      "id": "graph/nodes.py::research_node",
+      "score": 4,
+      "file": "graph/nodes.py",
+      "line": 124,
+      "kind": "function"
+    },
+    {
+      "id": "graph/state.py::SearchResult",
+      "score": 1,
+      "file": "graph/state.py",
+      "line": 4,
+      "kind": "class"
+    }
+  ],
+  "related_static_calls": [
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::send_event",
+      "file": "api/routes.py",
+      "line": 90,
+      "expression": "send_event",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::initial_state",
+      "file": "api/routes.py",
+      "line": 92,
+      "expression": "initial_state",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::send_event",
+      "file": "api/routes.py",
+      "line": 101,
+      "expression": "send_event",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::send_event",
+      "file": "api/routes.py",
+      "line": 108,
+      "expression": "send_event",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::send_event",
+      "file": "api/routes.py",
+      "line": 113,
+      "expression": "send_event",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::send_event",
+      "file": "api/routes.py",
+      "line": 114,
+      "expression": "send_event",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::send_event",
+      "file": "api/routes.py",
+      "line": 117,
+      "expression": "send_event",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::send_event",
+      "file": "api/routes.py",
+      "line": 120,
+      "expression": "send_event",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::send_event",
+      "file": "api/routes.py",
+      "line": 125,
+      "expression": "send_event",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::_result_from_state",
+      "file": "api/routes.py",
+      "line": 131,
+      "expression": "_result_from_state",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::send_event",
+      "file": "api/routes.py",
+      "line": 133,
+      "expression": "send_event",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::send_event",
+      "file": "api/routes.py",
+      "line": 136,
+      "expression": "send_event",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::send_event",
+      "file": "api/routes.py",
+      "line": 137,
+      "expression": "send_event",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream",
+      "to": "api/routes.py::send_event",
+      "file": "api/routes.py",
+      "line": 141,
+      "expression": "send_event",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research_stream_endpoint",
+      "to": "api/routes.py::research_stream",
+      "file": "api/routes.py",
+      "line": 151,
+      "expression": "research_stream",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research",
+      "to": "api/routes.py::initial_state",
+      "file": "api/routes.py",
+      "line": 168,
+      "expression": "initial_state",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research",
+      "to": "api/routes.py::ResearchResponse",
+      "file": "api/routes.py",
+      "line": 169,
+      "expression": "ResearchResponse",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "api/routes.py::research",
+      "to": "api/routes.py::_result_from_state",
+      "file": "api/routes.py",
+      "line": 169,
+      "expression": "_result_from_state",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    },
+    {
+      "from": "graph/nodes.py::research_node",
+      "to": "utils/search_tool.py::web_search",
+      "file": "graph/nodes.py",
+      "line": 132,
+      "expression": "web_search",
+      "confidence": "static",
+      "evidence": "direct_name_or_import",
+      "kind": "static_call"
+    }
+  ],
+  "internal_import_evidence": [
+    {
+      "file": "api/routes.py",
+      "line": 9,
+      "target_module": "graph.graph_builder",
+      "imported_name": "build_graph",
+      "kind": "import_not_call"
+    },
+    {
+      "file": "graph/nodes.py",
+      "line": 5,
+      "target_module": "utils.llm",
+      "imported_name": "invoke_llm",
+      "kind": "import_not_call"
+    },
+    {
+      "file": "graph/nodes.py",
+      "line": 6,
+      "target_module": "utils.search_tool",
+      "imported_name": "web_search",
+      "kind": "import_not_call"
+    }
+  ],
+  "path_query": {
+    "source": "api/routes.py::research",
+    "target": "api/routes.py::initial_state",
+    "found": true,
+    "paths": [
+      {
+        "nodes": [
+          "api/routes.py::research",
+          "api/routes.py::initial_state"
+        ],
+        "edges": [
+          {
+            "from": "api/routes.py::research",
+            "to": "api/routes.py::initial_state",
+            "file": "api/routes.py",
+            "line": 168,
+            "expression": "initial_state",
+            "confidence": "static",
+            "evidence": "direct_name_or_import",
+            "kind": "static_call"
+          }
+        ]
+      }
+    ]
+  },
+  "limitations": [
+    "Symbol matches are lexical hints, not proof of relevance.",
+    "Only v14.1 resolved calls are path edges; imports are not calls.",
+    "Framework registrations, callbacks, dependency injection and runtime paths are not inferred.",
+    "No path found does not imply no runtime path exists.",
+    "This produces structured evidence for a future reasoning agent, not a natural-language answer."
+  ]
+}
