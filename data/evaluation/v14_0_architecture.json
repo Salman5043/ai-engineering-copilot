@@ -1,0 +1,2213 @@
+{
+  "schema_version": "14.0",
+  "root": "D:\\Research Assisstant\\research_assistant_improved_v4",
+  "modules": [
+    {
+      "module": "api",
+      "file": "api/__init__.py"
+    },
+    {
+      "module": "api.routes",
+      "file": "api/routes.py"
+    },
+    {
+      "module": "app",
+      "file": "app.py"
+    },
+    {
+      "module": "graph",
+      "file": "graph/__init__.py"
+    },
+    {
+      "module": "graph.graph_builder",
+      "file": "graph/graph_builder.py"
+    },
+    {
+      "module": "graph.nodes",
+      "file": "graph/nodes.py"
+    },
+    {
+      "module": "graph.state",
+      "file": "graph/state.py"
+    },
+    {
+      "module": "tests.test_app",
+      "file": "tests/test_app.py"
+    },
+    {
+      "module": "utils",
+      "file": "utils/__init__.py"
+    },
+    {
+      "module": "utils.llm",
+      "file": "utils/llm.py"
+    },
+    {
+      "module": "utils.search_tool",
+      "file": "utils/search_tool.py"
+    }
+  ],
+  "definitions": [
+    {
+      "file": "api/routes.py",
+      "symbol": "ResearchRequest",
+      "qualified_symbol": "ResearchRequest",
+      "kind": "class",
+      "start_line": 15,
+      "end_line": 16
+    },
+    {
+      "file": "api/routes.py",
+      "symbol": "Source",
+      "qualified_symbol": "Source",
+      "kind": "class",
+      "start_line": 19,
+      "end_line": 26
+    },
+    {
+      "file": "api/routes.py",
+      "symbol": "ResearchResponse",
+      "qualified_symbol": "ResearchResponse",
+      "kind": "class",
+      "start_line": 29,
+      "end_line": 36
+    },
+    {
+      "file": "api/routes.py",
+      "symbol": "send_event",
+      "qualified_symbol": "send_event",
+      "kind": "function",
+      "start_line": 39,
+      "end_line": 40
+    },
+    {
+      "file": "api/routes.py",
+      "symbol": "initial_state",
+      "qualified_symbol": "initial_state",
+      "kind": "function",
+      "start_line": 43,
+      "end_line": 53
+    },
+    {
+      "file": "api/routes.py",
+      "symbol": "health_check",
+      "qualified_symbol": "health_check",
+      "kind": "function",
+      "start_line": 57,
+      "end_line": 63
+    },
+    {
+      "file": "api/routes.py",
+      "symbol": "_result_from_state",
+      "qualified_symbol": "_result_from_state",
+      "kind": "function",
+      "start_line": 66,
+      "end_line": 75
+    },
+    {
+      "file": "api/routes.py",
+      "symbol": "research_stream",
+      "qualified_symbol": "research_stream",
+      "kind": "function",
+      "start_line": 78,
+      "end_line": 141
+    },
+    {
+      "file": "api/routes.py",
+      "symbol": "research_stream_endpoint",
+      "qualified_symbol": "research_stream_endpoint",
+      "kind": "function",
+      "start_line": 145,
+      "end_line": 158
+    },
+    {
+      "file": "api/routes.py",
+      "symbol": "research",
+      "qualified_symbol": "research",
+      "kind": "function",
+      "start_line": 162,
+      "end_line": 172
+    },
+    {
+      "file": "app.py",
+      "symbol": "lifespan",
+      "qualified_symbol": "lifespan",
+      "kind": "async_function",
+      "start_line": 112,
+      "end_line": 127
+    },
+    {
+      "file": "app.py",
+      "symbol": "serve_frontend",
+      "qualified_symbol": "serve_frontend",
+      "kind": "function",
+      "start_line": 207,
+      "end_line": 233
+    },
+    {
+      "file": "app.py",
+      "symbol": "favicon",
+      "qualified_symbol": "favicon",
+      "kind": "function",
+      "start_line": 240,
+      "end_line": 244
+    },
+    {
+      "file": "app.py",
+      "symbol": "api_info",
+      "qualified_symbol": "api_info",
+      "kind": "function",
+      "start_line": 255,
+      "end_line": 273
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "symbol": "build_graph",
+      "qualified_symbol": "build_graph",
+      "kind": "function",
+      "start_line": 15,
+      "end_line": 43
+    },
+    {
+      "file": "graph/nodes.py",
+      "symbol": "clean_json_response",
+      "qualified_symbol": "clean_json_response",
+      "kind": "function",
+      "start_line": 9,
+      "end_line": 17
+    },
+    {
+      "file": "graph/nodes.py",
+      "symbol": "_source_block",
+      "qualified_symbol": "_source_block",
+      "kind": "function",
+      "start_line": 20,
+      "end_line": 29
+    },
+    {
+      "file": "graph/nodes.py",
+      "symbol": "_source_index",
+      "qualified_symbol": "_source_index",
+      "kind": "function",
+      "start_line": 32,
+      "end_line": 36
+    },
+    {
+      "file": "graph/nodes.py",
+      "symbol": "_parse_planner_output",
+      "qualified_symbol": "_parse_planner_output",
+      "kind": "function",
+      "start_line": 43,
+      "end_line": 77
+    },
+    {
+      "file": "graph/nodes.py",
+      "symbol": "planner_node",
+      "qualified_symbol": "planner_node",
+      "kind": "function",
+      "start_line": 80,
+      "end_line": 117
+    },
+    {
+      "file": "graph/nodes.py",
+      "symbol": "research_node",
+      "qualified_symbol": "research_node",
+      "kind": "function",
+      "start_line": 124,
+      "end_line": 150
+    },
+    {
+      "file": "graph/nodes.py",
+      "symbol": "summarizer_node",
+      "qualified_symbol": "summarizer_node",
+      "kind": "function",
+      "start_line": 157,
+      "end_line": 183
+    },
+    {
+      "file": "graph/nodes.py",
+      "symbol": "draft_report_node",
+      "qualified_symbol": "draft_report_node",
+      "kind": "function",
+      "start_line": 190,
+      "end_line": 223
+    },
+    {
+      "file": "graph/nodes.py",
+      "symbol": "critic_node",
+      "qualified_symbol": "critic_node",
+      "kind": "function",
+      "start_line": 230,
+      "end_line": 259
+    },
+    {
+      "file": "graph/nodes.py",
+      "symbol": "should_revise",
+      "qualified_symbol": "should_revise",
+      "kind": "function",
+      "start_line": 266,
+      "end_line": 272
+    },
+    {
+      "file": "graph/nodes.py",
+      "symbol": "final_report_node",
+      "qualified_symbol": "final_report_node",
+      "kind": "function",
+      "start_line": 275,
+      "end_line": 335
+    },
+    {
+      "file": "graph/state.py",
+      "symbol": "SearchResult",
+      "qualified_symbol": "SearchResult",
+      "kind": "class",
+      "start_line": 4,
+      "end_line": 11
+    },
+    {
+      "file": "graph/state.py",
+      "symbol": "ResearchState",
+      "qualified_symbol": "ResearchState",
+      "kind": "class",
+      "start_line": 14,
+      "end_line": 22
+    },
+    {
+      "file": "tests/test_app.py",
+      "symbol": "AppTests",
+      "qualified_symbol": "AppTests",
+      "kind": "class",
+      "start_line": 8,
+      "end_line": 22
+    },
+    {
+      "file": "tests/test_app.py",
+      "symbol": "setUp",
+      "qualified_symbol": "AppTests.setUp",
+      "kind": "method",
+      "start_line": 9,
+      "end_line": 10
+    },
+    {
+      "file": "tests/test_app.py",
+      "symbol": "test_health",
+      "qualified_symbol": "AppTests.test_health",
+      "kind": "method",
+      "start_line": 12,
+      "end_line": 17
+    },
+    {
+      "file": "tests/test_app.py",
+      "symbol": "test_frontend_is_served",
+      "qualified_symbol": "AppTests.test_frontend_is_served",
+      "kind": "method",
+      "start_line": 19,
+      "end_line": 22
+    },
+    {
+      "file": "utils/llm.py",
+      "symbol": "get_llm",
+      "qualified_symbol": "get_llm",
+      "kind": "function",
+      "start_line": 17,
+      "end_line": 31
+    },
+    {
+      "file": "utils/llm.py",
+      "symbol": "_rate_limit_pause",
+      "qualified_symbol": "_rate_limit_pause",
+      "kind": "function",
+      "start_line": 34,
+      "end_line": 43
+    },
+    {
+      "file": "utils/llm.py",
+      "symbol": "_retry_delay",
+      "qualified_symbol": "_retry_delay",
+      "kind": "function",
+      "start_line": 46,
+      "end_line": 65
+    },
+    {
+      "file": "utils/llm.py",
+      "symbol": "invoke_llm",
+      "qualified_symbol": "invoke_llm",
+      "kind": "function",
+      "start_line": 68,
+      "end_line": 115
+    },
+    {
+      "file": "utils/search_tool.py",
+      "symbol": "web_search",
+      "qualified_symbol": "web_search",
+      "kind": "function",
+      "start_line": 11,
+      "end_line": 44
+    }
+  ],
+  "imports": [
+    {
+      "file": "api/routes.py",
+      "source_module": "api.routes",
+      "target": "json",
+      "imported_name": null,
+      "line": 1,
+      "internal": false
+    },
+    {
+      "file": "api/routes.py",
+      "source_module": "api.routes",
+      "target": "os",
+      "imported_name": null,
+      "line": 2,
+      "internal": false
+    },
+    {
+      "file": "api/routes.py",
+      "source_module": "api.routes",
+      "target": "traceback",
+      "imported_name": null,
+      "line": 3,
+      "internal": false
+    },
+    {
+      "file": "api/routes.py",
+      "source_module": "api.routes",
+      "target": "fastapi",
+      "imported_name": "APIRouter",
+      "line": 5,
+      "internal": false
+    },
+    {
+      "file": "api/routes.py",
+      "source_module": "api.routes",
+      "target": "fastapi",
+      "imported_name": "HTTPException",
+      "line": 5,
+      "internal": false
+    },
+    {
+      "file": "api/routes.py",
+      "source_module": "api.routes",
+      "target": "fastapi.responses",
+      "imported_name": "StreamingResponse",
+      "line": 6,
+      "internal": false
+    },
+    {
+      "file": "api/routes.py",
+      "source_module": "api.routes",
+      "target": "pydantic",
+      "imported_name": "BaseModel",
+      "line": 7,
+      "internal": false
+    },
+    {
+      "file": "api/routes.py",
+      "source_module": "api.routes",
+      "target": "pydantic",
+      "imported_name": "Field",
+      "line": 7,
+      "internal": false
+    },
+    {
+      "file": "api/routes.py",
+      "source_module": "api.routes",
+      "target": "graph.graph_builder",
+      "imported_name": "build_graph",
+      "line": 9,
+      "internal": true
+    },
+    {
+      "file": "app.py",
+      "source_module": "app",
+      "target": "dotenv",
+      "imported_name": "load_dotenv",
+      "line": 79,
+      "internal": false
+    },
+    {
+      "file": "app.py",
+      "source_module": "app",
+      "target": "os",
+      "imported_name": null,
+      "line": 84,
+      "internal": false
+    },
+    {
+      "file": "app.py",
+      "source_module": "app",
+      "target": "webbrowser",
+      "imported_name": null,
+      "line": 85,
+      "internal": false
+    },
+    {
+      "file": "app.py",
+      "source_module": "app",
+      "target": "contextlib",
+      "imported_name": "asynccontextmanager",
+      "line": 87,
+      "internal": false
+    },
+    {
+      "file": "app.py",
+      "source_module": "app",
+      "target": "pathlib",
+      "imported_name": "Path",
+      "line": 88,
+      "internal": false
+    },
+    {
+      "file": "app.py",
+      "source_module": "app",
+      "target": "threading",
+      "imported_name": "Timer",
+      "line": 89,
+      "internal": false
+    },
+    {
+      "file": "app.py",
+      "source_module": "app",
+      "target": "fastapi",
+      "imported_name": "FastAPI",
+      "line": 91,
+      "internal": false
+    },
+    {
+      "file": "app.py",
+      "source_module": "app",
+      "target": "fastapi",
+      "imported_name": "Response",
+      "line": 91,
+      "internal": false
+    },
+    {
+      "file": "app.py",
+      "source_module": "app",
+      "target": "fastapi.middleware.cors",
+      "imported_name": "CORSMiddleware",
+      "line": 92,
+      "internal": false
+    },
+    {
+      "file": "app.py",
+      "source_module": "app",
+      "target": "fastapi.responses",
+      "imported_name": "FileResponse",
+      "line": 93,
+      "internal": false
+    },
+    {
+      "file": "app.py",
+      "source_module": "app",
+      "target": "fastapi.staticfiles",
+      "imported_name": "StaticFiles",
+      "line": 94,
+      "internal": false
+    },
+    {
+      "file": "app.py",
+      "source_module": "app",
+      "target": "api.routes",
+      "imported_name": "router",
+      "line": 96,
+      "internal": true
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "source_module": "graph.graph_builder",
+      "target": "langgraph.graph",
+      "imported_name": "END",
+      "line": 1,
+      "internal": false
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "source_module": "graph.graph_builder",
+      "target": "langgraph.graph",
+      "imported_name": "StateGraph",
+      "line": 1,
+      "internal": false
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "source_module": "graph.graph_builder",
+      "target": "graph.nodes",
+      "imported_name": "critic_node",
+      "line": 3,
+      "internal": true
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "source_module": "graph.graph_builder",
+      "target": "graph.nodes",
+      "imported_name": "draft_report_node",
+      "line": 3,
+      "internal": true
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "source_module": "graph.graph_builder",
+      "target": "graph.nodes",
+      "imported_name": "final_report_node",
+      "line": 3,
+      "internal": true
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "source_module": "graph.graph_builder",
+      "target": "graph.nodes",
+      "imported_name": "planner_node",
+      "line": 3,
+      "internal": true
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "source_module": "graph.graph_builder",
+      "target": "graph.nodes",
+      "imported_name": "research_node",
+      "line": 3,
+      "internal": true
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "source_module": "graph.graph_builder",
+      "target": "graph.nodes",
+      "imported_name": "should_revise",
+      "line": 3,
+      "internal": true
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "source_module": "graph.graph_builder",
+      "target": "graph.nodes",
+      "imported_name": "summarizer_node",
+      "line": 3,
+      "internal": true
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "source_module": "graph.graph_builder",
+      "target": "graph.state",
+      "imported_name": "ResearchState",
+      "line": 12,
+      "internal": true
+    },
+    {
+      "file": "graph/nodes.py",
+      "source_module": "graph.nodes",
+      "target": "json",
+      "imported_name": null,
+      "line": 1,
+      "internal": false
+    },
+    {
+      "file": "graph/nodes.py",
+      "source_module": "graph.nodes",
+      "target": "re",
+      "imported_name": null,
+      "line": 2,
+      "internal": false
+    },
+    {
+      "file": "graph/nodes.py",
+      "source_module": "graph.nodes",
+      "target": "typing",
+      "imported_name": "Any",
+      "line": 3,
+      "internal": false
+    },
+    {
+      "file": "graph/nodes.py",
+      "source_module": "graph.nodes",
+      "target": "utils.llm",
+      "imported_name": "invoke_llm",
+      "line": 5,
+      "internal": true
+    },
+    {
+      "file": "graph/nodes.py",
+      "source_module": "graph.nodes",
+      "target": "utils.search_tool",
+      "imported_name": "web_search",
+      "line": 6,
+      "internal": true
+    },
+    {
+      "file": "graph/state.py",
+      "source_module": "graph.state",
+      "target": "typing",
+      "imported_name": "List",
+      "line": 1,
+      "internal": false
+    },
+    {
+      "file": "graph/state.py",
+      "source_module": "graph.state",
+      "target": "typing",
+      "imported_name": "TypedDict",
+      "line": 1,
+      "internal": false
+    },
+    {
+      "file": "tests/test_app.py",
+      "source_module": "tests.test_app",
+      "target": "unittest",
+      "imported_name": null,
+      "line": 1,
+      "internal": false
+    },
+    {
+      "file": "tests/test_app.py",
+      "source_module": "tests.test_app",
+      "target": "fastapi.testclient",
+      "imported_name": "TestClient",
+      "line": 3,
+      "internal": false
+    },
+    {
+      "file": "tests/test_app.py",
+      "source_module": "tests.test_app",
+      "target": "app",
+      "imported_name": "app",
+      "line": 5,
+      "internal": true
+    },
+    {
+      "file": "utils/llm.py",
+      "source_module": "utils.llm",
+      "target": "os",
+      "imported_name": null,
+      "line": 2,
+      "internal": false
+    },
+    {
+      "file": "utils/llm.py",
+      "source_module": "utils.llm",
+      "target": "time",
+      "imported_name": null,
+      "line": 3,
+      "internal": false
+    },
+    {
+      "file": "utils/llm.py",
+      "source_module": "utils.llm",
+      "target": "langchain_core.messages",
+      "imported_name": "HumanMessage",
+      "line": 5,
+      "internal": false
+    },
+    {
+      "file": "utils/llm.py",
+      "source_module": "utils.llm",
+      "target": "langchain_groq",
+      "imported_name": "ChatGroq",
+      "line": 6,
+      "internal": false
+    },
+    {
+      "file": "utils/search_tool.py",
+      "source_module": "utils.search_tool",
+      "target": "os",
+      "imported_name": null,
+      "line": 1,
+      "internal": false
+    },
+    {
+      "file": "utils/search_tool.py",
+      "source_module": "utils.search_tool",
+      "target": "urllib.parse",
+      "imported_name": "urlparse",
+      "line": 2,
+      "internal": false
+    },
+    {
+      "file": "utils/search_tool.py",
+      "source_module": "utils.search_tool",
+      "target": "tavily",
+      "imported_name": "TavilyClient",
+      "line": 4,
+      "internal": false
+    }
+  ],
+  "calls": [
+    {
+      "file": "api/routes.py",
+      "caller": "<module>",
+      "callee_expression": "APIRouter",
+      "line": 11,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "<module>",
+      "callee_expression": "build_graph",
+      "line": 12,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "ResearchRequest",
+      "callee_expression": "Field",
+      "line": 16,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "send_event",
+      "callee_expression": "json.dumps",
+      "line": 40,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "initial_state",
+      "callee_expression": "int",
+      "line": 52,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "initial_state",
+      "callee_expression": "os.getenv",
+      "line": 52,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "health_check",
+      "callee_expression": "os.getenv",
+      "line": 62,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "health_check",
+      "callee_expression": "router.get",
+      "line": 56,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "_result_from_state",
+      "callee_expression": "state.get",
+      "line": 69,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "_result_from_state",
+      "callee_expression": "state.get",
+      "line": 70,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "_result_from_state",
+      "callee_expression": "state.get",
+      "line": 71,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "_result_from_state",
+      "callee_expression": "state.get",
+      "line": 72,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "_result_from_state",
+      "callee_expression": "state.get",
+      "line": 73,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "_result_from_state",
+      "callee_expression": "state.get",
+      "line": 74,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "send_event",
+      "line": 90,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "graph.stream",
+      "line": 92,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "initial_state",
+      "line": 92,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "isinstance",
+      "line": 93,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "update.items",
+      "line": 96,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "isinstance",
+      "line": 97,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "final_state.update",
+      "line": 99,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "send_event",
+      "line": 101,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "status_messages.get",
+      "line": 104,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "send_event",
+      "line": 108,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "node_output.get",
+      "line": 108,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "node_output.get",
+      "line": 111,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "send_event",
+      "line": 113,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "send_event",
+      "line": 114,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "len",
+      "line": 114,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "send_event",
+      "line": 117,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "node_output.get",
+      "line": 117,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "send_event",
+      "line": 120,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "node_output.get",
+      "line": 120,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "node_output.get",
+      "line": 123,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "send_event",
+      "line": 125,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "node_output.get",
+      "line": 128,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "_result_from_state",
+      "line": 131,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "send_event",
+      "line": 133,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "send_event",
+      "line": 136,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "send_event",
+      "line": 137,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "traceback.print_exc",
+      "line": 140,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "send_event",
+      "line": 141,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream",
+      "callee_expression": "type",
+      "line": 141,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream_endpoint",
+      "callee_expression": "request.topic.strip",
+      "line": 146,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream_endpoint",
+      "callee_expression": "HTTPException",
+      "line": 148,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream_endpoint",
+      "callee_expression": "StreamingResponse",
+      "line": 150,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream_endpoint",
+      "callee_expression": "research_stream",
+      "line": 151,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research_stream_endpoint",
+      "callee_expression": "router.post",
+      "line": 144,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research",
+      "callee_expression": "request.topic.strip",
+      "line": 163,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research",
+      "callee_expression": "HTTPException",
+      "line": 165,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research",
+      "callee_expression": "graph.invoke",
+      "line": 168,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research",
+      "callee_expression": "initial_state",
+      "line": 168,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research",
+      "callee_expression": "ResearchResponse",
+      "line": 169,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research",
+      "callee_expression": "_result_from_state",
+      "line": 169,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research",
+      "callee_expression": "traceback.print_exc",
+      "line": 171,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research",
+      "callee_expression": "HTTPException",
+      "line": 172,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research",
+      "callee_expression": "type",
+      "line": 172,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "api/routes.py",
+      "caller": "research",
+      "callee_expression": "router.post",
+      "line": 161,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "<module>",
+      "callee_expression": "load_dotenv",
+      "line": 81,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "<module>",
+      "callee_expression": "Path",
+      "line": 103,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "lifespan",
+      "callee_expression": "os.getenv",
+      "line": 118,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "lifespan",
+      "callee_expression": "os.environ.get",
+      "line": 118,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "lifespan",
+      "callee_expression": "Timer",
+      "line": 120,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "lifespan",
+      "callee_expression": "webbrowser.open",
+      "line": 122,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "<module>",
+      "callee_expression": "FastAPI",
+      "line": 134,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "<module>",
+      "callee_expression": "app.add_middleware",
+      "line": 154,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "<module>",
+      "callee_expression": "origin.strip",
+      "line": 158,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "<module>",
+      "callee_expression": "os.getenv",
+      "line": 158,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "<module>",
+      "callee_expression": "origin.strip",
+      "line": 158,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "<module>",
+      "callee_expression": "app.include_router",
+      "line": 172,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "<module>",
+      "callee_expression": "STATIC_DIR.mkdir",
+      "line": 184,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "<module>",
+      "callee_expression": "app.mount",
+      "line": 189,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "<module>",
+      "callee_expression": "StaticFiles",
+      "line": 193,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "serve_frontend",
+      "callee_expression": "index_file.is_file",
+      "line": 212,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "serve_frontend",
+      "callee_expression": "Response",
+      "line": 214,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "serve_frontend",
+      "callee_expression": "FileResponse",
+      "line": 233,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "serve_frontend",
+      "callee_expression": "app.get",
+      "line": 203,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "favicon",
+      "callee_expression": "Response",
+      "line": 242,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "favicon",
+      "callee_expression": "app.get",
+      "line": 236,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "app.py",
+      "caller": "api_info",
+      "callee_expression": "app.get",
+      "line": 251,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "StateGraph",
+      "line": 16,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.add_node",
+      "line": 18,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.add_node",
+      "line": 19,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.add_node",
+      "line": 20,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.add_node",
+      "line": 21,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.add_node",
+      "line": 22,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.add_node",
+      "line": 23,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.set_entry_point",
+      "line": 25,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.add_edge",
+      "line": 26,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.add_edge",
+      "line": 27,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.add_edge",
+      "line": 28,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.add_edge",
+      "line": 29,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.add_conditional_edges",
+      "line": 31,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.add_edge",
+      "line": 41,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/graph_builder.py",
+      "caller": "build_graph",
+      "callee_expression": "builder.compile",
+      "line": 43,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "clean_json_response",
+      "callee_expression": "content.strip",
+      "line": 10,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "clean_json_response",
+      "callee_expression": "content.startswith",
+      "line": 11,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "clean_json_response",
+      "callee_expression": "content.startswith",
+      "line": 13,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "clean_json_response",
+      "callee_expression": "content.endswith",
+      "line": 15,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "clean_json_response",
+      "callee_expression": "content.strip",
+      "line": 17,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_source_block",
+      "callee_expression": "blocks.append",
+      "line": 23,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_source_block",
+      "callee_expression": "result.get",
+      "line": 24,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_source_block",
+      "callee_expression": "result.get",
+      "line": 24,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_source_block",
+      "callee_expression": "result.get",
+      "line": 25,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_source_block",
+      "callee_expression": "result.get",
+      "line": 26,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_source_block",
+      "callee_expression": "result.get",
+      "line": 27,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_source_index",
+      "callee_expression": "r.get",
+      "line": 34,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_source_index",
+      "callee_expression": "r.get",
+      "line": 34,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_source_index",
+      "callee_expression": "r.get",
+      "line": 34,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_source_index",
+      "callee_expression": "r.get",
+      "line": 34,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "clean_json_response",
+      "line": 51,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "json.loads",
+      "line": 55,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "isinstance",
+      "line": 56,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "isinstance",
+      "line": 56,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "data.get",
+      "line": 56,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "list",
+      "line": 58,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "dict.fromkeys",
+      "line": 58,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "str",
+      "line": 58,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "str",
+      "line": 58,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "text.splitlines",
+      "line": 64,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "raw_line.strip",
+      "line": 65,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "re.sub",
+      "line": 69,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "line.lower",
+      "line": 73,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "items.append",
+      "line": 75,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "list",
+      "line": 77,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "_parse_planner_output",
+      "callee_expression": "dict.fromkeys",
+      "line": 77,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "planner_node",
+      "callee_expression": "invoke_llm",
+      "line": 104,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "planner_node",
+      "callee_expression": "_parse_planner_output",
+      "line": 105,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "planner_node",
+      "callee_expression": "len",
+      "line": 106,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "planner_node",
+      "callee_expression": "ValueError",
+      "line": 107,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "planner_node",
+      "callee_expression": "len",
+      "line": 107,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "planner_node",
+      "callee_expression": "print",
+      "line": 109,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "research_node",
+      "callee_expression": "set",
+      "line": 127,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "research_node",
+      "callee_expression": "enumerate",
+      "line": 130,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "research_node",
+      "callee_expression": "web_search",
+      "line": 132,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "research_node",
+      "callee_expression": "result.get",
+      "line": 134,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "research_node",
+      "callee_expression": "seen_urls.add",
+      "line": 137,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "research_node",
+      "callee_expression": "search_results.append",
+      "line": 141,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "research_node",
+      "callee_expression": "len",
+      "line": 143,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "research_node",
+      "callee_expression": "print",
+      "line": 146,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "research_node",
+      "callee_expression": "len",
+      "line": 147,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "summarizer_node",
+      "callee_expression": "_source_block",
+      "line": 160,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "summarizer_node",
+      "callee_expression": "invoke_llm",
+      "line": 182,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "draft_report_node",
+      "callee_expression": "_source_index",
+      "line": 193,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "draft_report_node",
+      "callee_expression": "invoke_llm",
+      "line": 219,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "critic_node",
+      "callee_expression": "_source_block",
+      "line": 232,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "critic_node",
+      "callee_expression": "invoke_llm",
+      "line": 258,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "critic_node",
+      "callee_expression": "response.content.strip",
+      "line": 259,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "should_revise",
+      "callee_expression": "state.get",
+      "line": 267,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "should_revise",
+      "callee_expression": "state.get",
+      "line": 270,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "should_revise",
+      "callee_expression": "state.get",
+      "line": 270,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "final_report_node",
+      "callee_expression": "_source_index",
+      "line": 283,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "final_report_node",
+      "callee_expression": "state.get",
+      "line": 284,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "final_report_node",
+      "callee_expression": "invoke_llm",
+      "line": 314,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "final_report_node",
+      "callee_expression": "str",
+      "line": 318,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "final_report_node",
+      "callee_expression": "str",
+      "line": 318,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "graph/nodes.py",
+      "caller": "final_report_node",
+      "callee_expression": "invoke_llm",
+      "line": 330,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "tests/test_app.py",
+      "caller": "AppTests.setUp",
+      "callee_expression": "TestClient",
+      "line": 10,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "tests/test_app.py",
+      "caller": "AppTests.test_health",
+      "callee_expression": "self.client.get",
+      "line": 13,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "tests/test_app.py",
+      "caller": "AppTests.test_health",
+      "callee_expression": "self.assertEqual",
+      "line": 14,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "tests/test_app.py",
+      "caller": "AppTests.test_health",
+      "callee_expression": "response.json",
+      "line": 15,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "tests/test_app.py",
+      "caller": "AppTests.test_health",
+      "callee_expression": "self.assertEqual",
+      "line": 16,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "tests/test_app.py",
+      "caller": "AppTests.test_health",
+      "callee_expression": "self.assertEqual",
+      "line": 17,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "tests/test_app.py",
+      "caller": "AppTests.test_frontend_is_served",
+      "callee_expression": "self.client.get",
+      "line": 20,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "tests/test_app.py",
+      "caller": "AppTests.test_frontend_is_served",
+      "callee_expression": "self.assertEqual",
+      "line": 21,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "tests/test_app.py",
+      "caller": "AppTests.test_frontend_is_served",
+      "callee_expression": "self.assertIn",
+      "line": 22,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "tests/test_app.py",
+      "caller": "<module>",
+      "callee_expression": "unittest.main",
+      "line": 26,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "<module>",
+      "callee_expression": "os.getenv",
+      "line": 9,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "<module>",
+      "callee_expression": "int",
+      "line": 10,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "<module>",
+      "callee_expression": "os.getenv",
+      "line": 10,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "<module>",
+      "callee_expression": "float",
+      "line": 11,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "<module>",
+      "callee_expression": "os.getenv",
+      "line": 11,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "get_llm",
+      "callee_expression": "os.getenv",
+      "line": 19,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "get_llm",
+      "callee_expression": "RuntimeError",
+      "line": 22,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "get_llm",
+      "callee_expression": "ChatGroq",
+      "line": 26,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "_rate_limit_pause",
+      "callee_expression": "time.monotonic",
+      "line": 37,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "_rate_limit_pause",
+      "callee_expression": "time.sleep",
+      "line": 41,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "_rate_limit_pause",
+      "callee_expression": "time.monotonic",
+      "line": 43,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "_retry_delay",
+      "callee_expression": "min",
+      "line": 47,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "_retry_delay",
+      "callee_expression": "error_text.lower",
+      "line": 49,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "_retry_delay",
+      "callee_expression": "lower.split",
+      "line": 55,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "_retry_delay",
+      "callee_expression": "max",
+      "line": 59,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "_retry_delay",
+      "callee_expression": "min",
+      "line": 59,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "_retry_delay",
+      "callee_expression": "float",
+      "line": 59,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "invoke_llm",
+      "callee_expression": "get_llm",
+      "line": 82,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "invoke_llm",
+      "callee_expression": "range",
+      "line": 84,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "invoke_llm",
+      "callee_expression": "_rate_limit_pause",
+      "line": 86,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "invoke_llm",
+      "callee_expression": "llm.invoke",
+      "line": 88,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "invoke_llm",
+      "callee_expression": "HumanMessage",
+      "line": 89,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "invoke_llm",
+      "callee_expression": "str",
+      "line": 94,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "invoke_llm",
+      "callee_expression": "error_text.lower",
+      "line": 95,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "invoke_llm",
+      "callee_expression": "_retry_delay",
+      "line": 106,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "invoke_llm",
+      "callee_expression": "print",
+      "line": 108,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "invoke_llm",
+      "callee_expression": "time.sleep",
+      "line": 113,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/llm.py",
+      "caller": "invoke_llm",
+      "callee_expression": "RuntimeError",
+      "line": 115,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "<module>",
+      "callee_expression": "os.getenv",
+      "line": 7,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "<module>",
+      "callee_expression": "TavilyClient",
+      "line": 8,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "web_search",
+      "callee_expression": "query.strip",
+      "line": 16,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "web_search",
+      "callee_expression": "client.search",
+      "line": 20,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "web_search",
+      "callee_expression": "os.getenv",
+      "line": 23,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "web_search",
+      "callee_expression": "set",
+      "line": 28,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "web_search",
+      "callee_expression": "response.get",
+      "line": 30,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "web_search",
+      "callee_expression": "result.get",
+      "line": 31,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "web_search",
+      "callee_expression": "seen_urls.add",
+      "line": 34,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "web_search",
+      "callee_expression": "result.get",
+      "line": 36,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "web_search",
+      "callee_expression": "results.append",
+      "line": 37,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "web_search",
+      "callee_expression": "result.get",
+      "line": 38,
+      "resolution": "unresolved_static_expression"
+    },
+    {
+      "file": "utils/search_tool.py",
+      "caller": "web_search",
+      "callee_expression": "urlparse",
+      "line": 41,
+      "resolution": "unresolved_static_expression"
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "python_files_discovered": 11,
+    "modules_parsed": 11,
+    "definitions": 37,
+    "imports": 48,
+    "internal_imports": 13,
+    "syntactic_calls": 208,
+    "errors": 0,
+    "definition_kinds": {
+      "async_function": 1,
+      "class": 6,
+      "function": 27,
+      "method": 3
+    }
+  },
+  "limitations": [
+    "Calls are syntactic expressions, not proven runtime edges.",
+    "Dynamic imports, decorators, monkeypatching, and type inference are not resolved.",
+    "External dependencies are not indexed."
+  ]
+}
