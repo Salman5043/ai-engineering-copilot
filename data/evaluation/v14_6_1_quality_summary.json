@@ -1,0 +1,23 @@
+{
+  "cases": 20,
+  "structural_reference_counts": {
+    "resolved_static_call": 15,
+    "no_direct_resolved_edge": 5
+  },
+  "cases_with_added_architecture_evidence": 20,
+  "resolved_edge_cases": 15,
+  "resolved_edge_cases_with_exact_edge_in_enrichment": 13,
+  "cases_flagged_for_priority_review": 9,
+  "flag_counts": {
+    "enhanced_possible_overclaim_review": 4,
+    "expected_resolved_edge_missing_from_enrichment": 2,
+    "baseline_negative_or_uncertain_language_on_resolved_edge_review": 2,
+    "enhanced_negative_or_uncertain_language_on_resolved_edge_review": 2,
+    "baseline_possible_overclaim_review": 5
+  },
+  "baseline_answers_available": 20,
+  "enhanced_answers_available": 20,
+  "baseline_total_llm_ms": 407832.873,
+  "enhanced_total_llm_ms": 558065.724,
+  "automatic_answer_correctness": null
+}
