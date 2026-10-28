@@ -1,4 +1,4 @@
-from evaluate_reasoning_quality_v14_6_1 import evaluate, symbols
+from app.scripts.evaluate_reasoning_quality_v14_6_1 import evaluate, symbols
 
 def sample(label='resolved_static_call', include=True):
     src='src/a.py::alpha'; dst='src/b.py::beta'

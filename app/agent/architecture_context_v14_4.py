@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from pathlib import Path
 from typing import Any
 
@@ -32,14 +33,67 @@ def _report_for(repository_id: str, reports: dict[str, str] | None = None) -> di
     return report
 
 
+# Match explicit file.py::qualified_symbol references, not repository-specific names.
+_SYMBOL_REF = re.compile(r"(?<![\w/.-])([\w./\\-]+\.py)::([A-Za-z_][\w.]*)")
+
+
+def _normalized(path: str) -> str:
+    return path.replace('\\', '/').removeprefix('./')
+
+
+def _query_symbols(query: str, definitions: list[dict[str, Any]]) -> list[str]:
+    """Resolve explicit file::symbol mentions against report definitions."""
+    available = {
+        f"{_normalized(d['file'])}::{d['qualified_symbol']}"
+        for d in definitions
+        if isinstance(d, dict) and isinstance(d.get('file'), str)
+        and isinstance(d.get('qualified_symbol'), str)
+    }
+    result = []
+    for file, symbol in _SYMBOL_REF.findall(query):
+        ref = f"{_normalized(file)}::{symbol}"
+        if ref in available and ref not in result:
+            result.append(ref)
+    return result
+
+
+def _edge_records(report: dict[str, Any]) -> list[dict[str, Any]]:
+    """Read only resolved static calls; imports are not execution edges."""
+    known = {
+        f"{_normalized(d['file'])}::{d['qualified_symbol']}"
+        for d in report.get('definitions', [])
+        if isinstance(d, dict) and isinstance(d.get('file'), str)
+        and isinstance(d.get('qualified_symbol'), str)
+    }
+    result = []
+    for r in report.get('resolved_calls', []):
+        if not isinstance(r, dict):
+            continue
+        if not all(isinstance(r.get(k), str) for k in
+                   ('source_file', 'caller', 'target_file', 'target_symbol')):
+            continue
+        a = f"{_normalized(r['source_file'])}::{r['caller']}"
+        b = f"{_normalized(r['target_file'])}::{r['target_symbol']}"
+        line = r.get('line')
+        if a not in known or b not in known or type(line) is not int or line < 1:
+            continue
+        result.append({'from': a, 'to': b, 'file': _normalized(r['source_file']),
+                       'line': line, 'expression': r.get('expression', ''),
+                       'confidence': r.get('confidence', 'unknown'),
+                       'evidence': r.get('evidence', 'unknown')})
+    return result
+
+
 def enrich_evidence(
     *, repository_id: str, query: str, evidence: list[dict[str, Any]],
     max_edges: int = 12, reports: dict[str, str] | None = None,
 ) -> list[dict[str, Any]]:
-    """Return a new evidence list, adding bounded static-call records only.
+    """Prioritize explicitly requested verified static edges within an evidence budget.
 
-    No additional retrieval is performed. Failures are handled by the caller;
-    this function never modifies the input list.
+    Exact edges may be added without a retrieved-file match because both endpoints
+    are explicitly named in the question and verified in the repository report.
+    Contextual edges still require a retrieved-file match. No negative edges are
+    inferred. Original evidence and production retrieval remain untouched.
     """
     if not repository_id or not evidence or max_edges <= 0:
         return list(evidence)
@@ -47,35 +101,41 @@ def enrich_evidence(
     if report is None:
         return list(evidence)
 
-    hints = {'results': [
-        {'metadata': {'file': e.get('file')}} for e in evidence
-        if isinstance(e.get('file'), str) and e.get('file')
-    ]}
+    requested = _query_symbols(query, report['definitions'])
+    retrieved_files = {
+        _normalized(e['file']) for e in evidence
+        if isinstance(e, dict) and isinstance(e.get('file'), str)
+    }
+    edges = _edge_records(report)
+    exact = []
+    if len(requested) >= 2:
+        # Only the first two explicit symbols define the requested pair.
+        source, target = requested[:2]
+        exact = [e for e in edges if e['from'] == source and e['to'] == target]
+
+    hints = {'results': [{'metadata': {'file': file}} for file in retrieved_files]}
     analysis = reason(report, query, retrieval=hints)
-    # Require a connection to actually retrieved files. Lexical matches alone
-    # are insufficient to attach architecture claims to an answer.
-    retrieved_files = {str(e.get('file', '')).replace('\\', '/').removeprefix('./')
-                       for e in evidence}
+    contextual = [e for e in analysis['related_static_calls']
+                  if _normalized(str(e.get('file', ''))) in retrieved_files]
+
     extras: list[dict[str, Any]] = []
-    seen = set()
-    for edge in analysis['related_static_calls']:
-        file = str(edge.get('file', '')).replace('\\', '/')
-        if file not in retrieved_files:
-            continue
+    seen: set[tuple[Any, ...]] = set()
+    for edge in exact + contextual:
+        file = _normalized(str(edge.get('file', '')))
         line = edge.get('line')
-        if not isinstance(line, int) or line < 1:
+        if type(line) is not int or line < 1:
             continue
         key = (file, line, edge.get('from'), edge.get('to'))
         if key in seen:
             continue
         seen.add(key)
         content = (
-            f"STATIC CALL EVIDENCE (not verified runtime execution): "
+            'STATIC CALL EVIDENCE (not verified runtime execution): '
             f"{edge['from']} -> {edge['to']}; "
             f"expression={edge.get('expression', '')}; "
             f"confidence={edge.get('confidence', 'unknown')}; "
             f"resolver_evidence={edge.get('evidence', 'unknown')}. "
-            "Imports and framework registrations are not execution edges."
+            'Imports and framework registrations are not execution edges.'
         )
         extras.append({
             'content': content, 'file': file, 'start_line': line,

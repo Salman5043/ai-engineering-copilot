@@ -1,0 +1,733 @@
+{
+  "schema_version": "14.6.1",
+  "methodology": "Deterministic evidence and answer-text diagnostics; NOT an answer correctness judge.",
+  "limitations": [
+    "Structural references are dataset labels, not independent ground truth.",
+    "Regex checks are triage signals and can produce false positives or negatives.",
+    "A missing static edge does not prove no runtime call exists.",
+    "Source-code review is required for correctness, hallucinations, and negative claims.",
+    "Paired LLM output is stochastic; one run cannot establish generalization."
+  ],
+  "summary": {
+    "cases": 20,
+    "structural_reference_counts": {
+      "resolved_static_call": 15,
+      "no_direct_resolved_edge": 5
+    },
+    "cases_with_added_architecture_evidence": 20,
+    "resolved_edge_cases": 15,
+    "resolved_edge_cases_with_exact_edge_in_enrichment": 15,
+    "cases_flagged_for_priority_review": 20,
+    "flag_counts": {
+      "baseline_missing_answer": 20,
+      "enhanced_missing_answer": 20
+    },
+    "baseline_answers_available": 0,
+    "enhanced_answers_available": 0,
+    "baseline_total_llm_ms": 0,
+    "enhanced_total_llm_ms": 0,
+    "automatic_answer_correctness": null
+  },
+  "cases": [
+    {
+      "id": "v14_6_001",
+      "question": "What static call relationship exists between app/agent/approval.py::prepare_corrective_fix_approval and app/changes/corrective_fix.py::generate_corrective_fix?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/approval.py::prepare_corrective_fix_approval",
+        "target": "app/changes/corrective_fix.py::generate_corrective_fix",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 12,
+      "parsed_architecture_edges": 12,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_002",
+      "question": "What static call relationship exists between app/agent/architecture_context_v14_4.py::enrich_evidence and app/agent/architecture_context_v14_4.py::_report_for?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/architecture_context_v14_4.py::enrich_evidence",
+        "target": "app/agent/architecture_context_v14_4.py::_report_for",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 11,
+      "parsed_architecture_edges": 11,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_003",
+      "question": "Is there a verified direct static call from app/agent/approval.py::approve_change to app/agent/architecture_context_v14_4.py::_report_for? Explain the evidence limits.",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "no_direct_resolved_edge",
+        "source": "app/agent/approval.py::approve_change",
+        "target": "app/agent/architecture_context_v14_4.py::_report_for",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 7,
+      "parsed_architecture_edges": 7,
+      "exact_requested_edge_in_added_evidence": false,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_004",
+      "question": "What static call relationship exists between app/agent/architecture_context_v14_4.py::enrich_evidence and app/scripts/repository_reasoning_v14_3.py::reason?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/architecture_context_v14_4.py::enrich_evidence",
+        "target": "app/scripts/repository_reasoning_v14_3.py::reason",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 9,
+      "parsed_architecture_edges": 9,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_005",
+      "question": "What static call relationship exists between app/agent/evaluator.py::evaluate_investigation and app/agent/evaluator.py::InvestigationEvaluation?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/evaluator.py::evaluate_investigation",
+        "target": "app/agent/evaluator.py::InvestigationEvaluation",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 12,
+      "parsed_architecture_edges": 12,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_006",
+      "question": "Is there a verified direct static call from app/agent/approval.py::prepare_change_approval to app/agent/architecture_context_v14_4.py::_report_for? Explain the evidence limits.",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "no_direct_resolved_edge",
+        "source": "app/agent/approval.py::prepare_change_approval",
+        "target": "app/agent/architecture_context_v14_4.py::_report_for",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 7,
+      "parsed_architecture_edges": 7,
+      "exact_requested_edge_in_added_evidence": false,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_007",
+      "question": "What static call relationship exists between app/agent/graph.py::build_investigation_graph and app/agent/checkpointer.py::get_checkpointer?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/graph.py::build_investigation_graph",
+        "target": "app/agent/checkpointer.py::get_checkpointer",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 10,
+      "parsed_architecture_edges": 10,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_008",
+      "question": "What static call relationship exists between app/agent/evaluator.py::evaluate_investigation and app/agent/evaluator.py::_has_evidence_from_tool?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/evaluator.py::evaluate_investigation",
+        "target": "app/agent/evaluator.py::_has_evidence_from_tool",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 12,
+      "parsed_architecture_edges": 12,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_009",
+      "question": "Is there a verified direct static call from app/agent/approval.py::prepare_corrective_fix_approval to app/agent/architecture_context_v14_4.py::_report_for? Explain the evidence limits.",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "no_direct_resolved_edge",
+        "source": "app/agent/approval.py::prepare_corrective_fix_approval",
+        "target": "app/agent/architecture_context_v14_4.py::_report_for",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 1,
+      "parsed_architecture_edges": 1,
+      "exact_requested_edge_in_added_evidence": false,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_010",
+      "question": "What static call relationship exists between app/agent/mcp_integration.py::DynamicMCPTools.__init__ and app/mcp_client/models.py::local_copilot_server_config?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/mcp_integration.py::DynamicMCPTools.__init__",
+        "target": "app/mcp_client/models.py::local_copilot_server_config",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 8,
+      "parsed_architecture_edges": 8,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_011",
+      "question": "What static call relationship exists between app/agent/evidence.py::add_evidence and app/agent/evidence.py::evidence_to_dict?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/evidence.py::add_evidence",
+        "target": "app/agent/evidence.py::evidence_to_dict",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 12,
+      "parsed_architecture_edges": 12,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_012",
+      "question": "Is there a verified direct static call from app/agent/approval.py::reject_change to app/agent/architecture_context_v14_4.py::_report_for? Explain the evidence limits.",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "no_direct_resolved_edge",
+        "source": "app/agent/approval.py::reject_change",
+        "target": "app/agent/architecture_context_v14_4.py::_report_for",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 7,
+      "parsed_architecture_edges": 7,
+      "exact_requested_edge_in_added_evidence": false,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_013",
+      "question": "What static call relationship exists between app/agent/mcp_integration.py::DynamicMCPTools.__init__ and app/mcp_client/registry.py::MCPToolRegistry?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/mcp_integration.py::DynamicMCPTools.__init__",
+        "target": "app/mcp_client/registry.py::MCPToolRegistry",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 7,
+      "parsed_architecture_edges": 7,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_014",
+      "question": "What static call relationship exists between app/agent/evidence.py::add_evidence and app/agent/evidence.py::normalize_evidence?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/evidence.py::add_evidence",
+        "target": "app/agent/evidence.py::normalize_evidence",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 12,
+      "parsed_architecture_edges": 12,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_015",
+      "question": "Is there a verified direct static call from app/agent/architecture_context_v14_4.py::_report_for to app/agent/approval.py::approve_change? Explain the evidence limits.",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "no_direct_resolved_edge",
+        "source": "app/agent/architecture_context_v14_4.py::_report_for",
+        "target": "app/agent/approval.py::approve_change",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 11,
+      "parsed_architecture_edges": 11,
+      "exact_requested_edge_in_added_evidence": false,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_016",
+      "question": "What static call relationship exists between app/agent/mcp_integration.py::DynamicMCPTools.execute and app/mcp_client/results.py::normalize_mcp_result?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/mcp_integration.py::DynamicMCPTools.execute",
+        "target": "app/mcp_client/results.py::normalize_mcp_result",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 8,
+      "parsed_architecture_edges": 8,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_017",
+      "question": "What static call relationship exists between app/agent/evidence.py::normalize_evidence and app/agent/evidence.py::Evidence?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/evidence.py::normalize_evidence",
+        "target": "app/agent/evidence.py::Evidence",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 12,
+      "parsed_architecture_edges": 12,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_018",
+      "question": "What static call relationship exists between app/agent/mcp_tools.py::MCPAgentTools.__init__ and app/mcp_client/models.py::local_copilot_server_config?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/mcp_tools.py::MCPAgentTools.__init__",
+        "target": "app/mcp_client/models.py::local_copilot_server_config",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 4,
+      "parsed_architecture_edges": 4,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_019",
+      "question": "What static call relationship exists between app/agent/evidence.py::normalize_evidence and app/agent/evidence.py::_safe_float?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/evidence.py::normalize_evidence",
+        "target": "app/agent/evidence.py::_safe_float",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 12,
+      "parsed_architecture_edges": 12,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    },
+    {
+      "id": "v14_6_020",
+      "question": "What static call relationship exists between app/agent/mcp_tools.py::MCPAgentTools.__init__ and app/mcp_client/registry.py::MCPToolRegistry?",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "structural_reference": {
+        "relationship": "resolved_static_call",
+        "source": "app/agent/mcp_tools.py::MCPAgentTools.__init__",
+        "target": "app/mcp_client/registry.py::MCPToolRegistry",
+        "origin": "dataset_structural_reference"
+      },
+      "added_architecture_records": 5,
+      "parsed_architecture_edges": 5,
+      "exact_requested_edge_in_added_evidence": true,
+      "baseline": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "enhanced": {
+        "answer_available": false,
+        "error": null,
+        "manual_review_required": true
+      },
+      "review_flags": [
+        "baseline_missing_answer",
+        "enhanced_missing_answer"
+      ],
+      "review_priority": "high",
+      "human_review": {
+        "baseline_correct": null,
+        "enhanced_correct": null,
+        "unsupported_claims": null,
+        "notes": ""
+      }
+    }
+  ]
+}
