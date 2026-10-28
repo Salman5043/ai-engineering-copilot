@@ -13,11 +13,14 @@ from typing import Any
 from app.scripts.repository_reasoning_v14_3 import reason
 
 
-def _report_for(repository_id: str) -> dict[str, Any] | None:
-    mapping_text = os.getenv('COPILOT_ARCHITECTURE_REPORTS_JSON', '')
-    if not mapping_text:
-        return None
-    mapping = json.loads(mapping_text)
+def _report_for(repository_id: str, reports: dict[str, str] | None = None) -> dict[str, Any] | None:
+    if reports is None:
+        mapping_text = os.getenv('COPILOT_ARCHITECTURE_REPORTS_JSON', '')
+        if not mapping_text:
+            return None
+        mapping = json.loads(mapping_text)
+    else:
+        mapping = reports
     if not isinstance(mapping, dict):
         raise ValueError('Architecture report configuration must be a JSON object')
     location = mapping.get(repository_id)
@@ -31,7 +34,7 @@ def _report_for(repository_id: str) -> dict[str, Any] | None:
 
 def enrich_evidence(
     *, repository_id: str, query: str, evidence: list[dict[str, Any]],
-    max_edges: int = 12,
+    max_edges: int = 12, reports: dict[str, str] | None = None,
 ) -> list[dict[str, Any]]:
     """Return a new evidence list, adding bounded static-call records only.
 
@@ -40,7 +43,7 @@ def enrich_evidence(
     """
     if not repository_id or not evidence or max_edges <= 0:
         return list(evidence)
-    report = _report_for(repository_id)
+    report = _report_for(repository_id, reports=reports)
     if report is None:
         return list(evidence)
 

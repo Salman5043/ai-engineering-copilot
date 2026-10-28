@@ -1,0 +1,14 @@
+{
+  "schema_version": "14.6",
+  "repository_id": "repo_ad2de6df1bd692d8",
+  "definitions": 37,
+  "valid_static_edges": 34,
+  "generated_cases": 20,
+  "skipped": [],
+  "limitations": [
+    "Cases are sampled from resolved static relationships, not runtime traces.",
+    "A missing direct static edge does not establish absence of a runtime call.",
+    "Retrieved evidence may not contain the expected files; review before evaluation.",
+    "Generated questions and reference hints are not independently verified answer labels."
+  ]
+}

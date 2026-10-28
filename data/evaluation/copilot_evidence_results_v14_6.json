@@ -1,0 +1,2203 @@
+{
+  "schema_version": "14.5",
+  "mode": "evidence_only",
+  "methodology": "Same pre-collected evidence and question; only architecture enrichment differs. LLM answers may be nondeterministic.",
+  "limitations": [
+    "No retrieval, agent planning, or tool execution is measured.",
+    "File mentions and line references are proxies, not correctness or grounding scores.",
+    "Manual source-code review is required for correctness, unsupported claims, completeness and required facts.",
+    "LLM output may vary between runs; repeat trials for reliable comparisons."
+  ],
+  "cases": [
+    {
+      "id": "v14_6_001",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/approval.py::prepare_corrective_fix_approval and app/changes/corrective_fix.py::generate_corrective_fix?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/approval.py",
+        "app/changes/corrective_fix.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.036
+      },
+      "enhanced": {
+        "evidence_count": 20,
+        "enrichment_ms": 50.54,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/approval.py::prepare_corrective_fix_approval -> app/changes/corrective_fix.py::generate_corrective_fix; expression=generate_corrective_fix; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/approval.py",
+            "start_line": 86,
+            "end_line": 86,
+            "symbol": "app/agent/approval.py::prepare_corrective_fix_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 62,
+            "end_line": 62,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 68,
+            "end_line": 68,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalRequest; expression=ApprovalRequest; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 73,
+            "end_line": 73,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 97,
+            "end_line": 97,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 103,
+            "end_line": 103,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 123,
+            "end_line": 123,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/corrective_fix.py::_build_corrective_query -> app/changes/corrective_fix.py::_build_investigation_context; expression=_build_investigation_context; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/corrective_fix.py",
+            "start_line": 214,
+            "end_line": 214,
+            "symbol": "app/changes/corrective_fix.py::_build_corrective_query",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/corrective_fix.py::generate_corrective_fix -> app/changes/corrective_fix.py::CorrectiveFixError; expression=CorrectiveFixError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/corrective_fix.py",
+            "start_line": 337,
+            "end_line": 337,
+            "symbol": "app/changes/corrective_fix.py::generate_corrective_fix",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/corrective_fix.py::generate_corrective_fix -> app/changes/corrective_fix.py::CorrectiveFixError; expression=CorrectiveFixError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/corrective_fix.py",
+            "start_line": 343,
+            "end_line": 343,
+            "symbol": "app/changes/corrective_fix.py::generate_corrective_fix",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/corrective_fix.py::generate_corrective_fix -> app/changes/corrective_fix.py::_build_corrective_query; expression=_build_corrective_query; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/corrective_fix.py",
+            "start_line": 348,
+            "end_line": 348,
+            "symbol": "app/changes/corrective_fix.py::generate_corrective_fix",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/corrective_fix.py::generate_corrective_fix -> app/changes/llm_patch.py::LLMPatchGenerator; expression=LLMPatchGenerator; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/corrective_fix.py",
+            "start_line": 356,
+            "end_line": 356,
+            "symbol": "app/changes/corrective_fix.py::generate_corrective_fix",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_002",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/architecture_context_v14_4.py::enrich_evidence and app/agent/architecture_context_v14_4.py::_report_for?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/architecture_context_v14_4.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 18,
+        "enrichment_ms": 46.501,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/investigation_context.py::build_investigation_context -> app/changes/investigation_context.py::InvestigationContext; expression=InvestigationContext; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/investigation_context.py",
+            "start_line": 67,
+            "end_line": 67,
+            "symbol": "app/changes/investigation_context.py::build_investigation_context",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 57,
+            "end_line": 57,
+            "symbol": "app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 66,
+            "end_line": 66,
+            "symbol": "app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_normalize_evidence -> app/agent/evidence.py::normalize_evidence; expression=normalize_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 79,
+            "end_line": 79,
+            "symbol": "app/tests/test_phase_2_4.py::test_normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_evidence_id_is_created -> app/agent/evidence.py::normalize_evidence; expression=normalize_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 95,
+            "end_line": 95,
+            "symbol": "app/tests/test_phase_2_4.py::test_evidence_id_is_created",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_add_evidence -> app/agent/evidence.py::add_evidence; expression=add_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 110,
+            "end_line": 110,
+            "symbol": "app/tests/test_phase_2_4.py::test_add_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_duplicate_evidence_is_removed -> app/agent/evidence.py::add_evidence; expression=add_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 129,
+            "end_line": 129,
+            "symbol": "app/tests/test_phase_2_4.py::test_duplicate_evidence_is_removed",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_same_code_from_different_tools_is_deduplicated -> app/agent/evidence.py::add_evidence; expression=add_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 142,
+            "end_line": 142,
+            "symbol": "app/tests/test_phase_2_4.py::test_same_code_from_different_tools_is_deduplicated",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_same_code_from_different_tools_is_deduplicated -> app/agent/evidence.py::add_evidence; expression=add_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 149,
+            "end_line": 149,
+            "symbol": "app/tests/test_phase_2_4.py::test_same_code_from_different_tools_is_deduplicated",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_different_code_creates_different_evidence -> app/agent/evidence.py::add_evidence; expression=add_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 169,
+            "end_line": 169,
+            "symbol": "app/tests/test_phase_2_4.py::test_different_code_creates_different_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_003",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "Is there a verified direct static call from app/agent/approval.py::approve_change to app/agent/architecture_context_v14_4.py::_report_for? Explain the evidence limits.",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/approval.py",
+        "app/agent/architecture_context_v14_4.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 15,
+        "enrichment_ms": 44.428,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/approval.py::prepare_corrective_fix_approval -> app/changes/corrective_fix.py::generate_corrective_fix; expression=generate_corrective_fix; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/approval.py",
+            "start_line": 86,
+            "end_line": 86,
+            "symbol": "app/agent/approval.py::prepare_corrective_fix_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 62,
+            "end_line": 62,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 68,
+            "end_line": 68,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalRequest; expression=ApprovalRequest; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 73,
+            "end_line": 73,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 97,
+            "end_line": 97,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 103,
+            "end_line": 103,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 123,
+            "end_line": 123,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_004",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/architecture_context_v14_4.py::enrich_evidence and app/scripts/repository_reasoning_v14_3.py::reason?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/architecture_context_v14_4.py",
+        "app/scripts/repository_reasoning_v14_3.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.038
+      },
+      "enhanced": {
+        "evidence_count": 16,
+        "enrichment_ms": 42.514,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/reasoner.py::build_reasoning_prompt -> app/agent/reasoner.py::_format_evidence; expression=_format_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/reasoner.py",
+            "start_line": 101,
+            "end_line": 101,
+            "symbol": "app/agent/reasoner.py::build_reasoning_prompt",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/reasoner.py::generate_reasoned_answer -> app/agent/reasoner.py::build_reasoning_prompt; expression=build_reasoning_prompt; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/reasoner.py",
+            "start_line": 138,
+            "end_line": 138,
+            "symbol": "app/agent/reasoner.py::generate_reasoned_answer",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/investigation_context.py::build_investigation_context -> app/changes/investigation_context.py::InvestigationContext; expression=InvestigationContext; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/investigation_context.py",
+            "start_line": 67,
+            "end_line": 67,
+            "symbol": "app/changes/investigation_context.py::build_investigation_context",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_6.py::test_reasoning_prompt_contains_query -> app/agent/reasoner.py::build_reasoning_prompt; expression=build_reasoning_prompt; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_6.py",
+            "start_line": 34,
+            "end_line": 34,
+            "symbol": "app/tests/test_phase_2_6.py::test_reasoning_prompt_contains_query",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_6.py::test_reasoning_prompt_contains_evidence -> app/agent/reasoner.py::build_reasoning_prompt; expression=build_reasoning_prompt; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_6.py",
+            "start_line": 47,
+            "end_line": 47,
+            "symbol": "app/tests/test_phase_2_6.py::test_reasoning_prompt_contains_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_6.py::test_reasoning_prompt_contains_evidence -> app/tests/test_phase_2_6.py::sample_evidence; expression=sample_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_6.py",
+            "start_line": 50,
+            "end_line": 50,
+            "symbol": "app/tests/test_phase_2_6.py::test_reasoning_prompt_contains_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_6.py::test_reasoning_prompt_contains_source_tool -> app/agent/reasoner.py::build_reasoning_prompt; expression=build_reasoning_prompt; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_6.py",
+            "start_line": 59,
+            "end_line": 59,
+            "symbol": "app/tests/test_phase_2_6.py::test_reasoning_prompt_contains_source_tool",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_4_8.py::test_investigation_context_contains_failure -> app/changes/investigation_context.py::build_investigation_context; expression=build_investigation_context; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_4_8.py",
+            "start_line": 67,
+            "end_line": 67,
+            "symbol": "app/tests/test_phase_4_8.py::test_investigation_context_contains_failure",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_005",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/evaluator.py::evaluate_investigation and app/agent/evaluator.py::InvestigationEvaluation?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/evaluator.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.038
+      },
+      "enhanced": {
+        "evidence_count": 20,
+        "enrichment_ms": 43.449,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 61,
+            "end_line": 61,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::_has_evidence_from_tool; expression=_has_evidence_from_tool; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 70,
+            "end_line": 70,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 74,
+            "end_line": 74,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 82,
+            "end_line": 82,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::_has_evidence_from_tool; expression=_has_evidence_from_tool; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 94,
+            "end_line": 94,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 98,
+            "end_line": 98,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 105,
+            "end_line": 105,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::_has_evidence_from_tool; expression=_has_evidence_from_tool; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 116,
+            "end_line": 116,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 120,
+            "end_line": 120,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 127,
+            "end_line": 127,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::_has_evidence_from_tool; expression=_has_evidence_from_tool; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 138,
+            "end_line": 138,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 142,
+            "end_line": 142,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_006",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "Is there a verified direct static call from app/agent/approval.py::prepare_change_approval to app/agent/architecture_context_v14_4.py::_report_for? Explain the evidence limits.",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/approval.py",
+        "app/agent/architecture_context_v14_4.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 15,
+        "enrichment_ms": 43.581,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/approval.py::prepare_corrective_fix_approval -> app/changes/corrective_fix.py::generate_corrective_fix; expression=generate_corrective_fix; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/approval.py",
+            "start_line": 86,
+            "end_line": 86,
+            "symbol": "app/agent/approval.py::prepare_corrective_fix_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 62,
+            "end_line": 62,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 68,
+            "end_line": 68,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalRequest; expression=ApprovalRequest; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 73,
+            "end_line": 73,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 97,
+            "end_line": 97,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 103,
+            "end_line": 103,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 123,
+            "end_line": 123,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_007",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/graph.py::build_investigation_graph and app/agent/checkpointer.py::get_checkpointer?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/checkpointer.py",
+        "app/agent/graph.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.049
+      },
+      "enhanced": {
+        "evidence_count": 18,
+        "enrichment_ms": 45.325,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/graph.py::build_investigation_graph -> app/agent/checkpointer.py::get_checkpointer; expression=get_checkpointer; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/graph.py",
+            "start_line": 200,
+            "end_line": 200,
+            "symbol": "app/agent/graph.py::build_investigation_graph",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_1.py::test_investigation_graph -> app/agent/graph.py::build_investigation_graph; expression=build_investigation_graph; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_1.py",
+            "start_line": 5,
+            "end_line": 5,
+            "symbol": "app/tests/test_phase_2_1.py::test_investigation_graph",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_1.py::test_function_investigation -> app/agent/graph.py::build_investigation_graph; expression=build_investigation_graph; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_1.py",
+            "start_line": 24,
+            "end_line": 24,
+            "symbol": "app/tests/test_phase_2_1.py::test_function_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_1.py::test_reference_investigation -> app/agent/graph.py::build_investigation_graph; expression=build_investigation_graph; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_1.py",
+            "start_line": 44,
+            "end_line": 44,
+            "symbol": "app/tests/test_phase_2_1.py::test_reference_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_5.py::test_graph_records_investigation_decision.fake_symbol_search -> app/tests/test_phase_2_5.py::make_evidence; expression=make_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_5.py",
+            "start_line": 156,
+            "end_line": 156,
+            "symbol": "app/tests/test_phase_2_5.py::test_graph_records_investigation_decision.fake_symbol_search",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_5.py::test_graph_records_investigation_decision -> app/agent/graph.py::build_investigation_graph; expression=build_investigation_graph; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_5.py",
+            "start_line": 165,
+            "end_line": 165,
+            "symbol": "app/tests/test_phase_2_5.py::test_graph_records_investigation_decision",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_5.py::test_graph_can_continue_to_next_tool -> app/agent/graph.py::build_investigation_graph; expression=build_investigation_graph; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_5.py",
+            "start_line": 212,
+            "end_line": 212,
+            "symbol": "app/tests/test_phase_2_5.py::test_graph_can_continue_to_next_tool",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_8.py::test_hitl_requires_approval -> app/agent/graph.py::build_investigation_graph; expression=build_investigation_graph; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_8.py",
+            "start_line": 12,
+            "end_line": 12,
+            "symbol": "app/tests/test_phase_2_8.py::test_hitl_requires_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_8.py::test_hitl_thread_id_is_supported -> app/agent/graph.py::build_investigation_graph; expression=build_investigation_graph; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_8.py",
+            "start_line": 52,
+            "end_line": 52,
+            "symbol": "app/tests/test_phase_2_8.py::test_hitl_thread_id_is_supported",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_8.py::test_normal_graph_does_not_require_hitl -> app/agent/graph.py::build_investigation_graph; expression=build_investigation_graph; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_8.py",
+            "start_line": 89,
+            "end_line": 89,
+            "symbol": "app/tests/test_phase_2_8.py::test_normal_graph_does_not_require_hitl",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_008",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/evaluator.py::evaluate_investigation and app/agent/evaluator.py::_has_evidence_from_tool?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/evaluator.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 20,
+        "enrichment_ms": 44.587,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 61,
+            "end_line": 61,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::_has_evidence_from_tool; expression=_has_evidence_from_tool; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 70,
+            "end_line": 70,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 74,
+            "end_line": 74,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 82,
+            "end_line": 82,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::_has_evidence_from_tool; expression=_has_evidence_from_tool; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 94,
+            "end_line": 94,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 98,
+            "end_line": 98,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 105,
+            "end_line": 105,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::_has_evidence_from_tool; expression=_has_evidence_from_tool; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 116,
+            "end_line": 116,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 120,
+            "end_line": 120,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 127,
+            "end_line": 127,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::_has_evidence_from_tool; expression=_has_evidence_from_tool; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 138,
+            "end_line": 138,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evaluator.py::evaluate_investigation -> app/agent/evaluator.py::InvestigationEvaluation; expression=InvestigationEvaluation; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evaluator.py",
+            "start_line": 142,
+            "end_line": 142,
+            "symbol": "app/agent/evaluator.py::evaluate_investigation",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_009",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "Is there a verified direct static call from app/agent/approval.py::prepare_corrective_fix_approval to app/agent/architecture_context_v14_4.py::_report_for? Explain the evidence limits.",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/approval.py",
+        "app/agent/architecture_context_v14_4.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.038
+      },
+      "enhanced": {
+        "evidence_count": 9,
+        "enrichment_ms": 43.208,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/approval.py::prepare_corrective_fix_approval -> app/changes/corrective_fix.py::generate_corrective_fix; expression=generate_corrective_fix; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/approval.py",
+            "start_line": 86,
+            "end_line": 86,
+            "symbol": "app/agent/approval.py::prepare_corrective_fix_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_010",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/mcp_integration.py::DynamicMCPTools.__init__ and app/mcp_client/models.py::local_copilot_server_config?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/mcp_integration.py",
+        "app/mcp_client/models.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 16,
+        "enrichment_ms": 44.049,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::DynamicMCPTools.__init__ -> app/mcp_client/registry.py::MCPToolRegistry; expression=MCPToolRegistry; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 29,
+            "end_line": 29,
+            "symbol": "app/agent/mcp_integration.py::DynamicMCPTools.__init__",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::DynamicMCPTools.__init__ -> app/mcp_client/models.py::local_copilot_server_config; expression=local_copilot_server_config; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 30,
+            "end_line": 30,
+            "symbol": "app/agent/mcp_integration.py::DynamicMCPTools.__init__",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::DynamicMCPTools.execute -> app/mcp_client/results.py::normalize_mcp_result; expression=normalize_mcp_result; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 66,
+            "end_line": 66,
+            "symbol": "app/agent/mcp_integration.py::DynamicMCPTools.execute",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::discover_mcp_tools_sync -> app/agent/mcp_integration.py::DynamicMCPTools; expression=DynamicMCPTools; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 142,
+            "end_line": 142,
+            "symbol": "app/agent/mcp_integration.py::discover_mcp_tools_sync",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::discover_mcp_tools_sync -> app/agent/mcp_integration.py::_run_async; expression=_run_async; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 144,
+            "end_line": 144,
+            "symbol": "app/agent/mcp_integration.py::discover_mcp_tools_sync",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::execute_mcp_tool_sync -> app/agent/mcp_integration.py::DynamicMCPTools; expression=DynamicMCPTools; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 235,
+            "end_line": 235,
+            "symbol": "app/agent/mcp_integration.py::execute_mcp_tool_sync",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::execute_mcp_tool_sync -> app/agent/mcp_integration.py::build_mcp_arguments; expression=build_mcp_arguments; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 251,
+            "end_line": 251,
+            "symbol": "app/agent/mcp_integration.py::execute_mcp_tool_sync",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/mcp_client/models.py::local_copilot_server_config -> app/mcp_client/models.py::MCPServerConfig; expression=MCPServerConfig; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/mcp_client/models.py",
+            "start_line": 58,
+            "end_line": 58,
+            "symbol": "app/mcp_client/models.py::local_copilot_server_config",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_011",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/evidence.py::add_evidence and app/agent/evidence.py::evidence_to_dict?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/evidence.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 20,
+        "enrichment_ms": 43.613,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_int; expression=_safe_int; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 114,
+            "end_line": 114,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_int; expression=_safe_int; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 118,
+            "end_line": 118,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_float; expression=_safe_float; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 136,
+            "end_line": 136,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_float; expression=_safe_float; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 140,
+            "end_line": 140,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 144,
+            "end_line": 144,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::Evidence; expression=Evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 153,
+            "end_line": 153,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::add_evidence -> app/agent/evidence.py::normalize_evidence; expression=normalize_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 198,
+            "end_line": 198,
+            "symbol": "app/agent/evidence.py::add_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::add_evidence -> app/agent/evidence.py::evidence_to_dict; expression=evidence_to_dict; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 208,
+            "end_line": 208,
+            "symbol": "app/agent/evidence.py::add_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/reasoner.py::build_reasoning_prompt -> app/agent/reasoner.py::_format_evidence; expression=_format_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/reasoner.py",
+            "start_line": 101,
+            "end_line": 101,
+            "symbol": "app/agent/reasoner.py::build_reasoning_prompt",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 57,
+            "end_line": 57,
+            "symbol": "app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 66,
+            "end_line": 66,
+            "symbol": "app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_normalize_evidence -> app/agent/evidence.py::normalize_evidence; expression=normalize_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 79,
+            "end_line": 79,
+            "symbol": "app/tests/test_phase_2_4.py::test_normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_012",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "Is there a verified direct static call from app/agent/approval.py::reject_change to app/agent/architecture_context_v14_4.py::_report_for? Explain the evidence limits.",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/approval.py",
+        "app/agent/architecture_context_v14_4.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 15,
+        "enrichment_ms": 46.342,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/approval.py::prepare_corrective_fix_approval -> app/changes/corrective_fix.py::generate_corrective_fix; expression=generate_corrective_fix; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/approval.py",
+            "start_line": 86,
+            "end_line": 86,
+            "symbol": "app/agent/approval.py::prepare_corrective_fix_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 62,
+            "end_line": 62,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 68,
+            "end_line": 68,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalRequest; expression=ApprovalRequest; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 73,
+            "end_line": 73,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 97,
+            "end_line": 97,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 103,
+            "end_line": 103,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 123,
+            "end_line": 123,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_013",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/mcp_integration.py::DynamicMCPTools.__init__ and app/mcp_client/registry.py::MCPToolRegistry?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/mcp_integration.py",
+        "app/mcp_client/registry.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.039
+      },
+      "enhanced": {
+        "evidence_count": 15,
+        "enrichment_ms": 44.644,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::DynamicMCPTools.__init__ -> app/mcp_client/registry.py::MCPToolRegistry; expression=MCPToolRegistry; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 29,
+            "end_line": 29,
+            "symbol": "app/agent/mcp_integration.py::DynamicMCPTools.__init__",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::DynamicMCPTools.__init__ -> app/mcp_client/models.py::local_copilot_server_config; expression=local_copilot_server_config; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 30,
+            "end_line": 30,
+            "symbol": "app/agent/mcp_integration.py::DynamicMCPTools.__init__",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::DynamicMCPTools.execute -> app/mcp_client/results.py::normalize_mcp_result; expression=normalize_mcp_result; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 66,
+            "end_line": 66,
+            "symbol": "app/agent/mcp_integration.py::DynamicMCPTools.execute",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::discover_mcp_tools_sync -> app/agent/mcp_integration.py::DynamicMCPTools; expression=DynamicMCPTools; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 142,
+            "end_line": 142,
+            "symbol": "app/agent/mcp_integration.py::discover_mcp_tools_sync",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::execute_mcp_tool_sync -> app/agent/mcp_integration.py::DynamicMCPTools; expression=DynamicMCPTools; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 235,
+            "end_line": 235,
+            "symbol": "app/agent/mcp_integration.py::execute_mcp_tool_sync",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/mcp_client/registry.py::MCPToolRegistry.__init__ -> app/mcp_client/client.py::MCPClient; expression=MCPClient; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/mcp_client/registry.py",
+            "start_line": 29,
+            "end_line": 29,
+            "symbol": "app/mcp_client/registry.py::MCPToolRegistry.__init__",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/mcp_client/registry.py::MCPToolRegistry.discover -> app/mcp_client/registry.py::MCPToolRegistry.list_tools; expression=self.list_tools; confidence=heuristic; resolver_evidence=receiver_method_static_heuristic. Imports and framework registrations are not execution edges.",
+            "file": "app/mcp_client/registry.py",
+            "start_line": 49,
+            "end_line": 49,
+            "symbol": "app/mcp_client/registry.py::MCPToolRegistry.discover",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_014",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/evidence.py::add_evidence and app/agent/evidence.py::normalize_evidence?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/evidence.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.038
+      },
+      "enhanced": {
+        "evidence_count": 20,
+        "enrichment_ms": 43.942,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_int; expression=_safe_int; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 114,
+            "end_line": 114,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_int; expression=_safe_int; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 118,
+            "end_line": 118,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_float; expression=_safe_float; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 136,
+            "end_line": 136,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_float; expression=_safe_float; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 140,
+            "end_line": 140,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 144,
+            "end_line": 144,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::Evidence; expression=Evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 153,
+            "end_line": 153,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::add_evidence -> app/agent/evidence.py::normalize_evidence; expression=normalize_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 198,
+            "end_line": 198,
+            "symbol": "app/agent/evidence.py::add_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::add_evidence -> app/agent/evidence.py::evidence_to_dict; expression=evidence_to_dict; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 208,
+            "end_line": 208,
+            "symbol": "app/agent/evidence.py::add_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 57,
+            "end_line": 57,
+            "symbol": "app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 66,
+            "end_line": 66,
+            "symbol": "app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_normalize_evidence -> app/agent/evidence.py::normalize_evidence; expression=normalize_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 79,
+            "end_line": 79,
+            "symbol": "app/tests/test_phase_2_4.py::test_normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_normalize_evidence -> app/tests/test_phase_2_4.py::sample_result; expression=sample_result; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 80,
+            "end_line": 80,
+            "symbol": "app/tests/test_phase_2_4.py::test_normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_015",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "Is there a verified direct static call from app/agent/architecture_context_v14_4.py::_report_for to app/agent/approval.py::approve_change? Explain the evidence limits.",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/approval.py",
+        "app/agent/architecture_context_v14_4.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 19,
+        "enrichment_ms": 44.687,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/approval.py::prepare_corrective_fix_approval -> app/changes/corrective_fix.py::generate_corrective_fix; expression=generate_corrective_fix; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/approval.py",
+            "start_line": 86,
+            "end_line": 86,
+            "symbol": "app/agent/approval.py::prepare_corrective_fix_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 62,
+            "end_line": 62,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 68,
+            "end_line": 68,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::build_approval_request -> app/changes/approval.py::ApprovalRequest; expression=ApprovalRequest; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 73,
+            "end_line": 73,
+            "symbol": "app/changes/approval.py::build_approval_request",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 97,
+            "end_line": 97,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 103,
+            "end_line": 103,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval.py::apply_approval -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval.py",
+            "start_line": 123,
+            "end_line": 123,
+            "symbol": "app/changes/approval.py::apply_approval",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval_manager.py::ApprovalManager.prepare -> app/changes/approval.py::ApprovalError; expression=ApprovalError; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval_manager.py",
+            "start_line": 50,
+            "end_line": 50,
+            "symbol": "app/changes/approval_manager.py::ApprovalManager.prepare",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval_manager.py::ApprovalManager.approve -> app/changes/approval.py::ApprovalResponse; expression=ApprovalResponse; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval_manager.py",
+            "start_line": 78,
+            "end_line": 78,
+            "symbol": "app/changes/approval_manager.py::ApprovalManager.approve",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval_manager.py::ApprovalManager.approve -> app/changes/approval.py::apply_approval; expression=apply_approval; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval_manager.py",
+            "start_line": 84,
+            "end_line": 84,
+            "symbol": "app/changes/approval_manager.py::ApprovalManager.approve",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/changes/approval_manager.py::ApprovalManager.reject -> app/changes/approval.py::ApprovalResponse; expression=ApprovalResponse; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/changes/approval_manager.py",
+            "start_line": 101,
+            "end_line": 101,
+            "symbol": "app/changes/approval_manager.py::ApprovalManager.reject",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_016",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/mcp_integration.py::DynamicMCPTools.execute and app/mcp_client/results.py::normalize_mcp_result?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/mcp_integration.py",
+        "app/mcp_client/results.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.036
+      },
+      "enhanced": {
+        "evidence_count": 16,
+        "enrichment_ms": 44.869,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::DynamicMCPTools.__init__ -> app/mcp_client/registry.py::MCPToolRegistry; expression=MCPToolRegistry; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 29,
+            "end_line": 29,
+            "symbol": "app/agent/mcp_integration.py::DynamicMCPTools.__init__",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::DynamicMCPTools.__init__ -> app/mcp_client/models.py::local_copilot_server_config; expression=local_copilot_server_config; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 30,
+            "end_line": 30,
+            "symbol": "app/agent/mcp_integration.py::DynamicMCPTools.__init__",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::DynamicMCPTools.execute -> app/mcp_client/results.py::normalize_mcp_result; expression=normalize_mcp_result; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 66,
+            "end_line": 66,
+            "symbol": "app/agent/mcp_integration.py::DynamicMCPTools.execute",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::discover_mcp_tools_sync -> app/agent/mcp_integration.py::DynamicMCPTools; expression=DynamicMCPTools; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 142,
+            "end_line": 142,
+            "symbol": "app/agent/mcp_integration.py::discover_mcp_tools_sync",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::execute_mcp_tool_sync -> app/agent/mcp_integration.py::DynamicMCPTools; expression=DynamicMCPTools; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 235,
+            "end_line": 235,
+            "symbol": "app/agent/mcp_integration.py::execute_mcp_tool_sync",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::execute_mcp_tool_sync -> app/agent/mcp_integration.py::_run_async; expression=_run_async; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 238,
+            "end_line": 238,
+            "symbol": "app/agent/mcp_integration.py::execute_mcp_tool_sync",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::execute_mcp_tool_sync -> app/agent/mcp_integration.py::build_mcp_arguments; expression=build_mcp_arguments; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 251,
+            "end_line": 251,
+            "symbol": "app/agent/mcp_integration.py::execute_mcp_tool_sync",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_integration.py::execute_mcp_tool_sync -> app/agent/mcp_integration.py::_run_async; expression=_run_async; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_integration.py",
+            "start_line": 259,
+            "end_line": 259,
+            "symbol": "app/agent/mcp_integration.py::execute_mcp_tool_sync",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_017",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/evidence.py::normalize_evidence and app/agent/evidence.py::Evidence?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/evidence.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 20,
+        "enrichment_ms": 48.839,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_int; expression=_safe_int; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 114,
+            "end_line": 114,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_int; expression=_safe_int; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 118,
+            "end_line": 118,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_float; expression=_safe_float; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 136,
+            "end_line": 136,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_float; expression=_safe_float; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 140,
+            "end_line": 140,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 144,
+            "end_line": 144,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::Evidence; expression=Evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 153,
+            "end_line": 153,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::add_evidence -> app/agent/evidence.py::normalize_evidence; expression=normalize_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 198,
+            "end_line": 198,
+            "symbol": "app/agent/evidence.py::add_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::add_evidence -> app/agent/evidence.py::evidence_to_dict; expression=evidence_to_dict; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 208,
+            "end_line": 208,
+            "symbol": "app/agent/evidence.py::add_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/tools.py::search_repository -> app/agent/tools.py::_normalize_result; expression=_normalize_result; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/tools.py",
+            "start_line": 64,
+            "end_line": 64,
+            "symbol": "app/agent/tools.py::search_repository",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 57,
+            "end_line": 57,
+            "symbol": "app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 66,
+            "end_line": 66,
+            "symbol": "app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_normalize_evidence -> app/agent/evidence.py::normalize_evidence; expression=normalize_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 79,
+            "end_line": 79,
+            "symbol": "app/tests/test_phase_2_4.py::test_normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_018",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/mcp_tools.py::MCPAgentTools.__init__ and app/mcp_client/models.py::local_copilot_server_config?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/mcp_tools.py",
+        "app/mcp_client/models.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 12,
+        "enrichment_ms": 43.504,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_tools.py::MCPAgentTools.__init__ -> app/mcp_client/registry.py::MCPToolRegistry; expression=MCPToolRegistry; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_tools.py",
+            "start_line": 26,
+            "end_line": 26,
+            "symbol": "app/agent/mcp_tools.py::MCPAgentTools.__init__",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_tools.py::MCPAgentTools.__init__ -> app/mcp_client/models.py::local_copilot_server_config; expression=local_copilot_server_config; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_tools.py",
+            "start_line": 27,
+            "end_line": 27,
+            "symbol": "app/agent/mcp_tools.py::MCPAgentTools.__init__",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_tools.py::MCPAgentTools.execute -> app/mcp_client/results.py::normalize_mcp_result; expression=normalize_mcp_result; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_tools.py",
+            "start_line": 63,
+            "end_line": 63,
+            "symbol": "app/agent/mcp_tools.py::MCPAgentTools.execute",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/mcp_client/models.py::local_copilot_server_config -> app/mcp_client/models.py::MCPServerConfig; expression=MCPServerConfig; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/mcp_client/models.py",
+            "start_line": 58,
+            "end_line": 58,
+            "symbol": "app/mcp_client/models.py::local_copilot_server_config",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_019",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/evidence.py::normalize_evidence and app/agent/evidence.py::_safe_float?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/evidence.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.036
+      },
+      "enhanced": {
+        "evidence_count": 20,
+        "enrichment_ms": 45.284,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_int; expression=_safe_int; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 114,
+            "end_line": 114,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_int; expression=_safe_int; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 118,
+            "end_line": 118,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_float; expression=_safe_float; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 136,
+            "end_line": 136,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::_safe_float; expression=_safe_float; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 140,
+            "end_line": 140,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 144,
+            "end_line": 144,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::normalize_evidence -> app/agent/evidence.py::Evidence; expression=Evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 153,
+            "end_line": 153,
+            "symbol": "app/agent/evidence.py::normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::add_evidence -> app/agent/evidence.py::normalize_evidence; expression=normalize_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 198,
+            "end_line": 198,
+            "symbol": "app/agent/evidence.py::add_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/evidence.py::add_evidence -> app/agent/evidence.py::evidence_to_dict; expression=evidence_to_dict; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/evidence.py",
+            "start_line": 208,
+            "end_line": 208,
+            "symbol": "app/agent/evidence.py::add_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 57,
+            "end_line": 57,
+            "symbol": "app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic -> app/agent/evidence.py::generate_evidence_id; expression=generate_evidence_id; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 66,
+            "end_line": 66,
+            "symbol": "app/tests/test_phase_2_4.py::test_generate_evidence_id_is_deterministic",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_normalize_evidence -> app/agent/evidence.py::normalize_evidence; expression=normalize_evidence; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 79,
+            "end_line": 79,
+            "symbol": "app/tests/test_phase_2_4.py::test_normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/tests/test_phase_2_4.py::test_normalize_evidence -> app/tests/test_phase_2_4.py::sample_result; expression=sample_result; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/tests/test_phase_2_4.py",
+            "start_line": 80,
+            "end_line": 80,
+            "symbol": "app/tests/test_phase_2_4.py::test_normalize_evidence",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "v14_6_020",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between app/agent/mcp_tools.py::MCPAgentTools.__init__ and app/mcp_client/registry.py::MCPToolRegistry?",
+      "intent": "general_search",
+      "expected_files": [
+        "app/agent/mcp_tools.py",
+        "app/mcp_client/registry.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.036
+      },
+      "enhanced": {
+        "evidence_count": 13,
+        "enrichment_ms": 42.992,
+        "added_evidence": [
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_tools.py::MCPAgentTools.__init__ -> app/mcp_client/registry.py::MCPToolRegistry; expression=MCPToolRegistry; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_tools.py",
+            "start_line": 26,
+            "end_line": 26,
+            "symbol": "app/agent/mcp_tools.py::MCPAgentTools.__init__",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_tools.py::MCPAgentTools.__init__ -> app/mcp_client/models.py::local_copilot_server_config; expression=local_copilot_server_config; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_tools.py",
+            "start_line": 27,
+            "end_line": 27,
+            "symbol": "app/agent/mcp_tools.py::MCPAgentTools.__init__",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/agent/mcp_tools.py::MCPAgentTools.execute -> app/mcp_client/results.py::normalize_mcp_result; expression=normalize_mcp_result; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/agent/mcp_tools.py",
+            "start_line": 63,
+            "end_line": 63,
+            "symbol": "app/agent/mcp_tools.py::MCPAgentTools.execute",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/mcp_client/registry.py::MCPToolRegistry.__init__ -> app/mcp_client/client.py::MCPClient; expression=MCPClient; confidence=static; resolver_evidence=direct_name_or_import. Imports and framework registrations are not execution edges.",
+            "file": "app/mcp_client/registry.py",
+            "start_line": 29,
+            "end_line": 29,
+            "symbol": "app/mcp_client/registry.py::MCPToolRegistry.__init__",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          },
+          {
+            "content": "STATIC CALL EVIDENCE (not verified runtime execution): app/mcp_client/registry.py::MCPToolRegistry.discover -> app/mcp_client/registry.py::MCPToolRegistry.list_tools; expression=self.list_tools; confidence=heuristic; resolver_evidence=receiver_method_static_heuristic. Imports and framework registrations are not execution edges.",
+            "file": "app/mcp_client/registry.py",
+            "start_line": 49,
+            "end_line": 49,
+            "symbol": "app/mcp_client/registry.py::MCPToolRegistry.discover",
+            "symbol_type": "static_call_relationship",
+            "source_tool": "architecture_v14_4",
+            "repository_id": "repo_ad2de6df1bd692d8"
+          }
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "cases": 20,
+    "cases_with_added_architecture_evidence": 20,
+    "baseline_enrichment_ms_total": 0.754,
+    "enhanced_enrichment_ms_total": 896.898,
+    "llm_errors": 0
+  }
+}

@@ -1,0 +1,411 @@
+{
+  "schema_version": "14.5",
+  "mode": "evidence_only",
+  "methodology": "Same pre-collected evidence and question; only architecture enrichment differs. LLM answers may be nondeterministic.",
+  "limitations": [
+    "No retrieval, agent planning, or tool execution is measured.",
+    "File mentions and line references are proxies, not correctness or grounding scores.",
+    "Manual source-code review is required for correctness, unsupported claims, completeness and required facts.",
+    "LLM output may vary between runs; repeat trials for reliable comparisons."
+  ],
+  "cases": [
+    {
+      "id": "v14_6_001",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between graph/nodes.py::critic_node and utils/llm.py::invoke_llm?",
+      "intent": "general_search",
+      "expected_files": [
+        "graph/nodes.py",
+        "utils/llm.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.061
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 3.057,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_002",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between api/routes.py::research and api/routes.py::ResearchResponse?",
+      "intent": "general_search",
+      "expected_files": [
+        "api/routes.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.04
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 2.845,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_003",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "Is there a verified direct static call from api/routes.py::ResearchRequest to app.py::api_info? Explain the evidence limits.",
+      "intent": "general_search",
+      "expected_files": [
+        "api/routes.py",
+        "app.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 4.222,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_004",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between graph/nodes.py::draft_report_node and utils/llm.py::invoke_llm?",
+      "intent": "general_search",
+      "expected_files": [
+        "graph/nodes.py",
+        "utils/llm.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.038
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 2.632,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_005",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between api/routes.py::research and api/routes.py::_result_from_state?",
+      "intent": "general_search",
+      "expected_files": [
+        "api/routes.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.035
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 3.747,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_006",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "Is there a verified direct static call from api/routes.py::ResearchResponse to app.py::api_info? Explain the evidence limits.",
+      "intent": "general_search",
+      "expected_files": [
+        "api/routes.py",
+        "app.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 1.948,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_007",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between graph/nodes.py::final_report_node and utils/llm.py::invoke_llm?",
+      "intent": "general_search",
+      "expected_files": [
+        "graph/nodes.py",
+        "utils/llm.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 1.526,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_008",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between api/routes.py::research and api/routes.py::initial_state?",
+      "intent": "general_search",
+      "expected_files": [
+        "api/routes.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.035
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 1.542,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_009",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "Is there a verified direct static call from api/routes.py::Source to app.py::api_info? Explain the evidence limits.",
+      "intent": "general_search",
+      "expected_files": [
+        "api/routes.py",
+        "app.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.038
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 2.443,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_010",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between graph/nodes.py::planner_node and utils/llm.py::invoke_llm?",
+      "intent": "general_search",
+      "expected_files": [
+        "graph/nodes.py",
+        "utils/llm.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.039
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 2.658,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_011",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between api/routes.py::research_stream and api/routes.py::_result_from_state?",
+      "intent": "general_search",
+      "expected_files": [
+        "api/routes.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 18.981,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_012",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "Is there a verified direct static call from api/routes.py::_result_from_state to app.py::api_info? Explain the evidence limits.",
+      "intent": "general_search",
+      "expected_files": [
+        "api/routes.py",
+        "app.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.047
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 6.701,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_013",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between graph/nodes.py::research_node and utils/search_tool.py::web_search?",
+      "intent": "general_search",
+      "expected_files": [
+        "graph/nodes.py",
+        "utils/search_tool.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.039
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 4.859,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_014",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between api/routes.py::research_stream and api/routes.py::initial_state?",
+      "intent": "general_search",
+      "expected_files": [
+        "api/routes.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.034
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 9.239,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_015",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "Is there a verified direct static call from api/routes.py::health_check to app.py::api_info? Explain the evidence limits.",
+      "intent": "general_search",
+      "expected_files": [
+        "api/routes.py",
+        "app.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 2.887
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 20.507,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_016",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between graph/nodes.py::summarizer_node and utils/llm.py::invoke_llm?",
+      "intent": "general_search",
+      "expected_files": [
+        "graph/nodes.py",
+        "utils/llm.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.054
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 20.26,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_017",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between api/routes.py::research_stream and api/routes.py::send_event?",
+      "intent": "general_search",
+      "expected_files": [
+        "api/routes.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.035
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 6.647,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_018",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between api/routes.py::research_stream_endpoint and api/routes.py::research_stream?",
+      "intent": "general_search",
+      "expected_files": [
+        "api/routes.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.11
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 42.794,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_019",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between graph/nodes.py::_parse_planner_output and graph/nodes.py::clean_json_response?",
+      "intent": "general_search",
+      "expected_files": [
+        "graph/nodes.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.037
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 1.543,
+        "added_evidence": []
+      }
+    },
+    {
+      "id": "v14_6_020",
+      "repository_id": "repo_ad2de6df1bd692d8",
+      "question": "What static call relationship exists between graph/nodes.py::critic_node and graph/nodes.py::_source_block?",
+      "intent": "general_search",
+      "expected_files": [
+        "graph/nodes.py"
+      ],
+      "required_facts_for_manual_review": [],
+      "baseline": {
+        "evidence_count": 8,
+        "enrichment_ms": 0.047
+      },
+      "enhanced": {
+        "evidence_count": 8,
+        "enrichment_ms": 26.617,
+        "added_evidence": []
+      }
+    }
+  ],
+  "summary": {
+    "cases": 20,
+    "cases_with_added_architecture_evidence": 0,
+    "baseline_enrichment_ms_total": 3.724,
+    "enhanced_enrichment_ms_total": 184.768,
+    "llm_errors": 0
+  }
+}
