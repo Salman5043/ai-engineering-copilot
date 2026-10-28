@@ -1,0 +1,33 @@
+{
+  "schema_version": "14.2",
+  "source": "api/routes.py::research",
+  "target": "api/routes.py::initial_state",
+  "path_type": "possible_static_call_chain",
+  "paths": [
+    {
+      "nodes": [
+        "api/routes.py::research",
+        "api/routes.py::initial_state"
+      ],
+      "edges": [
+        {
+          "from": "api/routes.py::research",
+          "to": "api/routes.py::initial_state",
+          "file": "api/routes.py",
+          "line": 168,
+          "expression": "initial_state",
+          "confidence": "static",
+          "evidence": "direct_name_or_import"
+        }
+      ]
+    }
+  ],
+  "found": true,
+  "max_depth": 8,
+  "max_paths": 20,
+  "limitations": [
+    "Only v14.1 resolved calls are traversed.",
+    "Framework callbacks, registrations, dynamic dispatch, and runtime behavior are not inferred.",
+    "A missing path does not establish that no runtime path exists."
+  ]
+}
