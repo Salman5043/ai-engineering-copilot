@@ -6,6 +6,7 @@ from app.agent import tools
 from app.agent.tools import TOOL_REGISTRY
 from app.agent.evidence import add_evidence
 from app.agent.reasoner import generate_reasoned_answer
+from app.agent.architecture_context_v14_4 import enrich_evidence
 from app.agent.planner import build_investigation_plan
 from app.retrieval.query_parser import extract_identifiers
 from app.retrieval.query_intent import detect_intent
@@ -909,16 +910,26 @@ def generate_answer(
 
     try:
 
+        answer_evidence = state.get("evidence", [])
+        try:
+            answer_evidence = enrich_evidence(
+                repository_id=state.get("repository_id", ""),
+                query=state["query"],
+                evidence=answer_evidence,
+            )
+        except (OSError, ValueError, KeyError, TypeError) as exc:
+            # Optional architecture context must not block the existing agent.
+            state.setdefault("tool_errors", []).append(
+                f"Architecture context unavailable: {exc}"
+            )
+
         answer = generate_reasoned_answer(
             query=state["query"],
             intent=state.get(
                 "intent",
                 "general_search",
             ),
-            evidence=state.get(
-                "evidence",
-                [],
-            ),
+            evidence=answer_evidence,
         )
 
         state["reasoning"] = answer

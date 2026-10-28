@@ -25,14 +25,15 @@ def _normalize_result(result: Any) -> dict[str, Any]:
     else:
         data = {"content": str(result)}
 
+    metadata = data.get("metadata") or {}
     return {
         "content": data.get("content", ""),
-        "file": data.get("file", ""),
-        "start_line": data.get("start_line"),
-        "end_line": data.get("end_line"),
-        "language": data.get("language"),
-        "symbol": data.get("symbol"),
-        "symbol_type": data.get("symbol_type"),
+        "file": data.get("file", metadata.get("file"), ""),
+        "start_line": data.get("start_line", metadata.get("start_line")),
+        "end_line": data.get("end_line", metadata.get("end_line")),
+        "language": data.get("language", metadata.get("language")),
+        "symbol": data.get("symbol", metadata.get("symbol")),
+        "symbol_type": data.get("symbol_type", metadata.get("symbol_type")),
         "score": data.get("score"),
         "semantic_score": data.get("semantic_score"),
     }
@@ -59,8 +60,7 @@ def search_repository(
         symbol_type=symbol_type,
     )
 
-    results = getattr(response, "results", response)
-
+    results = response.get("results", []) if isinstance(response, dict) else getattr(response, "results", response)
     return [_normalize_result(result) for result in results]
 
 
