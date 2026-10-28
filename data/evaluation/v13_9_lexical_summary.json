@@ -1,0 +1,30 @@
+{
+  "queries": 83,
+  "stages": {
+    "collection_get_ms": {
+      "mean_ms": 83.12,
+      "p50_ms": 81.06,
+      "p95_ms": 91.62
+    },
+    "candidate_scoring_ms": {
+      "mean_ms": 385.08,
+      "p50_ms": 382.44,
+      "p95_ms": 404.45
+    },
+    "bm25_ms": {
+      "mean_ms": 21.83,
+      "p50_ms": 19.27,
+      "p95_ms": 24.37
+    },
+    "normalization_sort_ms": {
+      "mean_ms": 2.25,
+      "p50_ms": 2.09,
+      "p95_ms": 3.29
+    },
+    "total_ms": {
+      "mean_ms": 492.28,
+      "p50_ms": 488.8,
+      "p95_ms": 523.79
+    }
+  }
+}

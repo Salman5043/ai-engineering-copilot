@@ -1,0 +1,292 @@
+{
+  "version": "v13.16",
+  "scope": "production indexing, embedding, hybrid retrieval and reranking in temporary Chroma DB",
+  "top_k_files": 10,
+  "retrieved_chunks_per_query": 100,
+  "limitations": [
+    "Ground-truth labels must be reviewed independently.",
+    "The v13.15 lexical baseline uses AST-derived records, whereas this test uses production chunks: scores are not a controlled ablation.",
+    "A small repository cannot establish cross-project generalization.",
+    "Embedding-model download may be required on first run.",
+    "On Windows, Chroma may retain temporary files until the process exits; leftover copilot-v13-16-* directories can be removed after exit."
+  ],
+  "overall": {
+    "cases": 15,
+    "file_hit_at_1": 0.5333333333333333,
+    "file_hit_at_10": 1,
+    "file_mrr": 0.7022222222222222,
+    "mean_latency_ms": 81.28441326941054
+  },
+  "per_repository": {
+    "research_assistant": {
+      "cases": 15,
+      "file_hit_at_1": 0.5333333333333333,
+      "file_hit_at_10": 1,
+      "file_mrr": 0.7022222222222222,
+      "mean_latency_ms": 81.28441326941054,
+      "repository_id": "repo_9ed9d64382063dbb",
+      "repository_path": "D:\\Research Assisstant\\research_assistant_improved_v4",
+      "files": 17,
+      "chunks": 112,
+      "manifest_id": "research_assistant"
+    }
+  },
+  "repository_isolation": true,
+  "results": [
+    {
+      "repository": "research_assistant",
+      "query": "Where is the sequence of research processing stages assembled into a workflow?",
+      "expected_file": "graph/graph_builder.py",
+      "rank": 5,
+      "returned_files": [
+        "api/routes.py",
+        "graph/state.py",
+        "graph/nodes.py",
+        "app.py",
+        "graph/graph_builder.py",
+        "utils/llm.py",
+        "utils/search_tool.py",
+        "tests/test_app.py"
+      ],
+      "latency_ms": 74.05570009723306
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which component decides whether a draft needs another revision?",
+      "expected_file": "graph/nodes.py",
+      "rank": 2,
+      "returned_files": [
+        "graph/graph_builder.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "tests/test_app.py",
+        "utils/llm.py",
+        "app.py",
+        "utils/search_tool.py"
+      ],
+      "latency_ms": 74.83989978209138
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where does the application plan what information to investigate?",
+      "expected_file": "graph/nodes.py",
+      "rank": 3,
+      "returned_files": [
+        "api/routes.py",
+        "graph/state.py",
+        "graph/nodes.py",
+        "app.py",
+        "tests/test_app.py",
+        "utils/llm.py",
+        "graph/graph_builder.py",
+        "utils/search_tool.py"
+      ],
+      "latency_ms": 51.22969998046756
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which component gathers material for the research workflow?",
+      "expected_file": "graph/nodes.py",
+      "rank": 1,
+      "returned_files": [
+        "graph/nodes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "app.py",
+        "graph/graph_builder.py",
+        "tests/test_app.py",
+        "utils/search_tool.py",
+        "utils/llm.py"
+      ],
+      "latency_ms": 119.5546998642385
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where are findings condensed before producing a report?",
+      "expected_file": "graph/nodes.py",
+      "rank": 1,
+      "returned_files": [
+        "graph/nodes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "graph/graph_builder.py",
+        "utils/search_tool.py",
+        "tests/test_app.py",
+        "app.py",
+        "utils/llm.py"
+      ],
+      "latency_ms": 73.11969995498657
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which component writes an initial report from gathered evidence?",
+      "expected_file": "graph/nodes.py",
+      "rank": 2,
+      "returned_files": [
+        "api/routes.py",
+        "graph/nodes.py",
+        "graph/graph_builder.py",
+        "graph/state.py",
+        "tests/test_app.py",
+        "app.py",
+        "utils/search_tool.py",
+        "utils/llm.py"
+      ],
+      "latency_ms": 59.48589975014329
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is a generated report reviewed for weaknesses?",
+      "expected_file": "graph/nodes.py",
+      "rank": 2,
+      "returned_files": [
+        "graph/graph_builder.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "app.py",
+        "utils/llm.py",
+        "tests/test_app.py",
+        "utils/search_tool.py"
+      ],
+      "latency_ms": 51.90979968756437
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where are the data structures holding shared workflow context defined?",
+      "expected_file": "graph/state.py",
+      "rank": 6,
+      "returned_files": [
+        "graph/nodes.py",
+        "api/routes.py",
+        "utils/llm.py",
+        "graph/graph_builder.py",
+        "app.py",
+        "graph/state.py",
+        "utils/search_tool.py",
+        "tests/test_app.py"
+      ],
+      "latency_ms": 240.69090001285076
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which component prepares a new request for processing by the research workflow?",
+      "expected_file": "api/routes.py",
+      "rank": 1,
+      "returned_files": [
+        "api/routes.py",
+        "graph/nodes.py",
+        "graph/state.py",
+        "utils/llm.py",
+        "tests/test_app.py",
+        "app.py",
+        "graph/graph_builder.py",
+        "utils/search_tool.py"
+      ],
+      "latency_ms": 59.8879000172019
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is progress streamed to clients during a research operation?",
+      "expected_file": "api/routes.py",
+      "rank": 1,
+      "returned_files": [
+        "api/routes.py",
+        "graph/state.py",
+        "graph/nodes.py",
+        "app.py",
+        "graph/graph_builder.py",
+        "tests/test_app.py",
+        "utils/llm.py",
+        "utils/search_tool.py"
+      ],
+      "latency_ms": 51.54860019683838
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which module handles retrying failed language model requests?",
+      "expected_file": "utils/llm.py",
+      "rank": 1,
+      "returned_files": [
+        "utils/llm.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "app.py",
+        "utils/search_tool.py",
+        "graph/state.py",
+        "graph/graph_builder.py",
+        "tests/test_app.py"
+      ],
+      "latency_ms": 62.73109978064895
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is external information gathered using a web search utility?",
+      "expected_file": "utils/search_tool.py",
+      "rank": 1,
+      "returned_files": [
+        "utils/search_tool.py",
+        "graph/nodes.py",
+        "graph/state.py",
+        "api/routes.py",
+        "app.py",
+        "tests/test_app.py",
+        "graph/graph_builder.py",
+        "utils/llm.py"
+      ],
+      "latency_ms": 51.39499995857477
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which component sets up resources when the web application starts?",
+      "expected_file": "app.py",
+      "rank": 3,
+      "returned_files": [
+        "utils/search_tool.py",
+        "tests/test_app.py",
+        "app.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "utils/llm.py",
+        "graph/graph_builder.py",
+        "graph/state.py"
+      ],
+      "latency_ms": 55.74290035292506
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is the HTTP endpoint for checking service availability?",
+      "expected_file": "api/routes.py",
+      "rank": 1,
+      "returned_files": [
+        "api/routes.py",
+        "app.py",
+        "tests/test_app.py",
+        "graph/nodes.py",
+        "utils/search_tool.py",
+        "graph/state.py",
+        "utils/llm.py",
+        "graph/graph_builder.py"
+      ],
+      "latency_ms": 140.676099807024
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which test checks whether the browser interface can be served?",
+      "expected_file": "tests/test_app.py",
+      "rank": 1,
+      "returned_files": [
+        "tests/test_app.py",
+        "app.py",
+        "graph/graph_builder.py",
+        "api/routes.py",
+        "utils/llm.py",
+        "utils/search_tool.py",
+        "graph/nodes.py",
+        "graph/state.py"
+      ],
+      "latency_ms": 52.39829979836941
+    }
+  ]
+}

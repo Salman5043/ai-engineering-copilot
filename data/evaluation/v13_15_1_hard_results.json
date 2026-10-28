@@ -1,0 +1,363 @@
+{
+  "version": "v13.15",
+  "scope": "real-local-repository AST-derived lexical retrieval only",
+  "limitations": [
+    "Not full indexing/vector/hybrid/reranking pipeline",
+    "Gold labels require independent human review",
+    "AST records are a benchmark adapter, not production index chunks"
+  ],
+  "top_k": 10,
+  "overall": {
+    "cases": 15,
+    "file_hit_at_1": 0.5333333333333333,
+    "file_hit_at_k": 0.9333333333333333,
+    "file_mrr": 0.6622222222222223,
+    "mean_latency_ms": 9.979160005847612
+  },
+  "per_repository": {
+    "research_assistant": {
+      "cases": 15,
+      "file_hit_at_1": 0.5333333333333333,
+      "file_hit_at_k": 0.9333333333333333,
+      "file_mrr": 0.6622222222222223,
+      "mean_latency_ms": 9.979160005847612,
+      "files_scanned": 11,
+      "files_skipped": 0,
+      "syntax_errors": 0,
+      "records": 48
+    }
+  },
+  "repository_isolation": true,
+  "results": [
+    {
+      "repository": "research_assistant",
+      "query": "Where is the sequence of research processing stages assembled into a workflow?",
+      "expected_file": "graph/graph_builder.py",
+      "returned_files": [
+        "api/routes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "api/routes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "app.py",
+        "api/routes.py",
+        "graph/graph_builder.py"
+      ],
+      "rank": 10,
+      "hit_at_1": false,
+      "hit_at_k": true,
+      "reciprocal_rank": 0.1,
+      "latency_ms": 9.3966000713408
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which component decides whether a draft needs another revision?",
+      "expected_file": "graph/nodes.py",
+      "returned_files": [
+        "graph/graph_builder.py",
+        "graph/graph_builder.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py"
+      ],
+      "rank": 3,
+      "hit_at_1": false,
+      "hit_at_k": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "latency_ms": 10.140800382941961
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where does the application plan what information to investigate?",
+      "expected_file": "graph/nodes.py",
+      "returned_files": [
+        "api/routes.py",
+        "api/routes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "graph/nodes.py",
+        "app.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py"
+      ],
+      "rank": 3,
+      "hit_at_1": false,
+      "hit_at_k": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "latency_ms": 8.402499835938215
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which component gathers material for the research workflow?",
+      "expected_file": "graph/nodes.py",
+      "returned_files": [
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "api/routes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "graph/nodes.py",
+        "app.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.296499986201525
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where are findings condensed before producing a report?",
+      "expected_file": "graph/nodes.py",
+      "returned_files": [
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "graph/graph_builder.py",
+        "graph/nodes.py",
+        "graph/state.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 10.40009967982769
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which component writes an initial report from gathered evidence?",
+      "expected_file": "graph/nodes.py",
+      "returned_files": [
+        "api/routes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py"
+      ],
+      "rank": 2,
+      "hit_at_1": false,
+      "hit_at_k": true,
+      "reciprocal_rank": 0.5,
+      "latency_ms": 8.974399883300066
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is a generated report reviewed for weaknesses?",
+      "expected_file": "graph/nodes.py",
+      "returned_files": [
+        "graph/graph_builder.py",
+        "graph/graph_builder.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "graph/nodes.py",
+        "api/routes.py"
+      ],
+      "rank": 3,
+      "hit_at_1": false,
+      "hit_at_k": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "latency_ms": 11.5922000259161
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where are the data structures holding shared workflow context defined?",
+      "expected_file": "graph/state.py",
+      "returned_files": [
+        "api/routes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "utils/search_tool.py",
+        "utils/llm.py",
+        "utils/llm.py",
+        "utils/llm.py"
+      ],
+      "rank": null,
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "reciprocal_rank": 0,
+      "latency_ms": 9.027699939906597
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which component prepares a new request for processing by the research workflow?",
+      "expected_file": "api/routes.py",
+      "returned_files": [
+        "api/routes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "utils/llm.py",
+        "graph/nodes.py",
+        "api/routes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 10.870200116187334
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is progress streamed to clients during a research operation?",
+      "expected_file": "api/routes.py",
+      "returned_files": [
+        "api/routes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "api/routes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "app.py",
+        "api/routes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 9.914500173181295
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which module handles retrying failed language model requests?",
+      "expected_file": "utils/llm.py",
+      "returned_files": [
+        "utils/llm.py",
+        "utils/llm.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "utils/llm.py",
+        "api/routes.py",
+        "graph/nodes.py",
+        "graph/nodes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 8.602899964898825
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is external information gathered using a web search utility?",
+      "expected_file": "utils/search_tool.py",
+      "returned_files": [
+        "utils/search_tool.py",
+        "utils/search_tool.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/state.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "graph/nodes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 11.398199945688248
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which component sets up resources when the web application starts?",
+      "expected_file": "app.py",
+      "returned_files": [
+        "utils/search_tool.py",
+        "tests/test_app.py",
+        "app.py",
+        "app.py",
+        "tests/test_app.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "tests/test_app.py",
+        "utils/search_tool.py",
+        "api/routes.py"
+      ],
+      "rank": 3,
+      "hit_at_1": false,
+      "hit_at_k": true,
+      "reciprocal_rank": 0.3333333333333333,
+      "latency_ms": 8.376500103622675
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is the HTTP endpoint for checking service availability?",
+      "expected_file": "api/routes.py",
+      "returned_files": [
+        "api/routes.py",
+        "api/routes.py",
+        "app.py",
+        "app.py",
+        "api/routes.py",
+        "graph/nodes.py",
+        "tests/test_app.py",
+        "api/routes.py",
+        "tests/test_app.py",
+        "tests/test_app.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 10.391300078481436
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which test checks whether the browser interface can be served?",
+      "expected_file": "tests/test_app.py",
+      "returned_files": [
+        "tests/test_app.py",
+        "tests/test_app.py",
+        "tests/test_app.py",
+        "tests/test_app.py",
+        "tests/test_app.py",
+        "graph/graph_builder.py",
+        "app.py",
+        "graph/graph_builder.py",
+        "app.py",
+        "utils/search_tool.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 10.90299990028143
+    }
+  ]
+}

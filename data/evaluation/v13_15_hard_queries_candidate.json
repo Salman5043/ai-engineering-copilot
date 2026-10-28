@@ -1,0 +1,70 @@
+{
+  "repositories": [
+    {
+      "id": "research_assistant",
+      "path": "D:/Research Assisstant/research_assistant_improved_v4",
+      "cases": [
+        {
+          "query": "Where is the sequence of research processing stages assembled into a workflow?",
+          "expected_file": "graph/graph_builder.py"
+        },
+        {
+          "query": "Which component decides whether a draft needs another revision?",
+          "expected_file": "graph/nodes.py"
+        },
+        {
+          "query": "Where does the application plan what information to investigate?",
+          "expected_file": "graph/nodes.py"
+        },
+        {
+          "query": "Which component gathers material for the research workflow?",
+          "expected_file": "graph/nodes.py"
+        },
+        {
+          "query": "Where are findings condensed before producing a report?",
+          "expected_file": "graph/nodes.py"
+        },
+        {
+          "query": "Which component writes an initial report from gathered evidence?",
+          "expected_file": "graph/nodes.py"
+        },
+        {
+          "query": "Where is a generated report reviewed for weaknesses?",
+          "expected_file": "graph/nodes.py"
+        },
+        {
+          "query": "Where are the data structures holding shared workflow context defined?",
+          "expected_file": "graph/state.py"
+        },
+        {
+          "query": "Which component prepares a new request for processing by the research workflow?",
+          "expected_file": "api/routes.py"
+        },
+        {
+          "query": "Where is progress streamed to clients during a research operation?",
+          "expected_file": "api/routes.py"
+        },
+        {
+          "query": "Which module handles retrying failed language model requests?",
+          "expected_file": "utils/llm.py"
+        },
+        {
+          "query": "Where is external information gathered using a web search utility?",
+          "expected_file": "utils/search_tool.py"
+        },
+        {
+          "query": "Which component sets up resources when the web application starts?",
+          "expected_file": "app.py"
+        },
+        {
+          "query": "Where is the HTTP endpoint for checking service availability?",
+          "expected_file": "api/routes.py"
+        },
+        {
+          "query": "Which test checks whether the browser interface can be served?",
+          "expected_file": "tests/test_app.py"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,341 @@
+{
+  "version": "v13.15",
+  "scope": "real-local-repository AST-derived lexical retrieval only",
+  "limitations": [
+    "Not full indexing/vector/hybrid/reranking pipeline",
+    "Gold labels require independent human review",
+    "AST records are a benchmark adapter, not production index chunks"
+  ],
+  "top_k": 10,
+  "overall": {
+    "cases": 14,
+    "file_hit_at_1": 1,
+    "file_hit_at_k": 1,
+    "file_mrr": 1.0,
+    "mean_latency_ms": 8.930257155693003
+  },
+  "per_repository": {
+    "research_assistant": {
+      "cases": 14,
+      "file_hit_at_1": 1,
+      "file_hit_at_k": 1,
+      "file_mrr": 1.0,
+      "mean_latency_ms": 8.930257155693003,
+      "files_scanned": 11,
+      "files_skipped": 0,
+      "syntax_errors": 0,
+      "records": 48
+    }
+  },
+  "repository_isolation": true,
+  "results": [
+    {
+      "repository": "research_assistant",
+      "query": "Where is the build_graph function defined?",
+      "expected_file": "graph/graph_builder.py",
+      "returned_files": [
+        "graph/graph_builder.py",
+        "graph/graph_builder.py",
+        "api/routes.py",
+        "graph/__init__.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/state.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/state.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 9.268499910831451
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which file defines the ResearchState class?",
+      "expected_file": "graph/state.py",
+      "returned_files": [
+        "graph/state.py",
+        "graph/state.py",
+        "api/routes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "api/routes.py",
+        "app.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 9.32280020788312
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is the SearchResult class declared?",
+      "expected_file": "graph/state.py",
+      "returned_files": [
+        "graph/state.py",
+        "api/routes.py",
+        "graph/state.py",
+        "utils/search_tool.py",
+        "utils/search_tool.py",
+        "graph/state.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "api/routes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 8.474099915474653
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which module defines the planner_node function?",
+      "expected_file": "graph/nodes.py",
+      "returned_files": [
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/graph_builder.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/graph_builder.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "api/routes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 8.875899948179722
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is the research_node function implemented?",
+      "expected_file": "graph/nodes.py",
+      "returned_files": [
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "graph/graph_builder.py",
+        "graph/graph_builder.py",
+        "api/routes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 8.762700017541647
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is the summarizer_node function defined?",
+      "expected_file": "graph/nodes.py",
+      "returned_files": [
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/graph_builder.py",
+        "graph/nodes.py",
+        "graph/graph_builder.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 9.269900154322386
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which file defines the should_revise function?",
+      "expected_file": "graph/nodes.py",
+      "returned_files": [
+        "graph/nodes.py",
+        "graph/graph_builder.py",
+        "graph/graph_builder.py",
+        "app.py",
+        "app.py",
+        "utils/llm.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "utils/llm.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 9.633800014853477
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is the invoke_llm function defined?",
+      "expected_file": "utils/llm.py",
+      "returned_files": [
+        "utils/llm.py",
+        "utils/llm.py",
+        "utils/llm.py",
+        "utils/llm.py",
+        "utils/llm.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 8.821399882435799
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which file contains the get_llm function?",
+      "expected_file": "utils/llm.py",
+      "returned_files": [
+        "utils/llm.py",
+        "utils/llm.py",
+        "app.py",
+        "utils/llm.py",
+        "utils/llm.py",
+        "utils/llm.py",
+        "app.py",
+        "graph/nodes.py",
+        "graph/nodes.py",
+        "graph/nodes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 8.695800323039293
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is the web_search function defined?",
+      "expected_file": "utils/search_tool.py",
+      "returned_files": [
+        "utils/search_tool.py",
+        "utils/search_tool.py",
+        "graph/state.py",
+        "graph/nodes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "graph/state.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 8.497000206261873
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which module defines research_stream_endpoint?",
+      "expected_file": "api/routes.py",
+      "returned_files": [
+        "api/routes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "api/routes.py",
+        "graph/state.py",
+        "api/routes.py",
+        "graph/nodes.py",
+        "app.py",
+        "api/routes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 8.666899986565113
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is the health_check function defined?",
+      "expected_file": "api/routes.py",
+      "returned_files": [
+        "api/routes.py",
+        "tests/test_app.py",
+        "app.py",
+        "app.py",
+        "api/routes.py",
+        "app.py",
+        "tests/test_app.py",
+        "tests/test_app.py",
+        "graph/nodes.py",
+        "graph/nodes.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 8.488900028169155
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Which file contains the lifespan function?",
+      "expected_file": "app.py",
+      "returned_files": [
+        "app.py",
+        "app.py",
+        "app.py",
+        "utils/search_tool.py",
+        "utils/llm.py",
+        "utils/llm.py",
+        "utils/llm.py",
+        "utils/llm.py",
+        "graph/state.py",
+        "graph/state.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 8.81229992955923
+    },
+    {
+      "repository": "research_assistant",
+      "query": "Where is the test_frontend_is_served test defined?",
+      "expected_file": "tests/test_app.py",
+      "returned_files": [
+        "tests/test_app.py",
+        "tests/test_app.py",
+        "tests/test_app.py",
+        "app.py",
+        "tests/test_app.py",
+        "tests/test_app.py",
+        "app.py",
+        "app.py",
+        "utils/search_tool.py",
+        "utils/llm.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0,
+      "latency_ms": 9.433599654585123
+    }
+  ]
+}

@@ -1,0 +1,1444 @@
+{
+  "version": "v13.18",
+  "scope": "offline rescoring of v13.17 recorded top-files only",
+  "cautions": [
+    "This is an in-sample exploratory sensitivity analysis, not validation or evidence of generalization.",
+    "Only the best recorded chunk for each file is rescored; a different chunk cannot become its file's representative.",
+    "The v13.17 top_chunks list is truncated, so symbol-level recall/accuracy cannot be computed.",
+    "The startup query label requires independent review.",
+    "The lexical-only baseline used different chunks and is not a controlled ablation."
+  ],
+  "variants": [
+    {
+      "variant": "baseline",
+      "metrics": {
+        "cases": 15,
+        "file_hit_at_1": 0.5333333333333333,
+        "file_hit_at_5": 0.9333333333333333,
+        "file_hit_at_recorded_k": 1.0,
+        "file_mrr": 0.7022222222222222
+      },
+      "cases": [
+        {
+          "query": "Where is the sequence of research processing stages assembled into a workflow?",
+          "category": "construction",
+          "expected_file": "graph/graph_builder.py",
+          "baseline_rank": 5,
+          "rank": 5,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.792247,
+              "adjustment": 0.0,
+              "new_score": 1.792247,
+              "symbol": "ResearchResponse"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.7652,
+              "adjustment": 0.0,
+              "new_score": 1.7652,
+              "symbol": "ResearchState"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.703048,
+              "adjustment": 0.0,
+              "new_score": 1.703048,
+              "symbol": "research_node"
+            }
+          ]
+        },
+        {
+          "query": "Which component decides whether a draft needs another revision?",
+          "category": "decision",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 2,
+          "rank": 2,
+          "top_file": "graph/graph_builder.py",
+          "top_three": [
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 1.967576,
+              "adjustment": 0.0,
+              "new_score": 1.967576,
+              "symbol": "build_graph"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.678083,
+              "adjustment": 0.0,
+              "new_score": 1.678083,
+              "symbol": "final_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.389925,
+              "adjustment": 0.0,
+              "new_score": 1.389925,
+              "symbol": "research_stream"
+            }
+          ]
+        },
+        {
+          "query": "Where does the application plan what information to investigate?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 3,
+          "rank": 3,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.456715,
+              "adjustment": 0.0,
+              "new_score": 1.456715,
+              "symbol": "ResearchResponse"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.427276,
+              "adjustment": 0.0,
+              "new_score": 1.427276,
+              "symbol": "ResearchState"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.379822,
+              "adjustment": 0.0,
+              "new_score": 1.379822,
+              "symbol": "summarizer_node"
+            }
+          ]
+        },
+        {
+          "query": "Which component gathers material for the research workflow?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "graph/nodes.py",
+          "top_three": [
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.820222,
+              "adjustment": 0.0,
+              "new_score": 1.820222,
+              "symbol": "summarizer_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.60135,
+              "adjustment": 0.0,
+              "new_score": 1.60135,
+              "symbol": "ResearchResponse"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.565666,
+              "adjustment": 0.0,
+              "new_score": 1.565666,
+              "symbol": "ResearchState"
+            }
+          ]
+        },
+        {
+          "query": "Where are findings condensed before producing a report?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "graph/nodes.py",
+          "top_three": [
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.551282,
+              "adjustment": 0.0,
+              "new_score": 1.551282,
+              "symbol": "draft_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 0.945278,
+              "adjustment": 0.0,
+              "new_score": 0.945278,
+              "symbol": "ResearchResponse"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 0.915727,
+              "adjustment": 0.0,
+              "new_score": 0.915727,
+              "symbol": "ResearchState"
+            }
+          ]
+        },
+        {
+          "query": "Which component writes an initial report from gathered evidence?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 2,
+          "rank": 2,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.766874,
+              "adjustment": 0.0,
+              "new_score": 1.766874,
+              "symbol": "initial_state"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.71341,
+              "adjustment": 0.0,
+              "new_score": 1.71341,
+              "symbol": "draft_report_node"
+            },
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 1.226675,
+              "adjustment": 0.0,
+              "new_score": 1.226675,
+              "symbol": "build_graph"
+            }
+          ]
+        },
+        {
+          "query": "Where is a generated report reviewed for weaknesses?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 2,
+          "rank": 2,
+          "top_file": "graph/graph_builder.py",
+          "top_three": [
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 1.381855,
+              "adjustment": 0.0,
+              "new_score": 1.381855,
+              "symbol": "build_graph"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.246317,
+              "adjustment": 0.0,
+              "new_score": 1.246317,
+              "symbol": "draft_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 0.907938,
+              "adjustment": 0.0,
+              "new_score": 0.907938,
+              "symbol": "ResearchResponse"
+            }
+          ]
+        },
+        {
+          "query": "Where are the data structures holding shared workflow context defined?",
+          "category": "data_definition",
+          "expected_file": "graph/state.py",
+          "baseline_rank": 6,
+          "rank": 6,
+          "top_file": "graph/nodes.py",
+          "top_three": [
+            {
+              "file": "graph/nodes.py",
+              "base_score": 2.136468,
+              "adjustment": 0.0,
+              "new_score": 2.136468,
+              "symbol": "final_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.861561,
+              "adjustment": 0.0,
+              "new_score": 1.861561,
+              "symbol": "send_event"
+            },
+            {
+              "file": "utils/llm.py",
+              "base_score": 1.169462,
+              "adjustment": 0.0,
+              "new_score": 1.169462,
+              "symbol": "invoke_llm"
+            }
+          ]
+        },
+        {
+          "query": "Which component prepares a new request for processing by the research workflow?",
+          "category": "other",
+          "expected_file": "api/routes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.766888,
+              "adjustment": 0.0,
+              "new_score": 1.766888,
+              "symbol": "ResearchRequest"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.351661,
+              "adjustment": 0.0,
+              "new_score": 1.351661,
+              "symbol": "final_report_node"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.302398,
+              "adjustment": 0.0,
+              "new_score": 1.302398,
+              "symbol": "ResearchState"
+            }
+          ]
+        },
+        {
+          "query": "Where is progress streamed to clients during a research operation?",
+          "category": "other",
+          "expected_file": "api/routes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.495381,
+              "adjustment": 0.0,
+              "new_score": 1.495381,
+              "symbol": "research_stream"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.03011,
+              "adjustment": 0.0,
+              "new_score": 1.03011,
+              "symbol": "ResearchState"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 0.990632,
+              "adjustment": 0.0,
+              "new_score": 0.990632,
+              "symbol": "research_node"
+            }
+          ]
+        },
+        {
+          "query": "Which module handles retrying failed language model requests?",
+          "category": "other",
+          "expected_file": "utils/llm.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "utils/llm.py",
+          "top_three": [
+            {
+              "file": "utils/llm.py",
+              "base_score": 2.027773,
+              "adjustment": 0.0,
+              "new_score": 2.027773,
+              "symbol": "invoke_llm"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.449113,
+              "adjustment": 0.0,
+              "new_score": 1.449113,
+              "symbol": "research_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.386883,
+              "adjustment": 0.0,
+              "new_score": 1.386883,
+              "symbol": "ResearchRequest"
+            }
+          ]
+        },
+        {
+          "query": "Where is external information gathered using a web search utility?",
+          "category": "other",
+          "expected_file": "utils/search_tool.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "utils/search_tool.py",
+          "top_three": [
+            {
+              "file": "utils/search_tool.py",
+              "base_score": 1.441884,
+              "adjustment": 0.0,
+              "new_score": 1.441884,
+              "symbol": "web_search"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 0.99085,
+              "adjustment": 0.0,
+              "new_score": 0.99085,
+              "symbol": "final_report_node"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 0.900671,
+              "adjustment": 0.0,
+              "new_score": 0.900671,
+              "symbol": "SearchResult"
+            }
+          ]
+        },
+        {
+          "query": "Which component sets up resources when the web application starts?",
+          "category": "startup",
+          "expected_file": "app.py",
+          "baseline_rank": 3,
+          "rank": 3,
+          "top_file": "utils/search_tool.py",
+          "top_three": [
+            {
+              "file": "utils/search_tool.py",
+              "base_score": 1.58655,
+              "adjustment": 0.0,
+              "new_score": 1.58655,
+              "symbol": "web_search"
+            },
+            {
+              "file": "tests/test_app.py",
+              "base_score": 1.555578,
+              "adjustment": 0.0,
+              "new_score": 1.555578,
+              "symbol": "setUp"
+            },
+            {
+              "file": "app.py",
+              "base_score": 1.376379,
+              "adjustment": 0.0,
+              "new_score": 1.376379,
+              "symbol": "lifespan"
+            }
+          ]
+        },
+        {
+          "query": "Where is the HTTP endpoint for checking service availability?",
+          "category": "other",
+          "expected_file": "api/routes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.479684,
+              "adjustment": 0.0,
+              "new_score": 1.479684,
+              "symbol": "research_stream_endpoint"
+            },
+            {
+              "file": "app.py",
+              "base_score": 1.215267,
+              "adjustment": 0.0,
+              "new_score": 1.215267,
+              "symbol": "lifespan"
+            },
+            {
+              "file": "tests/test_app.py",
+              "base_score": 0.929909,
+              "adjustment": 0.0,
+              "new_score": 0.929909,
+              "symbol": "test_health"
+            }
+          ]
+        },
+        {
+          "query": "Which test checks whether the browser interface can be served?",
+          "category": "decision",
+          "expected_file": "tests/test_app.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "tests/test_app.py",
+          "top_three": [
+            {
+              "file": "tests/test_app.py",
+              "base_score": 1.437472,
+              "adjustment": 0.0,
+              "new_score": 1.437472,
+              "symbol": "test_frontend_is_served"
+            },
+            {
+              "file": "app.py",
+              "base_score": 0.842597,
+              "adjustment": 0.0,
+              "new_score": 0.842597,
+              "symbol": "lifespan"
+            },
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 0.752318,
+              "adjustment": 0.0,
+              "new_score": 0.752318,
+              "symbol": "build_graph"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "variant": "structural",
+      "metrics": {
+        "cases": 15,
+        "file_hit_at_1": 0.6,
+        "file_hit_at_5": 1.0,
+        "file_hit_at_recorded_k": 1.0,
+        "file_mrr": 0.7777777777777778
+      },
+      "cases": [
+        {
+          "query": "Where is the sequence of research processing stages assembled into a workflow?",
+          "category": "construction",
+          "expected_file": "graph/graph_builder.py",
+          "baseline_rank": 5,
+          "rank": 1,
+          "top_file": "graph/graph_builder.py",
+          "top_three": [
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 1.364014,
+              "adjustment": 0.36,
+              "new_score": 1.724014,
+              "symbol": "build_graph"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.792247,
+              "adjustment": -0.08,
+              "new_score": 1.712247,
+              "symbol": "ResearchResponse"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.703048,
+              "adjustment": 0.0,
+              "new_score": 1.703048,
+              "symbol": "research_node"
+            }
+          ]
+        },
+        {
+          "query": "Which component decides whether a draft needs another revision?",
+          "category": "decision",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 2,
+          "rank": 2,
+          "top_file": "graph/graph_builder.py",
+          "top_three": [
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 1.967576,
+              "adjustment": -0.06,
+              "new_score": 1.907576,
+              "symbol": "build_graph"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.678083,
+              "adjustment": 0.0,
+              "new_score": 1.678083,
+              "symbol": "final_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.389925,
+              "adjustment": 0.0,
+              "new_score": 1.389925,
+              "symbol": "research_stream"
+            }
+          ]
+        },
+        {
+          "query": "Where does the application plan what information to investigate?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 3,
+          "rank": 3,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.456715,
+              "adjustment": 0.0,
+              "new_score": 1.456715,
+              "symbol": "ResearchResponse"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.427276,
+              "adjustment": 0.0,
+              "new_score": 1.427276,
+              "symbol": "ResearchState"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.379822,
+              "adjustment": 0.0,
+              "new_score": 1.379822,
+              "symbol": "summarizer_node"
+            }
+          ]
+        },
+        {
+          "query": "Which component gathers material for the research workflow?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "graph/nodes.py",
+          "top_three": [
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.820222,
+              "adjustment": 0.0,
+              "new_score": 1.820222,
+              "symbol": "summarizer_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.60135,
+              "adjustment": 0.0,
+              "new_score": 1.60135,
+              "symbol": "ResearchResponse"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.565666,
+              "adjustment": 0.0,
+              "new_score": 1.565666,
+              "symbol": "ResearchState"
+            }
+          ]
+        },
+        {
+          "query": "Where are findings condensed before producing a report?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "graph/nodes.py",
+          "top_three": [
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.551282,
+              "adjustment": 0.0,
+              "new_score": 1.551282,
+              "symbol": "draft_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 0.945278,
+              "adjustment": 0.0,
+              "new_score": 0.945278,
+              "symbol": "ResearchResponse"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 0.915727,
+              "adjustment": 0.0,
+              "new_score": 0.915727,
+              "symbol": "ResearchState"
+            }
+          ]
+        },
+        {
+          "query": "Which component writes an initial report from gathered evidence?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 2,
+          "rank": 2,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.766874,
+              "adjustment": 0.0,
+              "new_score": 1.766874,
+              "symbol": "initial_state"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.71341,
+              "adjustment": 0.0,
+              "new_score": 1.71341,
+              "symbol": "draft_report_node"
+            },
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 1.226675,
+              "adjustment": 0.0,
+              "new_score": 1.226675,
+              "symbol": "build_graph"
+            }
+          ]
+        },
+        {
+          "query": "Where is a generated report reviewed for weaknesses?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 2,
+          "rank": 2,
+          "top_file": "graph/graph_builder.py",
+          "top_three": [
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 1.381855,
+              "adjustment": 0.0,
+              "new_score": 1.381855,
+              "symbol": "build_graph"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.246317,
+              "adjustment": 0.0,
+              "new_score": 1.246317,
+              "symbol": "draft_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 0.907938,
+              "adjustment": 0.0,
+              "new_score": 0.907938,
+              "symbol": "ResearchResponse"
+            }
+          ]
+        },
+        {
+          "query": "Where are the data structures holding shared workflow context defined?",
+          "category": "data_definition",
+          "expected_file": "graph/state.py",
+          "baseline_rank": 6,
+          "rank": 3,
+          "top_file": "graph/nodes.py",
+          "top_three": [
+            {
+              "file": "graph/nodes.py",
+              "base_score": 2.136468,
+              "adjustment": 0.0,
+              "new_score": 2.136468,
+              "symbol": "final_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.861561,
+              "adjustment": 0.0,
+              "new_score": 1.861561,
+              "symbol": "send_event"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.14407,
+              "adjustment": 0.4,
+              "new_score": 1.54407,
+              "symbol": "ResearchState"
+            }
+          ]
+        },
+        {
+          "query": "Which component prepares a new request for processing by the research workflow?",
+          "category": "other",
+          "expected_file": "api/routes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.766888,
+              "adjustment": 0.0,
+              "new_score": 1.766888,
+              "symbol": "ResearchRequest"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.351661,
+              "adjustment": 0.0,
+              "new_score": 1.351661,
+              "symbol": "final_report_node"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.302398,
+              "adjustment": 0.0,
+              "new_score": 1.302398,
+              "symbol": "ResearchState"
+            }
+          ]
+        },
+        {
+          "query": "Where is progress streamed to clients during a research operation?",
+          "category": "other",
+          "expected_file": "api/routes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.495381,
+              "adjustment": 0.0,
+              "new_score": 1.495381,
+              "symbol": "research_stream"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.03011,
+              "adjustment": 0.0,
+              "new_score": 1.03011,
+              "symbol": "ResearchState"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 0.990632,
+              "adjustment": 0.0,
+              "new_score": 0.990632,
+              "symbol": "research_node"
+            }
+          ]
+        },
+        {
+          "query": "Which module handles retrying failed language model requests?",
+          "category": "other",
+          "expected_file": "utils/llm.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "utils/llm.py",
+          "top_three": [
+            {
+              "file": "utils/llm.py",
+              "base_score": 2.027773,
+              "adjustment": 0.0,
+              "new_score": 2.027773,
+              "symbol": "invoke_llm"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.449113,
+              "adjustment": 0.0,
+              "new_score": 1.449113,
+              "symbol": "research_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.386883,
+              "adjustment": 0.0,
+              "new_score": 1.386883,
+              "symbol": "ResearchRequest"
+            }
+          ]
+        },
+        {
+          "query": "Where is external information gathered using a web search utility?",
+          "category": "other",
+          "expected_file": "utils/search_tool.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "utils/search_tool.py",
+          "top_three": [
+            {
+              "file": "utils/search_tool.py",
+              "base_score": 1.441884,
+              "adjustment": 0.0,
+              "new_score": 1.441884,
+              "symbol": "web_search"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 0.99085,
+              "adjustment": 0.0,
+              "new_score": 0.99085,
+              "symbol": "final_report_node"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 0.900671,
+              "adjustment": 0.0,
+              "new_score": 0.900671,
+              "symbol": "SearchResult"
+            }
+          ]
+        },
+        {
+          "query": "Which component sets up resources when the web application starts?",
+          "category": "startup",
+          "expected_file": "app.py",
+          "baseline_rank": 3,
+          "rank": 2,
+          "top_file": "utils/search_tool.py",
+          "top_three": [
+            {
+              "file": "utils/search_tool.py",
+              "base_score": 1.58655,
+              "adjustment": 0.0,
+              "new_score": 1.58655,
+              "symbol": "web_search"
+            },
+            {
+              "file": "app.py",
+              "base_score": 1.376379,
+              "adjustment": 0.2,
+              "new_score": 1.576379,
+              "symbol": "lifespan"
+            },
+            {
+              "file": "tests/test_app.py",
+              "base_score": 1.555578,
+              "adjustment": 0.0,
+              "new_score": 1.555578,
+              "symbol": "setUp"
+            }
+          ]
+        },
+        {
+          "query": "Where is the HTTP endpoint for checking service availability?",
+          "category": "other",
+          "expected_file": "api/routes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.479684,
+              "adjustment": 0.0,
+              "new_score": 1.479684,
+              "symbol": "research_stream_endpoint"
+            },
+            {
+              "file": "app.py",
+              "base_score": 1.215267,
+              "adjustment": 0.0,
+              "new_score": 1.215267,
+              "symbol": "lifespan"
+            },
+            {
+              "file": "tests/test_app.py",
+              "base_score": 0.929909,
+              "adjustment": 0.0,
+              "new_score": 0.929909,
+              "symbol": "test_health"
+            }
+          ]
+        },
+        {
+          "query": "Which test checks whether the browser interface can be served?",
+          "category": "decision",
+          "expected_file": "tests/test_app.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "tests/test_app.py",
+          "top_three": [
+            {
+              "file": "tests/test_app.py",
+              "base_score": 1.437472,
+              "adjustment": 0.0,
+              "new_score": 1.437472,
+              "symbol": "test_frontend_is_served"
+            },
+            {
+              "file": "app.py",
+              "base_score": 0.842597,
+              "adjustment": 0.0,
+              "new_score": 0.842597,
+              "symbol": "lifespan"
+            },
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 0.752318,
+              "adjustment": -0.06,
+              "new_score": 0.692318,
+              "symbol": "build_graph"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "variant": "lexical_discount",
+      "metrics": {
+        "cases": 15,
+        "file_hit_at_1": 0.7333333333333333,
+        "file_hit_at_5": 1.0,
+        "file_hit_at_recorded_k": 1.0,
+        "file_mrr": 0.8444444444444444
+      },
+      "cases": [
+        {
+          "query": "Where is the sequence of research processing stages assembled into a workflow?",
+          "category": "construction",
+          "expected_file": "graph/graph_builder.py",
+          "baseline_rank": 5,
+          "rank": 1,
+          "top_file": "graph/graph_builder.py",
+          "top_three": [
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 1.364014,
+              "adjustment": 0.268441,
+              "new_score": 1.632456,
+              "symbol": "build_graph"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.703048,
+              "adjustment": -0.187564,
+              "new_score": 1.515484,
+              "symbol": "research_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.792247,
+              "adjustment": -0.27697,
+              "new_score": 1.515277,
+              "symbol": "ResearchResponse"
+            }
+          ]
+        },
+        {
+          "query": "Which component decides whether a draft needs another revision?",
+          "category": "decision",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 2,
+          "rank": 2,
+          "top_file": "graph/graph_builder.py",
+          "top_three": [
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 1.967576,
+              "adjustment": -0.25293,
+              "new_score": 1.714646,
+              "symbol": "build_graph"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.678083,
+              "adjustment": -0.104712,
+              "new_score": 1.573371,
+              "symbol": "final_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.389925,
+              "adjustment": -0.074569,
+              "new_score": 1.315356,
+              "symbol": "research_stream"
+            }
+          ]
+        },
+        {
+          "query": "Where does the application plan what information to investigate?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 3,
+          "rank": 3,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.456715,
+              "adjustment": -0.2,
+              "new_score": 1.256715,
+              "symbol": "ResearchResponse"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.427276,
+              "adjustment": -0.196414,
+              "new_score": 1.230862,
+              "symbol": "ResearchState"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.379822,
+              "adjustment": -0.18723,
+              "new_score": 1.192592,
+              "symbol": "summarizer_node"
+            }
+          ]
+        },
+        {
+          "query": "Which component gathers material for the research workflow?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "graph/nodes.py",
+          "top_three": [
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.820222,
+              "adjustment": -0.168065,
+              "new_score": 1.652157,
+              "symbol": "summarizer_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.60135,
+              "adjustment": -0.141162,
+              "new_score": 1.460187,
+              "symbol": "ResearchResponse"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.565666,
+              "adjustment": -0.140467,
+              "new_score": 1.425199,
+              "symbol": "ResearchState"
+            }
+          ]
+        },
+        {
+          "query": "Where are findings condensed before producing a report?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "graph/nodes.py",
+          "top_three": [
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.551282,
+              "adjustment": -0.2,
+              "new_score": 1.351282,
+              "symbol": "draft_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 0.945278,
+              "adjustment": -0.075853,
+              "new_score": 0.869425,
+              "symbol": "ResearchResponse"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 0.915727,
+              "adjustment": -0.074333,
+              "new_score": 0.841394,
+              "symbol": "ResearchState"
+            }
+          ]
+        },
+        {
+          "query": "Which component writes an initial report from gathered evidence?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 2,
+          "rank": 1,
+          "top_file": "graph/nodes.py",
+          "top_three": [
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.71341,
+              "adjustment": -0.145792,
+              "new_score": 1.567618,
+              "symbol": "draft_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.766874,
+              "adjustment": -0.2,
+              "new_score": 1.566874,
+              "symbol": "initial_state"
+            },
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 1.226675,
+              "adjustment": -0.053928,
+              "new_score": 1.172748,
+              "symbol": "build_graph"
+            }
+          ]
+        },
+        {
+          "query": "Where is a generated report reviewed for weaknesses?",
+          "category": "other",
+          "expected_file": "graph/nodes.py",
+          "baseline_rank": 2,
+          "rank": 2,
+          "top_file": "graph/graph_builder.py",
+          "top_three": [
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 1.381855,
+              "adjustment": -0.166945,
+              "new_score": 1.21491,
+              "symbol": "build_graph"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.246317,
+              "adjustment": -0.140381,
+              "new_score": 1.105936,
+              "symbol": "draft_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 0.907938,
+              "adjustment": -0.075454,
+              "new_score": 0.832484,
+              "symbol": "ResearchResponse"
+            }
+          ]
+        },
+        {
+          "query": "Where are the data structures holding shared workflow context defined?",
+          "category": "data_definition",
+          "expected_file": "graph/state.py",
+          "baseline_rank": 6,
+          "rank": 3,
+          "top_file": "graph/nodes.py",
+          "top_three": [
+            {
+              "file": "graph/nodes.py",
+              "base_score": 2.136468,
+              "adjustment": -0.150373,
+              "new_score": 1.986095,
+              "symbol": "final_report_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.861561,
+              "adjustment": -0.2,
+              "new_score": 1.661561,
+              "symbol": "send_event"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.14407,
+              "adjustment": 0.367857,
+              "new_score": 1.511927,
+              "symbol": "ResearchState"
+            }
+          ]
+        },
+        {
+          "query": "Which component prepares a new request for processing by the research workflow?",
+          "category": "other",
+          "expected_file": "api/routes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.766888,
+              "adjustment": -0.2,
+              "new_score": 1.566888,
+              "symbol": "ResearchRequest"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.351661,
+              "adjustment": -0.061281,
+              "new_score": 1.29038,
+              "symbol": "final_report_node"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.302398,
+              "adjustment": -0.0785,
+              "new_score": 1.223898,
+              "symbol": "ResearchState"
+            }
+          ]
+        },
+        {
+          "query": "Where is progress streamed to clients during a research operation?",
+          "category": "other",
+          "expected_file": "api/routes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.495381,
+              "adjustment": -0.2,
+              "new_score": 1.295381,
+              "symbol": "research_stream"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 1.03011,
+              "adjustment": -0.116248,
+              "new_score": 0.913862,
+              "symbol": "ResearchState"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 0.990632,
+              "adjustment": -0.112954,
+              "new_score": 0.877678,
+              "symbol": "research_node"
+            }
+          ]
+        },
+        {
+          "query": "Which module handles retrying failed language model requests?",
+          "category": "other",
+          "expected_file": "utils/llm.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "utils/llm.py",
+          "top_three": [
+            {
+              "file": "utils/llm.py",
+              "base_score": 2.027773,
+              "adjustment": -0.2,
+              "new_score": 1.827773,
+              "symbol": "invoke_llm"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 1.449113,
+              "adjustment": -0.086088,
+              "new_score": 1.363025,
+              "symbol": "research_node"
+            },
+            {
+              "file": "api/routes.py",
+              "base_score": 1.386883,
+              "adjustment": -0.083512,
+              "new_score": 1.303372,
+              "symbol": "ResearchRequest"
+            }
+          ]
+        },
+        {
+          "query": "Where is external information gathered using a web search utility?",
+          "category": "other",
+          "expected_file": "utils/search_tool.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "utils/search_tool.py",
+          "top_three": [
+            {
+              "file": "utils/search_tool.py",
+              "base_score": 1.441884,
+              "adjustment": -0.2,
+              "new_score": 1.241884,
+              "symbol": "web_search"
+            },
+            {
+              "file": "graph/nodes.py",
+              "base_score": 0.99085,
+              "adjustment": -0.092048,
+              "new_score": 0.898802,
+              "symbol": "final_report_node"
+            },
+            {
+              "file": "graph/state.py",
+              "base_score": 0.900671,
+              "adjustment": -0.080161,
+              "new_score": 0.82051,
+              "symbol": "SearchResult"
+            }
+          ]
+        },
+        {
+          "query": "Which component sets up resources when the web application starts?",
+          "category": "startup",
+          "expected_file": "app.py",
+          "baseline_rank": 3,
+          "rank": 1,
+          "top_file": "app.py",
+          "top_three": [
+            {
+              "file": "app.py",
+              "base_score": 1.376379,
+              "adjustment": 0.11412,
+              "new_score": 1.490499,
+              "symbol": "lifespan"
+            },
+            {
+              "file": "utils/search_tool.py",
+              "base_score": 1.58655,
+              "adjustment": -0.171229,
+              "new_score": 1.415321,
+              "symbol": "web_search"
+            },
+            {
+              "file": "tests/test_app.py",
+              "base_score": 1.555578,
+              "adjustment": -0.158553,
+              "new_score": 1.397025,
+              "symbol": "setUp"
+            }
+          ]
+        },
+        {
+          "query": "Where is the HTTP endpoint for checking service availability?",
+          "category": "other",
+          "expected_file": "api/routes.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "api/routes.py",
+          "top_three": [
+            {
+              "file": "api/routes.py",
+              "base_score": 1.479684,
+              "adjustment": -0.2,
+              "new_score": 1.279684,
+              "symbol": "research_stream_endpoint"
+            },
+            {
+              "file": "app.py",
+              "base_score": 1.215267,
+              "adjustment": -0.126745,
+              "new_score": 1.088522,
+              "symbol": "lifespan"
+            },
+            {
+              "file": "tests/test_app.py",
+              "base_score": 0.929909,
+              "adjustment": -0.075243,
+              "new_score": 0.854666,
+              "symbol": "test_health"
+            }
+          ]
+        },
+        {
+          "query": "Which test checks whether the browser interface can be served?",
+          "category": "decision",
+          "expected_file": "tests/test_app.py",
+          "baseline_rank": 1,
+          "rank": 1,
+          "top_file": "tests/test_app.py",
+          "top_three": [
+            {
+              "file": "tests/test_app.py",
+              "base_score": 1.437472,
+              "adjustment": -0.2,
+              "new_score": 1.237472,
+              "symbol": "test_frontend_is_served"
+            },
+            {
+              "file": "app.py",
+              "base_score": 0.842597,
+              "adjustment": -0.046556,
+              "new_score": 0.796041,
+              "symbol": "lifespan"
+            },
+            {
+              "file": "graph/graph_builder.py",
+              "base_score": 0.752318,
+              "adjustment": -0.112462,
+              "new_score": 0.639856,
+              "symbol": "build_graph"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

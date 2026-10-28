@@ -1,0 +1,30 @@
+{
+  "queries": 83,
+  "stages": {
+    "query_preparation_ms": {
+      "mean_ms": 0.09,
+      "p50_ms": 0.08,
+      "p95_ms": 0.12
+    },
+    "candidate_tokenization_ms": {
+      "mean_ms": 111.93,
+      "p50_ms": 110.16,
+      "p95_ms": 129.68
+    },
+    "candidate_score_core_ms": {
+      "mean_ms": 20.31,
+      "p50_ms": 15.79,
+      "p95_ms": 22.37
+    },
+    "phrase_matching_ms": {
+      "mean_ms": 104.6,
+      "p50_ms": 102.26,
+      "p95_ms": 116.58
+    },
+    "other_candidate_ms": {
+      "mean_ms": 2.74,
+      "p50_ms": 2.52,
+      "p95_ms": 4.09
+    }
+  }
+}

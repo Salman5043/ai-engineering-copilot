@@ -1,0 +1,66 @@
+{
+  "repositories": [
+    {
+      "id": "research_assistant",
+      "path": "D:/Research Assisstant/research_assistant_improved_v4",
+      "cases": [
+        {
+          "query": "Where is the build_graph function defined?",
+          "expected_file": "graph/graph_builder.py"
+        },
+        {
+          "query": "Which file defines the ResearchState class?",
+          "expected_file": "graph/state.py"
+        },
+        {
+          "query": "Where is the SearchResult class declared?",
+          "expected_file": "graph/state.py"
+        },
+        {
+          "query": "Which module defines the planner_node function?",
+          "expected_file": "graph/nodes.py"
+        },
+        {
+          "query": "Where is the research_node function implemented?",
+          "expected_file": "graph/nodes.py"
+        },
+        {
+          "query": "Where is the summarizer_node function defined?",
+          "expected_file": "graph/nodes.py"
+        },
+        {
+          "query": "Which file defines the should_revise function?",
+          "expected_file": "graph/nodes.py"
+        },
+        {
+          "query": "Where is the invoke_llm function defined?",
+          "expected_file": "utils/llm.py"
+        },
+        {
+          "query": "Which file contains the get_llm function?",
+          "expected_file": "utils/llm.py"
+        },
+        {
+          "query": "Where is the web_search function defined?",
+          "expected_file": "utils/search_tool.py"
+        },
+        {
+          "query": "Which module defines research_stream_endpoint?",
+          "expected_file": "api/routes.py"
+        },
+        {
+          "query": "Where is the health_check function defined?",
+          "expected_file": "api/routes.py"
+        },
+        {
+          "query": "Which file contains the lifespan function?",
+          "expected_file": "app.py"
+        },
+        {
+          "query": "Where is the test_frontend_is_served test defined?",
+          "expected_file": "tests/test_app.py"
+        }
+      ]
+    }
+  ]
+}

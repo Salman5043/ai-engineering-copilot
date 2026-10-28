@@ -2,6 +2,10 @@
 from __future__ import annotations
 
 import re
+import json
+import os
+import time
+from pathlib import Path
 from collections import Counter
 from math import log
 from typing import Any
@@ -123,6 +127,37 @@ def _contains_phrase(text: str, phrase: str) -> bool:
         text_tokens[index:index + width] == phrase_tokens
         for index in range(len(text_tokens) - width + 1)
     )
+
+
+def _prepared_phrase(value: str) -> tuple[list[str], set[str]]:
+    """Prepare query phrase once, instead of once per candidate field."""
+    tokens = _ordered_tokens(_CAMEL_BOUNDARY.sub(" ", value))
+    if not tokens:
+        return [], set()
+    return tokens, {" ".join(tokens), "_".join(tokens), "-".join(tokens), "".join(tokens)}
+
+
+def _contains_prepared_phrase(text: str, prepared: tuple[list[str], set[str]]) -> bool:
+    """Equivalent to _contains_phrase(text, phrase), with a precompiled phrase."""
+    phrase_tokens, phrase_forms = prepared
+    if not phrase_tokens:
+        return False
+    text_tokens = _ordered_tokens(_CAMEL_BOUNDARY.sub(" ", text))
+    # A whole-field match across naming conventions is either identical
+    # token sequences or an identical compact identifier. The four legacy
+    # string forms are equivalent to these checks for tokenized input.
+    if text_tokens == phrase_tokens:
+        return True
+    if text_tokens and "".join(text_tokens) in phrase_forms:
+        return True
+    width = len(phrase_tokens)
+    if width > len(text_tokens):
+        return False
+    # Search token-aligned text, avoiding O(n * width) list-slice comparisons.
+    # Surrounding spaces prevent matching inside individual tokens.
+    needle = " " + " ".join(phrase_tokens) + " "
+    haystack = " " + " ".join(text_tokens) + " "
+    return needle in haystack
 
 
 def _meaningful_tokens(value: str) -> set[str]:
@@ -328,6 +363,7 @@ def _candidate_score(
     symbol_type: str = "",
     prepared_query: dict[str, Any] | None = None,
     prepared_tokens: tuple[set[str], set[str], set[str]] | None = None,
+    profile_detail: dict[str, float] | None = None,
 ) -> tuple[float, dict[str, float]]:
     """Score a chunk using generic symbol, path, and content evidence."""
     score = 0.0
@@ -355,6 +391,10 @@ def _candidate_score(
         definition_targets = prepared_query["definition_targets"]
         implementation_query = prepared_query["implementation"]
         raw_query = prepared_query["raw_query"]
+    phrase_matcher = (prepared_query.get("phrase_matcher")
+                      if prepared_query is not None else None)
+    if phrase_matcher is None and raw_query:
+        phrase_matcher = _prepared_phrase(raw_query)
 
     # -------------------------------------------------------------
     # 1. Explicit identifier matching
@@ -479,16 +519,20 @@ def _candidate_score(
         score += keyword_score
         signals["keyword"] = keyword_score
 
+    _phrase_start = time.perf_counter() if profile_detail is not None else None
     # -------------------------------------------------------------
     # 5. Raw query phrase matching
     # -------------------------------------------------------------
-    if raw_query and (
-        _contains_phrase(content, raw_query)
-        or _contains_phrase(symbol, raw_query)
-        or _contains_phrase(file_path, raw_query)
+    if raw_query and phrase_matcher and (
+        _contains_prepared_phrase(content, phrase_matcher)
+        or _contains_prepared_phrase(symbol, phrase_matcher)
+        or _contains_prepared_phrase(file_path, phrase_matcher)
     ):
         score += 0.25
         signals["query_phrase"] = 0.25
+
+    if _phrase_start is not None:
+        profile_detail["phrase_matching_ms"] = profile_detail.get("phrase_matching_ms", 0.0) + (time.perf_counter() - _phrase_start) * 1000
 
     # -------------------------------------------------------------
     # 6. Implementation query adjustment
@@ -546,6 +590,43 @@ def lexical_search(
     if top_k < 1:
         raise ValueError("top_k must be at least 1.")
 
+    _profile_path = os.getenv("COPILOT_LEXICAL_PROFILE_JSONL")
+    _profile_start = time.perf_counter() if _profile_path else None
+    _profile_marks = {}
+    _detail = {"query_preparation_ms": 0.0, "candidate_tokenization_ms": 0.0, "candidate_score_core_ms": 0.0, "phrase_matching_ms": 0.0}
+
+    def _mark(stage: str) -> None:
+        if _profile_start is not None:
+            _profile_marks[stage] = time.perf_counter()
+
+    def _emit_profile(candidate_count: int, result_count: int) -> None:
+        if _profile_start is None or not _profile_path:
+            return
+        now = time.perf_counter()
+        start = _profile_start
+        fetch_end = _profile_marks.get("fetch", start)
+        score_end = _profile_marks.get("score", fetch_end)
+        bm25_end = _profile_marks.get("bm25", score_end)
+        _detail["other_candidate_ms"] = max(0.0, (score_end - fetch_end) * 1000 - sum(_detail.values()))
+        record = {
+            "repository_id": repository_id,
+            "candidate_count": candidate_count,
+            "result_count": result_count,
+            "collection_get_ms": round((fetch_end - start) * 1000, 3),
+            "candidate_scoring_ms": round((score_end - fetch_end) * 1000, 3),
+            "candidate_detail_ms": {key: round(value, 3) for key, value in _detail.items()},
+            "bm25_ms": round((bm25_end - score_end) * 1000, 3),
+            "normalization_sort_ms": round((now - bm25_end) * 1000, 3),
+            "total_ms": round((now - start) * 1000, 3),
+        }
+        try:
+            destination = Path(_profile_path)
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            with destination.open("a", encoding="utf-8") as output:
+                output.write(json.dumps(record, separators=(",", ":")) + "\n")
+        except OSError:
+            pass  # Profiling must not break retrieval.
+
     collection = get_collection()
 
     raw = collection.get(
@@ -553,15 +634,18 @@ def lexical_search(
         include=["documents", "metadatas"],
     )
 
+    _mark("fetch")
+
     documents = raw.get("documents") or []
     metadatas = raw.get("metadatas") or []
 
     candidates: list[dict[str, Any]] = []
     token_rows: list[tuple[set[str], set[str], set[str]]] = []
     def prepared_values(field: str) -> list[set[str]]:
-        return [_meaningful_tokens(_CAMEL_BOUNDARY.sub(" ", value))
+        return [_meaningful_tokens(value)
                 for value in _query_values(parsed_query, field)]
 
+    _query_prepare_start = time.perf_counter() if _profile_start is not None else None
     prepared_query = {
         "terms": _query_terms(parsed_query),
         "keywords": prepared_values("keywords"),
@@ -569,7 +653,13 @@ def lexical_search(
         "definition_targets": prepared_values("definition_targets"),
         "implementation": _is_implementation_query(parsed_query),
         "raw_query": str(getattr(parsed_query, "raw_query", "") or "").strip(),
+        "phrase_matcher": _prepared_phrase(
+            str(getattr(parsed_query, "raw_query", "") or "").strip()
+        ),
     }
+
+    if _query_prepare_start is not None:
+        _detail["query_preparation_ms"] += (time.perf_counter() - _query_prepare_start) * 1000
 
     for document, metadata in zip(documents, metadatas):
         metadata = metadata or {}
@@ -583,12 +673,17 @@ def lexical_search(
         symbol = str(metadata.get("symbol", ""))
         file_path = str(metadata.get("file", ""))
         content = str(document or "")
+        _token_start = time.perf_counter() if _profile_start is not None else None
         tokens = (
-            _meaningful_tokens(_CAMEL_BOUNDARY.sub(" ", symbol)),
+            _meaningful_tokens(symbol),
             _meaningful_tokens(file_path.replace("\\", "/")),
             _meaningful_tokens(content),
         )
         token_rows.append(tokens)
+        if _token_start is not None:
+            _detail["candidate_tokenization_ms"] += (time.perf_counter() - _token_start) * 1000
+
+        _score_start = time.perf_counter() if _profile_start is not None else None
 
         score, signals = _candidate_score(
             file_path=str(metadata.get("file", "")),
@@ -598,7 +693,11 @@ def lexical_search(
             symbol_type=str(metadata.get("symbol_type", "")),
             prepared_query=prepared_query,
             prepared_tokens=tokens,
+            profile_detail=_detail if _profile_start is not None else None,
         )
+
+        if _score_start is not None:
+            _detail["candidate_score_core_ms"] += (time.perf_counter() - _score_start) * 1000
 
         candidates.append({
             "content": document,
@@ -607,13 +706,19 @@ def lexical_search(
             "ranking_signals": {"lexical": signals},
         })
 
+    _detail["candidate_score_core_ms"] = max(0.0, _detail["candidate_score_core_ms"] - _detail["phrase_matching_ms"])
+    _mark("score")
     if not candidates:
+        _mark("bm25")
+        _emit_profile(0, 0)
         return []
 
     bm25_scores = _bm25_scores(
         candidates, parsed_query, prepared_terms=prepared_query["terms"],
         prepared_tokens=token_rows,
     )
+
+    _mark("bm25")
 
     max_lexical = max(
         (candidate["lexical_score"] for candidate in candidates),
@@ -660,4 +765,6 @@ def lexical_search(
         reverse=True,
     )
 
-    return candidates[:top_k]
+    results = candidates[:top_k]
+    _emit_profile(len(token_rows), len(results))
+    return results

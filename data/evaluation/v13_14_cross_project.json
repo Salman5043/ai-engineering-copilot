@@ -1,0 +1,223 @@
+{
+  "suite": "v13.14 synthetic cross-project lexical smoke test",
+  "limitations": [
+    "Synthetic snippets only; not independent external Python projects.",
+    "Lexical search only; does not test indexing, embeddings, hybrid retrieval, or full pipeline.",
+    "Expected files are manually authored; no real-world generalization claim."
+  ],
+  "top_k": 5,
+  "cases": 12,
+  "overall": {
+    "hit_at_1": 1,
+    "hit_at_k": 1,
+    "mrr": 1.0
+  },
+  "per_project": {
+    "web_api": {
+      "cases": 2,
+      "hit_at_1": 1,
+      "hit_at_k": 1,
+      "mrr": 1.0
+    },
+    "django_style": {
+      "cases": 2,
+      "hit_at_1": 1,
+      "hit_at_k": 1,
+      "mrr": 1.0
+    },
+    "cli_tool": {
+      "cases": 2,
+      "hit_at_1": 1,
+      "hit_at_k": 1,
+      "mrr": 1.0
+    },
+    "async_worker": {
+      "cases": 2,
+      "hit_at_1": 1,
+      "hit_at_k": 1,
+      "mrr": 1.0
+    },
+    "data_science": {
+      "cases": 2,
+      "hit_at_1": 1,
+      "hit_at_k": 1,
+      "mrr": 1.0
+    },
+    "library_package": {
+      "cases": 2,
+      "hit_at_1": 1,
+      "hit_at_k": 1,
+      "mrr": 1.0
+    }
+  },
+  "results": [
+    {
+      "repository": "web_api",
+      "query": "Where is create_user implemented?",
+      "expected_file": "api/routes/users.py",
+      "returned_files": [
+        "api/routes/users.py",
+        "api/security/auth.py",
+        "api/config.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "repository": "web_api",
+      "query": "Which function verifies a JWT bearer token?",
+      "expected_file": "api/security/auth.py",
+      "returned_files": [
+        "api/security/auth.py",
+        "api/routes/users.py",
+        "api/config.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "repository": "django_style",
+      "query": "Where is the Order model defined?",
+      "expected_file": "shop/models.py",
+      "returned_files": [
+        "shop/models.py",
+        "shop/tasks.py",
+        "shop/views.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "repository": "django_style",
+      "query": "Where is customer checkout processed?",
+      "expected_file": "shop/views.py",
+      "returned_files": [
+        "shop/views.py",
+        "shop/models.py",
+        "shop/tasks.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "repository": "cli_tool",
+      "query": "Where are command line flags parsed?",
+      "expected_file": "cli/commands.py",
+      "returned_files": [
+        "cli/commands.py",
+        "cli/output.py",
+        "cli/config.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "repository": "cli_tool",
+      "query": "Which function formats terminal table output?",
+      "expected_file": "cli/output.py",
+      "returned_files": [
+        "cli/output.py",
+        "cli/config.py",
+        "cli/commands.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "repository": "async_worker",
+      "query": "Where is exponential retry backoff calculated?",
+      "expected_file": "worker/retry.py",
+      "returned_files": [
+        "worker/retry.py",
+        "worker/storage.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "repository": "async_worker",
+      "query": "Which coroutine consumes queue messages?",
+      "expected_file": "worker/consumer.py",
+      "returned_files": [
+        "worker/consumer.py",
+        "worker/storage.py",
+        "worker/retry.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "repository": "data_science",
+      "query": "Where are numeric features standardized?",
+      "expected_file": "pipeline/features.py",
+      "returned_files": [
+        "pipeline/features.py",
+        "pipeline/train.py",
+        "pipeline/metrics.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "repository": "data_science",
+      "query": "Where is the classification model trained?",
+      "expected_file": "pipeline/train.py",
+      "returned_files": [
+        "pipeline/train.py",
+        "pipeline/metrics.py",
+        "pipeline/features.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "repository": "library_package",
+      "query": "Where is PluginRegistry defined?",
+      "expected_file": "src/widgetlib/registry.py",
+      "returned_files": [
+        "src/widgetlib/registry.py",
+        "tests/test_registry.py",
+        "src/widgetlib/serializer.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0
+    },
+    {
+      "repository": "library_package",
+      "query": "Which function encodes objects as JSON?",
+      "expected_file": "src/widgetlib/serializer.py",
+      "returned_files": [
+        "src/widgetlib/serializer.py",
+        "tests/test_registry.py",
+        "src/widgetlib/registry.py"
+      ],
+      "rank": 1,
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "reciprocal_rank": 1.0
+    }
+  ],
+  "isolation_passed": true
+}

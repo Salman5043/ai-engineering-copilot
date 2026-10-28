@@ -8,9 +8,9 @@
     11
   ],
   "latency_samples": 33,
-  "latency_ms_p50": 1737.5376001000404,
-  "latency_ms_p95": 11195.028840005398,
-  "latency_ms_mean": 2565.4016848667666,
+  "latency_ms_p50": 789.7369000129402,
+  "latency_ms_p95": 6946.141119860112,
+  "latency_ms_mean": 1417.3937606286597,
   "failures": [],
   "passed": true
 }

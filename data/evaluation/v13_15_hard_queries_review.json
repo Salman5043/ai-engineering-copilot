@@ -1,0 +1,96 @@
+{
+  "status": "PROVISIONAL - not verified against source bodies",
+  "repository": "D:/Research Assisstant/research_assistant_improved_v4",
+  "cases": [
+    {
+      "query": "Where is the sequence of research processing stages assembled into a workflow?",
+      "expected_file": "graph/graph_builder.py",
+      "symbol_to_review": "build_graph",
+      "reviewed": false
+    },
+    {
+      "query": "Which component decides whether a draft needs another revision?",
+      "expected_file": "graph/nodes.py",
+      "symbol_to_review": "should_revise",
+      "reviewed": false
+    },
+    {
+      "query": "Where does the application plan what information to investigate?",
+      "expected_file": "graph/nodes.py",
+      "symbol_to_review": "planner_node",
+      "reviewed": false
+    },
+    {
+      "query": "Which component gathers material for the research workflow?",
+      "expected_file": "graph/nodes.py",
+      "symbol_to_review": "research_node",
+      "reviewed": false
+    },
+    {
+      "query": "Where are findings condensed before producing a report?",
+      "expected_file": "graph/nodes.py",
+      "symbol_to_review": "summarizer_node",
+      "reviewed": false
+    },
+    {
+      "query": "Which component writes an initial report from gathered evidence?",
+      "expected_file": "graph/nodes.py",
+      "symbol_to_review": "draft_report_node",
+      "reviewed": false
+    },
+    {
+      "query": "Where is a generated report reviewed for weaknesses?",
+      "expected_file": "graph/nodes.py",
+      "symbol_to_review": "critic_node",
+      "reviewed": false
+    },
+    {
+      "query": "Where are the data structures holding shared workflow context defined?",
+      "expected_file": "graph/state.py",
+      "symbol_to_review": "ResearchState",
+      "reviewed": false
+    },
+    {
+      "query": "Which component prepares a new request for processing by the research workflow?",
+      "expected_file": "api/routes.py",
+      "symbol_to_review": "initial_state",
+      "reviewed": false
+    },
+    {
+      "query": "Where is progress streamed to clients during a research operation?",
+      "expected_file": "api/routes.py",
+      "symbol_to_review": "research_stream",
+      "reviewed": false
+    },
+    {
+      "query": "Which module handles retrying failed language model requests?",
+      "expected_file": "utils/llm.py",
+      "symbol_to_review": "invoke_llm",
+      "reviewed": false
+    },
+    {
+      "query": "Where is external information gathered using a web search utility?",
+      "expected_file": "utils/search_tool.py",
+      "symbol_to_review": "web_search",
+      "reviewed": false
+    },
+    {
+      "query": "Which component sets up resources when the web application starts?",
+      "expected_file": "app.py",
+      "symbol_to_review": "lifespan",
+      "reviewed": false
+    },
+    {
+      "query": "Where is the HTTP endpoint for checking service availability?",
+      "expected_file": "api/routes.py",
+      "symbol_to_review": "health_check",
+      "reviewed": false
+    },
+    {
+      "query": "Which test checks whether the browser interface can be served?",
+      "expected_file": "tests/test_app.py",
+      "symbol_to_review": "test_frontend_is_served",
+      "reviewed": false
+    }
+  ]
+}

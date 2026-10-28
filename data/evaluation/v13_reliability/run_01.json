@@ -21,7 +21,7 @@
     "symbol_aware_evidence_hit_at_10": 1.0,
     "file_mrr_at_10": 1.0,
     "intent_accuracy": 1.0,
-    "latency_ms": 2885.1612273138016
+    "latency_ms": 1462.806145448915
   },
   "errors": [],
   "results": [
@@ -45,7 +45,7 @@
         "file_hit_at_10": 1.0,
         "strict_evidence_hit_at_10": 1.0,
         "file_mrr_at_10": 1.0,
-        "latency_ms": 11294.064600020647,
+        "latency_ms": 7315.15059992671,
         "symbol_aware_evidence_hit_at_10": 1.0,
         "intent_accuracy": 1.0
       },
@@ -212,7 +212,7 @@
         "file_hit_at_10": 1.0,
         "strict_evidence_hit_at_10": 1.0,
         "file_mrr_at_10": 1.0,
-        "latency_ms": 2604.1814000345767,
+        "latency_ms": 1144.9465998448431,
         "symbol_aware_evidence_hit_at_10": 1.0,
         "intent_accuracy": 1.0
       },
@@ -379,7 +379,7 @@
         "file_hit_at_10": 1.0,
         "strict_evidence_hit_at_10": 1.0,
         "file_mrr_at_10": 1.0,
-        "latency_ms": 3212.7727000042796,
+        "latency_ms": 1202.4709000252187,
         "symbol_aware_evidence_hit_at_10": 1.0,
         "intent_accuracy": 1.0
       },
@@ -546,7 +546,7 @@
         "file_hit_at_10": 1.0,
         "strict_evidence_hit_at_10": 1.0,
         "file_mrr_at_10": 1.0,
-        "latency_ms": 2152.2707000840455,
+        "latency_ms": 1009.3984003178775,
         "symbol_aware_evidence_hit_at_10": 1.0,
         "intent_accuracy": 1.0
       },
@@ -713,7 +713,7 @@
         "file_hit_at_10": 1.0,
         "strict_evidence_hit_at_10": 1.0,
         "file_mrr_at_10": 1.0,
-        "latency_ms": 1684.2137000057846,
+        "latency_ms": 824.0185002796352,
         "symbol_aware_evidence_hit_at_10": 1.0,
         "intent_accuracy": 1.0
       },
@@ -880,7 +880,7 @@
         "file_hit_at_10": 1.0,
         "strict_evidence_hit_at_10": 1.0,
         "file_mrr_at_10": 1.0,
-        "latency_ms": 1737.5376001000404,
+        "latency_ms": 773.7229000777006,
         "symbol_aware_evidence_hit_at_10": 1.0,
         "intent_accuracy": 1.0
       },
@@ -1047,7 +1047,7 @@
         "file_hit_at_10": 1.0,
         "strict_evidence_hit_at_10": 0.0,
         "file_mrr_at_10": 1.0,
-        "latency_ms": 1865.9475001040846,
+        "latency_ms": 733.1723999232054,
         "symbol_aware_evidence_hit_at_10": 1.0,
         "intent_accuracy": 1.0
       },
@@ -1214,7 +1214,7 @@
         "file_hit_at_10": 1.0,
         "strict_evidence_hit_at_10": 1.0,
         "file_mrr_at_10": 1.0,
-        "latency_ms": 1722.4502000026405,
+        "latency_ms": 767.3221998848021,
         "symbol_aware_evidence_hit_at_10": 1.0,
         "intent_accuracy": 1.0
       },
@@ -1381,7 +1381,7 @@
         "file_hit_at_10": 1.0,
         "strict_evidence_hit_at_10": 1.0,
         "file_mrr_at_10": 1.0,
-        "latency_ms": 1807.8285998199135,
+        "latency_ms": 776.0510998778045,
         "symbol_aware_evidence_hit_at_10": 1.0,
         "intent_accuracy": 1.0
       },
@@ -1548,7 +1548,7 @@
         "file_hit_at_10": 1.0,
         "strict_evidence_hit_at_10": 1.0,
         "file_mrr_at_10": 1.0,
-        "latency_ms": 1754.7266001347452,
+        "latency_ms": 754.7567998990417,
         "symbol_aware_evidence_hit_at_10": 1.0,
         "intent_accuracy": 1.0
       },
@@ -1715,7 +1715,7 @@
         "file_hit_at_10": 1.0,
         "strict_evidence_hit_at_10": 1.0,
         "file_mrr_at_10": 1.0,
-        "latency_ms": 1900.7799001410604,
+        "latency_ms": 789.8571998812258,
         "symbol_aware_evidence_hit_at_10": 1.0,
         "intent_accuracy": 1.0
       },

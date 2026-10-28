@@ -1,0 +1,17 @@
+{
+  "repositories": [
+    {
+      "id": "research_assistant",
+      "split": "development",
+      "path": "D:/Research Assisstant/research_assistant_improved_v4",
+      "cases": [
+        {
+          "query": "Where is the sequence of research processing stages assembled into a workflow?",
+          "expected_file": "graph/graph_builder.py",
+          "expected_symbol": "build_graph"
+        }
+      ]
+    }
+    
+  ]
+}
