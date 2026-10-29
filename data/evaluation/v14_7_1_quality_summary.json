@@ -1,0 +1,20 @@
+{
+  "cases": 20,
+  "structural_reference_counts": {
+    "resolved_static_call": 15,
+    "no_direct_resolved_edge": 5
+  },
+  "cases_with_added_architecture_evidence": 20,
+  "resolved_edge_cases": 15,
+  "resolved_edge_cases_with_exact_edge_in_enrichment": 15,
+  "cases_flagged_for_priority_review": 20,
+  "flag_counts": {
+    "baseline_missing_answer": 20,
+    "enhanced_missing_answer": 20
+  },
+  "baseline_answers_available": 0,
+  "enhanced_answers_available": 0,
+  "baseline_total_llm_ms": 0,
+  "enhanced_total_llm_ms": 0,
+  "automatic_answer_correctness": null
+}

@@ -115,17 +115,36 @@ def enrich_evidence(
 
     hints = {'results': [{'metadata': {'file': file}} for file in retrieved_files]}
     analysis = reason(report, query, retrieval=hints)
+    # Contextual candidates must overlap original retrieval; exact verified
+    # requested edges are the sole exception.
     contextual = [e for e in analysis['related_static_calls']
                   if _normalized(str(e.get('file', ''))) in retrieved_files]
 
+    def relevance(edge: dict[str, Any]) -> tuple[int, int, str, int, str]:
+        """Deterministic: requested endpoint, retrieved endpoint, lexical fit."""
+        src, dst = str(edge.get('from', '')), str(edge.get('to', ''))
+        endpoints = {src, dst}
+        endpoint_score = sum(1 for ref in requested if ref in endpoints)
+        files = {ref.split('::', 1)[0] for ref in endpoints}
+        overlap = len(files & retrieved_files)
+        # Lexical scoring only breaks ties; it never displaces an exact edge.
+        query_terms = set(re.findall(r'[a-z][a-z0-9_]+', query.lower()))
+        edge_terms = set(re.findall(r'[a-z][a-z0-9_]+', (src + ' ' + dst).lower()))
+        lexical = len(query_terms & edge_terms)
+        return (-endpoint_score, -overlap, -lexical, str(edge.get('file', '')), int(edge.get('line', 0)), src + dst)
+
+    contextual.sort(key=relevance)
+
     extras: list[dict[str, Any]] = []
     seen: set[tuple[Any, ...]] = set()
+    # Deduplicate by logical relationship, not by call-site line. This keeps
+    # the earliest/highest-priority provenance when multiple sites agree.
     for edge in exact + contextual:
         file = _normalized(str(edge.get('file', '')))
         line = edge.get('line')
         if type(line) is not int or line < 1:
             continue
-        key = (file, line, edge.get('from'), edge.get('to'))
+        key = (edge.get('from'), edge.get('to'))
         if key in seen:
             continue
         seen.add(key)
