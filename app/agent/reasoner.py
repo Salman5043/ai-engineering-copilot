@@ -25,6 +25,24 @@ Rules:
 8. Keep the answer technically precise.
 9. When appropriate, provide a concise investigation summary followed
    by the relevant implementation details.
+10. Treat static-analysis edges as source-level findings, NOT proof that
+    execution reached the call site or that the target ran.
+11. Python static analysis is not compile-time binding. Never call a
+    statically identified Python call "compile-time resolved".
+12. Distinguish direct function calls, constructor/class instantiation,
+    method calls, imports, registrations, and inferred or unresolved edges.
+    Do not claim a particular kind without supporting evidence.
+13. A missing edge means "not resolved in the supplied evidence", NOT
+    "the call never happens" or "there is no runtime path".
+14. Do not infer that there is no dynamic dispatch, monkey-patching,
+    aliasing, or indirection elsewhere merely from one static call edge.
+15. Cite the evidence location for each significant relationship claim.
+    If only an analyzer record is available, attribute it to the analyzer
+    rather than claiming direct inspection of the original source.
+16. Avoid unsupported claims about side effects, return values,
+    execution order, reachability, or runtime behavior.
+17. If evidence disagrees, describe the conflict and its limits rather
+    than presenting an unconditional conclusion.
 """
 
 
@@ -124,6 +142,12 @@ Your answer should:
 - mention line ranges when available
 - clearly distinguish direct evidence from reasonable interpretation
 - state when evidence is insufficient
+- describe static-call findings as source-level analysis, not runtime execution
+- distinguish functions, constructors, imports and unresolved edges
+- do not claim compile-time binding, absence of dynamic behavior, or
+  execution/side effects without direct supporting evidence
+- cite evidence locations for relationship claims and attribute analyzer
+  records to the analyzer when source snippets are unavailable
 """
 
 

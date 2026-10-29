@@ -1,0 +1,32 @@
+{
+  "schema_version": "14.8",
+  "cases": 20,
+  "variants": {
+    "baseline": {
+      "answers_available": 20,
+      "human_reviewed": 0,
+      "correctness_counts": {},
+      "grounding_counts": {},
+      "unsupported_runtime_claims": 0,
+      "required_facts_met": 0,
+      "correct_rate_among_reviewed": null,
+      "fully_grounded_rate_among_reviewed": null
+    },
+    "enhanced": {
+      "answers_available": 20,
+      "human_reviewed": 0,
+      "correctness_counts": {},
+      "grounding_counts": {},
+      "unsupported_runtime_claims": 0,
+      "required_facts_met": 0,
+      "correct_rate_among_reviewed": null,
+      "fully_grounded_rate_among_reviewed": null
+    }
+  },
+  "paired_human_reviewed": 0,
+  "enhanced_correctness_wins": 0,
+  "enhanced_correctness_losses": 0,
+  "net_correctness_wins": 0,
+  "automatic_answer_correctness": null,
+  "caution": "Rates cover reviewed answers only; no automated ground-truth or statistical significance claim."
+}
