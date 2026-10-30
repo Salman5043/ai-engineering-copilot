@@ -1,0 +1,12 @@
+{
+  "cases": 20,
+  "positive_source_call_matches": 15,
+  "negative_no_direct_call": 5,
+  "analyzer_call_site_line_matches": 13,
+  "analyzer_call_site_line_mismatches": 2,
+  "stale_case_ids": [
+    "v14_6_002",
+    "v14_6_004"
+  ],
+  "scope": "AST syntactic call expressions in uploaded ZIP; not a full import-binding, runtime, or all-answer claim audit"
+}
